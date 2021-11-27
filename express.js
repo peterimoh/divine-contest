@@ -1,11 +1,11 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors')
-const morgan  = require('morgan')
+const cors = require('cors');
+const morgan = require('morgan');
 const fs = require('fs');
 const os = require('os');
 //db
-require('./server/db/db.config')
+require('./server/db/db.config');
 
 //routes
 const authRoute = require('./server/routes/auth-route');
