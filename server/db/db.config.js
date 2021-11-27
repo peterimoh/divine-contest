@@ -16,7 +16,7 @@ con.connect(function (err) {
 });
 
 con.query(
-  `CREATE TABLE IF NOT EXISTS user(id INT(11) NOT NULL AUTO_INCREMENT, first_name TEXT(1000) NOT NULL, last_name TEXT(1000) NOT NULL, email VARCHAR(255) NOT NULL, password TEXT(1000) NOT NULL, uuid TEXT(1000) NOT NULL, date_of_birth DATE NOT NULL, mobile TEXT(1000) NOT NULL, street VARCHAR(255) NOT NULL, postal_code INT(11) NOT NULL, region TEXT(1000) NOT NULL, country TEXT(1000) NOT NULL,  profile_pic BLOB(1000) NULL, full_pic BLOB(1000) NULL, role TEXT(1000) DEFAULT 'user' NOT NULL, PRIMARY KEY(id))`,
+  `CREATE TABLE IF NOT EXISTS user(id INT(11) NOT NULL AUTO_INCREMENT, first_name TEXT(1000) NOT NULL, last_name TEXT(1000) NOT NULL, email VARCHAR(255) NOT NULL, password TEXT(1000) NOT NULL, uuid INT(11) NOT NULL, date_of_birth TEXT(1000) NOT NULL, mobile VARCHAR(255) NOT NULL, street VARCHAR(255) NOT NULL, postal_code INT(11) NOT NULL, region TEXT(1000) NOT NULL, country TEXT(1000) NOT NULL,  profile_pic BLOB(1000) NULL, full_pic BLOB(1000) NULL, role TEXT(1000) DEFAULT 'user' NOT NULL, PRIMARY KEY(id))`,
   (err, result) => {
     if (err) return console.log(err);
   }

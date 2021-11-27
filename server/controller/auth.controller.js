@@ -32,7 +32,6 @@ exports.Signup = async (req, res, next) => {
     region,
     country,
   } = req.body;
-
   const hashedPassword = await hashPassword(password);
   const userObj = {
     first_name,
@@ -46,6 +45,7 @@ exports.Signup = async (req, res, next) => {
     postal_code,
     region,
     country,
+    role: req.body.role || 'user'
   };
 
   await Auth.EmailValidate(email, async (err, user) => {
@@ -54,6 +54,7 @@ exports.Signup = async (req, res, next) => {
       return res.status(400).json({ error: 'User already Exist!' });
     } else {
       await Auth.InsertUser(userObj, (err, output) => {
+        console.log(err)
         if (err) return res.status(500).json({ error: 'Server Error, Try again Later!' })
         return res.status(200).json({msg: `OK`, data: output})
       })

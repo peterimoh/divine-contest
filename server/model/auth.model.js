@@ -11,8 +11,8 @@ exports.EmailValidate = (email, result) => {
 };
 
 exports.InsertUser = (userObj, result) => {
-  return sql.query(`INSERT INTO user(first_name, last_name, email, password, uuid, date_of_birth, mobile, street, postal_code, region, country) VALUES(?,?,?,?,?,?,?,?,?,?,?)`, [userObj], async (err, output) => {
-    if (err) return result(err, null)
-    return result(null, result)
-  })
+  sql.query(`INSERT INTO user SET ?`, [userObj], (err, output) => {
+    if (err) return result(err, null);
+    return result(null, output);
+  });
 }
