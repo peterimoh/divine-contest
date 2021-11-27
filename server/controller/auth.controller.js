@@ -49,11 +49,14 @@ exports.Signup = async (req, res, next) => {
   };
 
   await Auth.EmailValidate(email, async (err, user) => {
-    if (err) return res.status(400).json({ msg: 'Server Error!' });
+    if (err) return res.status(400).json({ error: 'Server Error!' });
     if (!Object.entries(user).length == 0) {
-      return res.status(400).json({ nsg: 'User already Exist!' });
+      return res.status(400).json({ error: 'User already Exist!' });
     } else {
-      await Auth.InsertUser(userObj, (err, output))
+      await Auth.InsertUser(userObj, (err, output) => {
+        if (err) return res.status(500).json({ error: 'Server Error, Try again Later!' })
+        return res.status(200).json({msg: `OK`, data: output})
+      })
     }
   });
 };
