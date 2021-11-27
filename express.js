@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const passport = require('passport')
 const cors = require('cors');
 const morgan = require('morgan');
 const fs = require('fs');
@@ -14,6 +15,10 @@ const app = express();
 
 //middlewares
 app.use(morgan('dev'));
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./server/config/passport")(passport);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
