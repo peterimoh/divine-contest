@@ -1,6 +1,5 @@
-const request = require("request");
 
-export class Vote {
+ class Vote {
 
   static amountPerVote = 550;
   res;
@@ -18,44 +17,12 @@ export class Vote {
     this.numberOfVote = numberOfVote;
   }
 
-  ValidatePayment(){
+  async ValidatePayment(){
     
-      let flutterWaveReturnedObject;
-    
-      let options = {
-        method: "GET",
-        url: `https://api.flutterwave.com/v3/transactions/${this.transID}/verify`,
-        headers: {
-          "content-type": "application/json",
-          authorization: "FLWSECK-db2f2e4art8e3ceecd9d5e7dc73bf899d3-X",
-        },
-      };
-      
-      await request(options, async (err, response) => {
-        flutterWaveReturnedObject = JSON.parse(response.body);
-        
-        if (flutterWaveReturnedObject.data.status == "successful") {
-          if (
-            flutterWaveReturnedObject.data.amount == this.amount ||
-            flutterWaveReturnedObject.data.amount > this.amount
-            ) {
-
-              this.UpdateDataBase();
-              this.TransactionMessage(res, 200, "Your payment was successful")
-            }
-            else {
-            this.TransactionMessage(res, 400, "You tried to pay invalid Amount");
-          }
-        } 
-
-        else {
-          
-        }
-      })
   }
 
   UpdateDataBase(){
-    
+
     
   }
 
@@ -64,3 +31,7 @@ export class Vote {
   }
 
 }
+
+module.exports =  Vote
+
+
