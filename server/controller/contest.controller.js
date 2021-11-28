@@ -6,18 +6,19 @@ class Contest extends Voter {
 
     res;
     constructor(res){
+        super();
         this.res = res;
     }
 
     Create(contest, contestObject) {
 
         Model.Insert(contest, contestObject, (err, result)=>{
-            if(err) this.TransactionMessage(res, 400, "Error creating contest table")
+            if(err) console.log(err), this.TransactionMessage(this.res, 400, "Error creating contest table")
             else {
                 Model.Select(contest, (err, result)=>{
-                    if(err) this.TransactionMessage(res, 400, "Error getting contest table");
+                    if(err) this.TransactionMessage(this.res, 400, "Error getting contest table");
                     else{
-                        this.TransactionMessage(res, 200, result)
+                        this.TransactionMessage(this.res, 200, result)
                     }
                 })
             }
@@ -26,8 +27,8 @@ class Contest extends Voter {
     
     Select(contest){
         Model.Select(contest, (err, result)=>{
-            if(err) this.TransactionMessage(res, 400, "Error creating contest table");
-            else  this.TransactionMessage(res, 200, result);
+            if(err) this.TransactionMessage(this.res, 400, "Error selecting contest table");
+            else  this.TransactionMessage(this.res, 200, result);
         })
     }
 
