@@ -8,7 +8,6 @@ class Contest extends Voter {
     this.res = res;
   }
 
-
     Create(contest, contestObject) {
 
         Model.Insert(contest, contestObject, (err, result)=>{
