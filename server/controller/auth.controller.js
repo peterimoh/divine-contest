@@ -114,8 +114,8 @@ exports.Voter = async (req, res)=>{
   
 }
 
-exports.AddContest = async(req, res) => new Contest(res).CreatContestTable(res.body);
+exports.AddContest = async(req, res) => new Contest(res).Create("contest", res.body);
 
-exports.AddContestant = async(req, res) => new Contest(res).CreatContestTable(res.body);
+exports.AddContestant = async(req, res) => new Contest(res).Create("contestant_table", res.body);
 
 

@@ -9,11 +9,12 @@ class Contest extends Voter {
         this.res = res;
     }
 
-    CreatContestTable(contestObject){
-        Model.Insert("contest", contestObject, (err, result)=>{
+    Create(contestObject, contest) {
+
+        Model.Insert(contest, contestObject, (err, result)=>{
             if(err) this.TransactionMessage(res, 400, "Error creating contest table")
             else {
-                Model.Select("contest", (err, result)=>{
+                Model.Select(contest, (err, result)=>{
                     if(err) this.TransactionMessage(res, 400, "Error getting contest table");
                     else{
                         this.TransactionMessage(res, 200, result)
@@ -23,13 +24,6 @@ class Contest extends Voter {
         })
     }
 
-    GetContestTable(contestTableObject){
-
-    }
-
-    CreateContentants(){
-
-    }
 }
 
 module.exports = Contest;
