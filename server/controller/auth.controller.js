@@ -2,6 +2,7 @@ const Auth = require('../model/auth.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config/config');
+const {Vote}  = require('./vote.controller')
 
 //encrypt password
 async function hashPassword(password) {
@@ -99,3 +100,17 @@ exports.Login = async (req, res) => {
     }
   });
 };
+
+exports.Voter = async (req, res)=>{
+
+  var obj = req.body.response;
+  var amount = parseInt(obj.amount);
+  var transID = obj.transaction_id;
+  let contestantID = obj.meta.contestantID
+  let numberOfVote = obj.meta.numberOfVote;
+
+  new Vote(res, contestantID, numberOfVote, amount, transID).ValidatePayment()
+  
+}
+
+
