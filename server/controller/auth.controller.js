@@ -2,8 +2,8 @@ const Auth = require('../model/auth.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config/config');
-const {Vote}  = require('./vote.controller');
-const { Contest } = require('./contest.controller');
+const Vote  = require('./vote.controller');
+const Contest = require('./contest.controller');
 
 //encrypt password
 async function hashPassword(password) {
@@ -114,6 +114,8 @@ exports.Voter = async (req, res)=>{
   
 }
 
-exports.AddContest = async(req, res) => new Contest(res, res.body).CreatContestTable();
+exports.AddContest = async(req, res) => new Contest(res).CreatContestTable(res.body);
+
+exports.AddContestant = async(req, res) => new Contest(res).CreatContestTable(res.body);
 
 

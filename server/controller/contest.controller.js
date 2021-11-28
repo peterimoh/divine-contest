@@ -1,20 +1,16 @@
-import { Voter } from './auth.controller';
+const Voter = require('./vote.controller')
 
 const Model = require('../model/auth.model');
 
-export class Contest extends Voter {
+class Contest extends Voter {
 
     res;
-    contestObject;
-
-    constructor(res, contestObject){
+    constructor(res){
         this.res = res;
-        this.contestObject = contestObject;
-
     }
 
-    CreatContestTable(){
-        Model.Insert("contest", this.contestObject, (err, result)=>{
+    CreatContestTable(contestObject){
+        Model.Insert("contest", contestObject, (err, result)=>{
             if(err) this.TransactionMessage(res, 400, "Error creating contest table")
             else {
                 Model.Select("contest", (err, result)=>{
@@ -27,7 +23,7 @@ export class Contest extends Voter {
         })
     }
 
-    GetContestTable(){
+    GetContestTable(contestTableObject){
 
     }
 
@@ -35,3 +31,5 @@ export class Contest extends Voter {
 
     }
 }
+
+module.exports = Contest;
