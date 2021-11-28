@@ -55,7 +55,7 @@ export class Vote {
   }
 
   UpdateDataBase(){
-    
+
     
   }
 
@@ -64,3 +64,5 @@ export class Vote {
   }
 
 }
+
+

@@ -2,7 +2,8 @@ const Auth = require('../model/auth.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config/config');
-const {Vote}  = require('./vote.controller')
+const {Vote}  = require('./vote.controller');
+const { Contest } = require('./contest.controller');
 
 //encrypt password
 async function hashPassword(password) {
@@ -55,7 +56,7 @@ exports.Signup = async (req, res, next) => {
     if (!Object.entries(user).length == 0) {
       return res.status(400).json({ error: 'User already Exist!' });
     } else {
-      await Auth.InsertUser(userObj, (err, output) => {
+      await Auth.Insert("user", userObj, (err, output) => {
         console.log(err);
         if (err)
           return res
@@ -112,5 +113,7 @@ exports.Voter = async (req, res)=>{
   new Vote(res, contestantID, numberOfVote, amount, transID).ValidatePayment()
   
 }
+
+exports.AddContest = async(req, res) => new Contest(res, res.body).CreatContestTable();
 
 

@@ -10,8 +10,15 @@ exports.EmailValidate = (email, result) => {
   );
 };
 
-exports.InsertUser = (userObj, result) => {
-  sql.query(`INSERT INTO user SET ?`, [userObj], (err, output) => {
+exports.Insert = (table, userObj, result) => {
+  sql.query(`INSERT INTO ${table} SET ?`, [userObj], (err, output) => {
+    if (err) return result(err, null);
+    return result(null, output);
+  });
+}
+
+exports.Select = (table, result) => {
+  sql.query(`SELECT * FROM ${table}`, (err, output) => {
     if (err) return result(err, null);
     return result(null, output);
   });
