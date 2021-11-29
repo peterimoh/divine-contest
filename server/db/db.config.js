@@ -22,4 +22,18 @@ con.query(
   }
 );
 
+con.query(
+  `CREATE TABLE IF NOT EXISTS contest(id INT(11) NOT NULL AUTO_INCREMENT, title TEXT(1000) NOT NULL, description TEXT(1000) NOT NULL, create_time date NOT NULL, others TEXT(1000)  NULL, PRIMARY KEY(id))`,
+  (err, result) => {
+    if (err) return console.log(err);
+  }
+);
+
+con.query(
+  `CREATE TABLE IF NOT EXISTS contestant_table(id INT(11) NOT NULL AUTO_INCREMENT, user_id INT(11) NOT NULL, vote_count INT(11) NULL DEFAULT(0), create_time date NOT NULL, contest_id INT(11)  NOT NULL, PRIMARY KEY(id), FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY(contest_id) REFERENCES contest(id) ON DELETE CASCADE ON UPDATE CASCADE)`,
+  (err, result) => {
+    if (err) return console.log(err);
+  }
+);
+
 module.exports = con;
