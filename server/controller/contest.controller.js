@@ -1,5 +1,4 @@
 const Voter = require('./vote.controller')
-
 const Model = require('../model/auth.model');
 
 class Contest extends Voter {
@@ -13,7 +12,7 @@ class Contest extends Voter {
     Create(contest, contestObject) {
 
         Model.Insert(contest, contestObject, (err, result)=>{
-            if(err) console.log(err), this.TransactionMessage(this.res, 400, "Error creating contest table")
+            if(err)  this.TransactionMessage(this.res, 400, "Error creating contest table")
             else {
                 Model.Select(contest, (err, result)=>{
                     if(err) this.TransactionMessage(this.res, 400, "Error getting contest table");

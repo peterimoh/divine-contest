@@ -110,7 +110,7 @@ exports.Voter = async (req, res)=>{
   let contestantID = obj.meta.contestantID
   let numberOfVote = obj.meta.numberOfVote;
 
-  new Vote(res, contestantID, numberOfVote, amount, transID).ValidatePayment()
+  new Vote(res, contestantID, numberOfVote, amount, transID).ValidatePayment(req)
   
 }
 
