@@ -1,11 +1,19 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+import TopNav from './TopNav';
+import './style.css'
 
 const Navbar = () => {
-    return (
-        <div>
-            NAvbar Component
-        </div>
-    )
-}
+  return (
+    <Wrapper>
+          <TopNav />
+          
+    </Wrapper>
+  );
+};
 
-export default Navbar
+const Wrapper = styled.header`
+
+`
+
+export default Navbar;

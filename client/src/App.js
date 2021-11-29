@@ -1,17 +1,14 @@
-import BeforeFooter from "./components/layout/footer/BeforeFooter";
-import Footer from "./components/layout/footer/Footer";
-import Navbar from "./components/layout/nav/Navbar";
-import TopNav from "./components/layout/nav/TopNav";
+import React from 'react';
+import Home from './containers/Home/Index';
 
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
 
 function App() {
   return (
-    <div className="App">
-      <TopNav />
-      <Navbar />
-      <BeforeFooter/>
-      <Footer/>
+    <div className='App'>
+      <Home />
+      <button className='btn btn-success'>Hello world</button>
     </div>
   );
 }
