@@ -13,7 +13,6 @@
   padding-left: 10px;
   display: none;
   transition: 0.7s all;
-
 }
 
 .open {
@@ -49,21 +48,21 @@
   color: #fff;
 }
 
-.btn-grey{
+.btn-grey {
   background-color: #cfcfcf !important;
-    color: #000 !important;
-    border: 0 !important;
-    padding: 20px 13px !important; 
-    border: 2px solid #000 !important; 
-    font-weight: 600 !important;
+  color: #000 !important;
+  border: 0 !important;
+  padding: 20px 13px !important;
+  border: 2px solid #000 !important;
+  font-weight: 600 !important;
 }
 
-.btn-purple{
-    background-color: #712d50 !important;
-    color: #fff;
-    border: 0 !important;
-    padding: 20px 13px !important;
-    font-weight: 600 !important;
+.btn-purple {
+  background-color: #712d50 !important;
+  color: #fff;
+  border: 0 !important;
+  padding: 20px 13px !important;
+  font-weight: 600 !important;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -88,4 +87,20 @@
   .sidebar a {
     font-size: 18px;
   }
+}
+
+@media screen and (max-height: 991px) {
+  .control-divider .vote-btn {
+    display: none;
+  }
+}
+.control-divider .vote-btn {
+  fill: #fff !important;
+  background-color: #712d50 !important;
+  padding: 4px !important;
+  height: 31px;
+  width: 38px;
+  font-size: 36px !important;
+  border: 0;
+  cursor: pointer;
 }

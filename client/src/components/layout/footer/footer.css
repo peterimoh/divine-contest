@@ -1,0 +1,14 @@
+#footer{
+    position: relative;
+    background-color: black;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+#footer a{
+    color: #c0538f;
+    text-decoration: none;
+}

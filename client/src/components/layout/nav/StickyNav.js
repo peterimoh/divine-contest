@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { GiHamburgerMenu, GrClose } from 'react-icons/all';
+import { GiHamburgerMenu, GrClose, MdOutlineHowToVote } from 'react-icons/all';
 import Logo from '../../../images/logo.png';
 import { navLinks } from './data';
 import './sidebar.css';
@@ -41,11 +41,11 @@ const StickyNav = () => {
               </li>
             );
           })}
-          <li className='nav-item'>
+          {/* <li className='nav-item'>
             <Link className='nav-link' to='/login'>
               Vote
             </Link>
-          </li>
+          </li> */}
           <li className='nav-item'>
             <Link className='nav-link' to='/contact'>
               Contact
@@ -56,30 +56,34 @@ const StickyNav = () => {
         <div className='authenticate'>
           <Link to='/login' className='btn btn-grey'>
             Login
-          </Link><br />
+          </Link>
+          <br />
           <Link to='register' className='btn btn-purple'>
             Create Account
           </Link>
         </div>
-          </div>
-          
-          {/* sidebar is done here  */}
+      </div>
+
+      {/* sidebar is done here  */}
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
         <div className='container'>
           <Link className='navbar-brand' to='/'>
             <img src={Logo} alt='Teen Girls Up Logo' />
           </Link>
-
-          <button
-            className='navbar-toggler'
-            type='button'
-            onClick={openSidebar}
-          >
-            <GiHamburgerMenu
-              className='navbar-toggler-icon'
+          <div className='control-divider'>
+            {/* vote mobile`` */}
+            <MdOutlineHowToVote className='vote-btn' />
+            <button
+              className='navbar-toggler'
+              type='button'
               onClick={openSidebar}
-            />
-          </button>
+            >
+              <GiHamburgerMenu
+                className='navbar-toggler-icon'
+                onClick={openSidebar}
+              />
+            </button>
+          </div>
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul className='navbar-nav m-auto'>
               {navLinks.map((x) => {
