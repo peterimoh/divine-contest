@@ -3,7 +3,7 @@
   height: 100%; /* 100% Full-height */
   /* width: 0; 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 10000; /* Stay on top */
   top: 0;
   right: 0;
   background-color: rgb(255, 246, 246); /* Black*/
@@ -36,10 +36,6 @@
 
 .sidebar .authenticate {
   width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   margin: auto;
 }
 
@@ -89,12 +85,8 @@
   }
 }
 
-@media screen and (max-height: 991px) {
+@media screen and (max-width: 991px) {
   .control-divider .vote-btn {
-    display: none;
-  }
-}
-.control-divider .vote-btn {
   fill: #fff !important;
   background-color: #712d50 !important;
   padding: 4px !important;
@@ -103,4 +95,11 @@
   font-size: 36px !important;
   border: 0;
   cursor: pointer;
+ display: inline-block !important;
 }
+
+}
+
+  .control-divider .vote-btn {
+   display: none;
+  }

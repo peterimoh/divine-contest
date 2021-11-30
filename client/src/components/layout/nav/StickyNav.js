@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GiHamburgerMenu, GrClose, MdOutlineHowToVote } from 'react-icons/all';
@@ -16,6 +16,25 @@ const StickyNav = () => {
   const closeSidebar = () => {
     setSidebar(false);
   };
+
+  function stick_nav() {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 50) {
+        document.getElementById('navbar_top').classList.add('fixed-top');
+        // add padding top to show content behind navbar
+        var navbar_height = document.querySelector('.navbar').offsetHeight;
+        document.body.style.paddingTop = navbar_height + 'px';
+      } else {
+        document.getElementById('navbar_top').classList.remove('fixed-top');
+        // remove padding top from body
+        document.body.style.paddingTop = '0';
+      }
+    });
+  }
+
+  useEffect(() => {
+    stick_nav();
+  }, []);
 
   return (
     <NavWrapper>
@@ -65,7 +84,10 @@ const StickyNav = () => {
       </div>
 
       {/* sidebar is done here  */}
-      <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+      <nav
+        id='navbar_top'
+        className='navbar navbar-expand-lg navbar-light bg-light fixed-top'
+      >
         <div className='container'>
           <Link className='navbar-brand' to='/'>
             <img src={Logo} alt='Teen Girls Up Logo' />
@@ -73,6 +95,7 @@ const StickyNav = () => {
           <div className='control-divider'>
             {/* vote mobile`` */}
             <MdOutlineHowToVote className='vote-btn' />
+            
             <button
               className='navbar-toggler'
               type='button'
