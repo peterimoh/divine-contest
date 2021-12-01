@@ -15,7 +15,10 @@ const breadcrumbImg = `https://images.unsplash.com/photo-1517817748493-49ec54a32
           title='Registration'
           path='/'
           present='Registration'
-        />
+            />
+            <div id="register">
+                
+            </div>
         <Footer />
       </Fragment>
     );
