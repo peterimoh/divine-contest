@@ -9,15 +9,15 @@
   background-color: rgb(255, 246, 246); /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
-  width: 350px;
-  padding-left: 10px;
-  display: none;
+  width: 0;
+  
+  /* display: none; */
   transition: 0.7s all;
 }
 
 .open {
-  display: block;
-  transition: 0.7s all;
+  width: 350px;
+  padding-left: 10px;
 }
 
 .sidebar img {
@@ -69,7 +69,7 @@
 /* Position and style the close button (top right corner) */
 .sidebar .closebtn {
   position: absolute;
-  top: 5%;
+  top: 3%;
   right: 25px;
   font-size: 25px;
   cursor: pointer;

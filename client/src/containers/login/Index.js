@@ -13,38 +13,46 @@ export const Login = () => {
       <Navbar />
       <Breadcumb image={breadcrumbImg} title='Login' path='/' present='Login' />
       <div id='login'>
-        <div className='login-form'>
-          <center>
-            {' '}
-            <div class='card login-card'>
-              <div class='card-body'>
-                <h5 class='card-title'>Login</h5><br />
-                {/* <hr className='line' /> */}
-                <div className='loginForm'>
-                  <form>
-                    <div className='form-group'>
-                      <input
-                        type='text'
-                        className='form-control'
-                        placeholder='Enter e-mail'
-                      />
-                      <br />
-                      <input
-                        type='text'
-                        className='form-control'
-                        placeholder='Enter password'
-                      />
-                                          <br />
-                                          <button className='btn btn-purple btn-purple-modified' type="submit">Submit</button>
-                    </div>
-                  </form>
+        <div className='container'>
+          <div className='login-form'>
+            <center>
+              {' '}
+              <div class='card login-card'>
+                <div class='card-body'>
+                  <h5 class='card-title'>Login</h5>
+                  <br />
+                  {/* <hr className='line' /> */}
+                  <div className='loginForm'>
+                    <form>
+                      <div className='form-group'>
+                        <input
+                          type='text'
+                          className='form-control'
+                          placeholder='Enter e-mail'
+                        />
+                        <br />
+                        <input
+                          type='text'
+                          className='form-control'
+                          placeholder='Enter password'
+                        />
+                        <br />
+                        <button
+                          className='btn btn-purple btn-purple-modified'
+                          type='submit'
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
-          </center>
-        </div>
+            </center>
           </div>
-          {/* <BeforeFooter/> */}
+        </div>
+      </div>
+      {/* <BeforeFooter/> */}
       <Footer />
     </React.Fragment>
   );
