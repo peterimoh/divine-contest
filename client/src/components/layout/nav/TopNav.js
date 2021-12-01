@@ -49,7 +49,7 @@ const TopNav = () => {
                   <ul>
                     <li>
                       <i className='fa fa-users'></i>
-                      <Link to='registration.html'>Login/Registration</Link>
+                      <Link to='/login'>Login/Registration</Link>
                     </li>
                   </ul>
                 </div>

@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
 #register .container {
@@ -18,40 +17,49 @@
 }
 
 #register .container .register-card {
- margin: 80px auto;
- background: #f8f9fa;
- box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 80px auto;
+  background: #f8f9fa;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#register .container .register-card div .title{
-    font-size: 24px;
-    font-weight: bold;
-    color: #712d50;
-    text-align: center;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+#register .container .register-card div .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #712d50;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
-#register .container .register-card div .lead{
-    font-size: 1rem;
-    font-weight: bold;
-    color: #5d5d5d;
-    text-align: center;
-    margin-bottom: 20px;
-    /* text-transform: lowercase; */
+#register .container .register-card div .lead {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #5d5d5d;
+  text-align: center;
+  margin-bottom: 20px;
+  /* text-transform: lowercase; */
 }
 
+#register .container .register-card div .form-group label {
+  font-size: 14px;
+  color: #5d5d5d;
+}
 #register .container .register-card div .form-group input {
   width: 100%;
   height: 50px;
   border-radius: 5px;
   border: 1px solid #eaeaea;
-  /* padding: 0 5px; */
+  /* padding: 0 15px; */
   font-size: 14px;
   color: #5d5d5d;
   margin-bottom: 20px;
 }
 
+#register .container,
+.register-card div .form-control {
+  color: #5d5d5d;
+  font-size: 14px;
+}
 
 #register .container .register-card div .form-group input:focus {
   border: 1px solid #712d50;
@@ -81,9 +89,9 @@
 }
 
 @media (max-width: 575.98px) {
-    #register {
-        padding: 10px;
-}
+  #register {
+    padding: 10px;
+  }
 
   #register .container .register-card {
     width: 100%;
@@ -92,5 +100,5 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    }
+  }
 }

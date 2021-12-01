@@ -1,4 +1,9 @@
 import React, { Fragment } from 'react';
+import {
+  CountryDropdown,
+  RegionDropdown,
+  CountryRegionData,
+} from 'react-country-region-selector';
 import Breadcumb from '../../components/layout/breadcrumb/Breadcumb';
 import Footer from '../../components/layout/footer/Footer';
 import Navbar from '../../components/layout/nav/Navbar';
@@ -32,23 +37,73 @@ export const Register = () => {
                       <input
                         type='text'
                         className='form-control form-control-lg'
-                        placeholder='Name'
+                        placeholder='First Name'
+                        name='first_name'
+                      />
+                      <input
+                        type='text'
+                        className='form-control form-control-lg'
+                        placeholder='Last Name'
+                        name='last_name'
                       />
 
                       <input
                         type='email'
                         className='form-control form-control-lg'
                         placeholder='Email Address'
+                        name='email'
                       />
                       <input
                         type='password'
                         className='form-control form-control-lg'
                         placeholder='Password'
+                        name='password'
                       />
+
+                      <small>
+                        <i className='text-warning'>
+                          contest is only available for United States
+                        </i>
+                      </small>
+                      <CountryDropdown
+                        className='form-control form-control-md'
+                        value='US'
+                        valueType='short'
+                        blacklist={['*']}
+                        name='country'
+                        // onChange={(val) => this.selectCountry(val)}
+                      />
+                      <RegionDropdown
+                        className='form-control form-control-md'
+                        country='US'
+                        countryValueType='short'
+                        name='region'
+                        // value={region}
+                        // onChange={(val) => this.selectRegion(val)}
+                      />
+                      <br />
+                      <label className='form-check-label'>Date of Birth:</label>
                       <input
-                        type='password'
+                        type='date'
                         className='form-control form-control-lg'
-                        placeholder='Confirm Password'
+                        placeholder='Date of Birth'
+                        name='dob'
+                        pattern='[0-9]{4}-[0-9]{2}-[0-9]{2}'
+                      />
+                      <label className='form-check-label'>Mobile Number:</label>
+                      <input
+                        type='text'
+                        className='form-control form-control-lg'
+                        placeholder='+1 (123) 456-7890'
+                        name='mobile'
+                      />
+
+                      <input
+                        type='text'
+                        className='form-control form-control-lg'
+                        placeholder='Postal Code'
+                        name='postal_code'
+                        pattern='[0-9]*'
                       />
                       <center className='mb-4'>
                         <button
