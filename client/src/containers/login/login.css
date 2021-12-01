@@ -8,13 +8,15 @@
 
 #login .login-form .login-card {
   width: 40%;
-  padding: 25px;
+  padding: 40px 25px;
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #login .login-form .login-card .card-title {
-  text-align: left;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 #login .login-form .login-card .card-title .line {
   width: 40px;
