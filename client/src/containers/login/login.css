@@ -1,0 +1,38 @@
+#login {
+  height: 100%;
+}
+
+#login .login-form {
+  margin: 100px auto;
+}
+
+#login .login-form .login-card {
+  width: 40%;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#login .login-form .login-card .card-title {
+  text-align: left;
+}
+#login .login-form .login-card .card-title .line {
+  width: 40px;
+  gap: 4px;
+}
+
+.btn-purple-modified {
+  padding: 11px 24px !important;
+}
+
+@media screen and (max-width: 600px) {
+  #login .login-form .login-card {
+    width: 60% !important;
+    padding: 3px;
+  }
+
+  .btn-purple-modified {
+    padding: 9px 24px !important;
+    font-size: 12px;
+  }
+}

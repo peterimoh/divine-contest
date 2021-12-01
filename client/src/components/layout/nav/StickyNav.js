@@ -73,11 +73,11 @@ const StickyNav = () => {
         </ul>
         <br />
         <div className='authenticate'>
-          <Link to='/login' className='btn btn-grey'>
+          <Link to='/login' className='btn btn-grey btn-purple-modified'>
             Login
           </Link>
           <br />
-          <Link to='register' className='btn btn-purple'>
+          <Link to='register' className='btn btn-purple btn-purple-modified'>
             Create Account
           </Link>
         </div>
@@ -95,7 +95,7 @@ const StickyNav = () => {
           <div className='control-divider'>
             {/* vote mobile`` */}
             <MdOutlineHowToVote className='vote-btn' />
-            
+
             <button
               className='navbar-toggler'
               type='button'

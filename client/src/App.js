@@ -1,14 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from './containers/Home/Index';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
-import 'jquery'
+import $ from 'jquery';
+import { routeData } from './Route';
 
 function App() {
   return (
     <Router>
-      <Home />
+      <Routes>
+        {routeData.map((x) => {
+          const { id, path, component } = x;
+          return <Route key={id} path={path} element={component} />;
+        })}
+      </Routes>
     </Router>
   );
 }

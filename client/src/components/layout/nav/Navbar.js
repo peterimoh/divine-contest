@@ -14,7 +14,7 @@ const Navbar = () => {
 };
 
 const Wrapper = styled.header`
-
-`
+ 
+`;
 
 export default Navbar;
