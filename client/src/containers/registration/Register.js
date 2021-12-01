@@ -21,10 +21,10 @@ export const Register = () => {
           <div className='row'>
             <div class='card register-card'>
               <div class='card-body'>
-                <div className='col-md-8 m-auto'>
-                  <h2 className='display-4 text-center'>Sign Up</h2>
+                <div className='col-md-8 w-100 m-auto'>
+                  <h2 className='display-4 text-center title'>Sign Up</h2>
                   <p className='lead text-center'>
-                    Register to join the community
+                    Register to Join the Contest
                   </p>
 
                   <form>
@@ -34,7 +34,7 @@ export const Register = () => {
                         className='form-control form-control-lg'
                         placeholder='Name'
                       />
-                     
+
                       <input
                         type='email'
                         className='form-control form-control-lg'
@@ -50,21 +50,20 @@ export const Register = () => {
                         className='form-control form-control-lg'
                         placeholder='Confirm Password'
                       />
-                     <button type="submit" className='btn btn-success btn-purple btn-purple-modified'>submit</button>
-                      <p className='text-center'>
+                      <center className='mb-4'>
+                        <button
+                          type='submit'
+                          className='btn btn-success btn-purple btn-purple-modified'
+                        >
+                          submit
+                        </button>
+                      </center>
+                      <p className='text-center bottom-txt'>
                         Already have an account? <a href='/login'>Login</a>
                       </p>
-                      <p className='text-center'>
+                      <p className='text-center bottom-txt'>
                         Forgot your password? <a href='/forgot'>Reset</a>
                       </p>
-                      <p className='text-center'>
-                        Don't have an account? <a href='/register'>Register</a>
-                      </p>
-                      <p className='text-center'>
-                        Need help? <a href='/help'>Contact us</a>
-                      </p>
-                      <p className='text-center'>Terms of service</p>
-                      <p className='text-center'>Privacy policy</p>
                     </div>
                   </form>
                 </div>
