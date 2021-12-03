@@ -49,12 +49,12 @@ const Wrapper = styled.section`
     width: 300px;
   }
 
-  #aboutTeens .title {
+  #aboutTeens h2 {
     font-weight: bold;
     text-transform: capitalize;
   }
 
-  #aboutTeens .title hr {
+  #aboutTeens h2 hr {
     border: 1px solid rgb(254, 11, 183);
   }
 
@@ -74,19 +74,3 @@ const Wrapper = styled.section`
     color: #4e4444;
   }
 `;
-
-// Who we are.
-// TEENGIRLSUP is an online photo contest website set up to raise a community of teen girls and letting them see the light in their heart which signifies beauty and uniqueness.
-// At TEENGIRLSUP, your chance of wining the contest is determined by you, your team, family and friends who we believe should have a similar interest.
-
-//                Why TeenGirlsUp
-// In TEENGIRLSUP, we welcome teen girls from all works of life as our aim is to build a healthy girls community where young girls appreciate and support each other by showing love in our heart and eliminate the world with it beauty.
-
-//               What is your magic ?
-// We believe every individual has an inborn gift that sets them apart from others and this gift lies in the uniqueness of individual values.
-// We want to ignite this individuals values by putting reality in a pictorial representation and bringing together different consciousness to promote love and beauty.
-
-//                 Vision statement
-// To build a girl community where teen girls learn to live life knowing they are limited to nothing but their mindset and such thoughts must be erase.
-
-//                 Mission statement

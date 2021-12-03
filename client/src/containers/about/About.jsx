@@ -4,6 +4,7 @@ import Breadcumb from '../../components/layout/breadcrumb/Breadcumb';
 import Navbar from '../../components/layout/nav/Navbar'
 import Footer from '../../components/layout/footer/Footer';
 import AboutContent from '../../components/about/Content';
+import BeforeFooter from '../../components/layout/footer/BeforeFooter';
 
 
 const breadcrumbImg =
@@ -20,7 +21,8 @@ const About = () => {
         />
         <div id='about'>
           <AboutContent />
-        </div>
+            </div>
+            <BeforeFooter/>
         <Footer />
       </Wrapper>
     );
