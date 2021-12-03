@@ -13,7 +13,7 @@ export const MiniAbout = () => {
   return (
     <Wrapper>
       <div id='about-cards'>
-        <div className='container'>
+        <div className='container '>
           <Row gutter={16}>
             <Col xs={24} xl={8}>
               <Card bordered={false} style={cardStyle}>
