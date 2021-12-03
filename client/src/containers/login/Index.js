@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {Link} from 'react-router-dom'
 import Breadcumb from '../../components/layout/breadcrumb/Breadcumb';
 import BeforeFooter from '../../components/layout/footer/BeforeFooter';
 import Footer from '../../components/layout/footer/Footer';
@@ -70,7 +71,11 @@ export const Login = (props) => {
                         >
                           Submit
                         </button>
+                        <br />
+                        <br />
+                        <Link to='/reset-password' className='m-4 text-left'>Forget Password</Link>
                       </div>
+                        <p className='m-4 text-left'>Not registered? <span><Link to='/register'>Sign Up</Link></span></p>
                     </form>
                   </div>
                 </div>

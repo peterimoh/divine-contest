@@ -1,0 +1,99 @@
+.ant-carousel .slick-next {
+  right: 0 !important;
+  background-color: #413e3ea3 !important;
+  color: #fff !important;
+  font-size: 24px !important;
+  padding: 15px !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 49%;
+}
+
+.ant-carousel .slick-prev {
+  left: 0 !important;
+  background-color: #413e3ea3 !important;
+  color: #fff !important;
+  font-size: 24px !important;
+  padding: 15px !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 49%;
+  z-index: 99 !important;
+}
+
+#slider .slider-item .slider-item-img {
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  height: 70vh;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 55px;
+}
+
+#slider .slider-item .slider-item-img .slide-title {
+  font-weight: bold;
+  color: #fff;
+  text-shadow: #413e3e;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#slider .slider-item .slider-item-img p {
+  font-weight: 500;
+  color: #fff;
+  font-size: 1rem;
+  text-transform: capitalize;
+  text-align: center;
+  width: 30%;
+  line-height: 20px;
+}
+
+#slider .slider-item .slider-item-img .slider-item-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#slider .slider-item .slider-item-img .slider-item-btn a {
+  margin: 10px;
+  padding: 15px !important;
+  color: #fff !important;
+  font-weight: 500 !important;
+}
+
+@media screen and (max-width: 991px) {
+  #slider .slider-item .slider-item-img .slide-title {
+    font-size: 2rem;
+  }
+
+  #slider .slider-item .slider-item-img p {
+    width: 70%;
+    line-height: 20px;
+  }
+
+  .ant-carousel .slick-prev,
+  .slick-next {
+    padding: 10px !important;
+    font-size: 20px !important;
+  }
+
+  .ant-carousel .slick-next {
+    padding: 10px !important;
+    font-size: 20px !important;
+  }
+
+  #slider .slider-item .slider-item-img .slider-item-btn a {
+    margin: 8px;
+    padding: 10px !important;
+    color: #fff !important;
+    font-weight: 500 !important;
+  }
+}
