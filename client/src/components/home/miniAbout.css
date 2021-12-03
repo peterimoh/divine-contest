@@ -1,3 +1,9 @@
-#about-cards{
-    margin: 70px auto;
+#about-cards {
+  margin: 70px auto;
+}
+
+@media screen and (max-width: 1199px) {
+  .ant-col-xs-24 {
+    margin-bottom: 15px;
+  }
 }

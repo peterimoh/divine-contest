@@ -3,7 +3,7 @@ import { Carousel, Radio } from 'antd';
 import { Link } from 'react-router-dom';
 import { ArrowRightOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import './slider.css';
-import slideItems from './slideData';
+import slideItems from './homeData';
 
 const contentStyle = {
   height: '60vh',
