@@ -6,7 +6,7 @@ import Logo from '../../../images/logo.png';
 import { navLinks } from './data';
 import './sidebar.css';
 
-const StickyNav = () => {
+const StickyNav = ({ isLoggedIn }) => {
   const [sidebar, setSidebar] = React.useState(false);
 
   const openSidebar = () => {
@@ -17,24 +17,24 @@ const StickyNav = () => {
     setSidebar(false);
   };
 
-  // function stick_nav() {
-  //   window.addEventListener('scroll', function () {
-  //     if (window.scrollY > 50) {
-  //       document.getElementById('navbar_top').classList.add('fixed-top');
-  //       // add padding top to show content behind navbar
-  //       var navbar_height = document.querySelector('.navbar').offsetHeight;
-  //       document.body.style.paddingTop = navbar_height + 'px';
-  //     } else {
-  //       document.getElementById('navbar_top').classList.remove('fixed-top');
-  //       // remove padding top from body
-  //       document.body.style.paddingTop = '0';
-  //     }
-  //   });
-  // }
+  function stick_nav() {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 50) {
+        document.getElementById('navbar_top').classList.add('fixed-top');
+        // add padding top to show content behind navbar
+        var navbar_height = document.querySelector('.navbar').offsetHeight;
+        document.body.style.paddingTop = navbar_height + 'px';
+      } else {
+        document.getElementById('navbar_top').classList.remove('fixed-top');
+        // remove padding top from body
+        document.body.style.paddingTop = '0';
+      }
+    });
+  }
 
-  // useEffect(() => {
-  //   stick_nav();
-  // }, []);
+  useEffect(() => {
+    stick_nav();
+  }, []);
 
   return (
     <NavWrapper>
@@ -69,13 +69,31 @@ const StickyNav = () => {
         </ul>
         <br />
         <div className='authenticate'>
-          <Link to='/login' className='btn btn-grey btn-purple-modified'>
-            Login
-          </Link>
-          <br />
-          <Link to='register' className='btn btn-purple btn-purple-modified'>
-            Create Account
-          </Link>
+          {isLoggedIn ? (
+            <>
+              {' '}
+              <Link
+                to='/dashboard'
+                className='btn btn-grey btn-purple-modified'
+              >
+                Dashboard
+              </Link>
+            </>
+          ) : (
+            <>
+              {' '}
+              <Link to='/login' className='btn btn-grey btn-purple-modified'>
+                Login
+              </Link>
+              <br />
+              <Link
+                to='register'
+                className='btn btn-purple btn-purple-modified'
+              >
+                Create Account
+              </Link>
+            </>
+          )}
         </div>
       </div>
 
@@ -126,18 +144,28 @@ const StickyNav = () => {
                 </Link>
               </li>
             </ul>
-            <ul className='navbar-nav'>
-              <li className='nav-item'>
-                <Link className='nav-link' to='/login'>
-                  Login
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link className='nav-link' to='/register'>
-                  Register
-                </Link>
-              </li>
-            </ul>
+            {isLoggedIn ? (
+              <ul className='navbar-nav'>
+                <li className='nav-item'>
+                  <Link className='nav-link' to='/dashboard'>
+                    Dashboard
+                  </Link>
+                </li>
+              </ul>
+            ) : (
+              <ul className='navbar-nav'>
+                <li className='nav-item'>
+                  <Link className='nav-link' to='/login'>
+                    Login
+                  </Link>
+                </li>
+                <li className='nav-item'>
+                  <Link className='nav-link' to='/register'>
+                    Register
+                  </Link>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </nav>

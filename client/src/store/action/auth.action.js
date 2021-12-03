@@ -30,7 +30,7 @@ export const registerUser = (userObj) => (dispatch) => {
 
 //login action (get token)
 export const loginUser = (userObj) => (dispatch) => {
-  dispatch({ type: LOGIN_START });
+dispatch({ type: LOGIN_START });
   axios
     .post('/api/auth/login', userObj)
     .then((res) => { 

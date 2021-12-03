@@ -7,7 +7,7 @@ import {
 } from 'react-icons/all';
 import { socials } from './data';
 
-const TopNav = () => {
+const TopNav = ({ isLoggedIn }) => {
   return (
     <TopNavWrapper>
       <div className='header-top-area hidden-sm'>
@@ -47,10 +47,17 @@ const TopNav = () => {
                 </div>
                 <div className='header-top-right'>
                   <ul>
-                    <li>
-                      <i className='fa fa-users'></i>
-                      <Link to='/login'>Login/Registration</Link>
-                    </li>
+                    {isLoggedIn ? (
+                      <li>
+                        <i className='fa fa-users'></i>
+                        <Link to='/dashboard'>Dashboard</Link>
+                      </li>
+                    ) : (
+                      <li>
+                        <i className='fa fa-users'></i>
+                        <Link to='/login'>Login/Registration</Link>
+                      </li>
+                    )}
                   </ul>
                 </div>
               </div>
