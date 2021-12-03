@@ -10,7 +10,7 @@ import {
 
 const initialState = {
   isAuthenticated: false,
-  user: {}, 
+  user: {},
   loading: false,
   data: null,
 };
@@ -33,6 +33,7 @@ const authLoginReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        error: action.payload,
       };
     case LOGOUT_SUCCESS:
       return {

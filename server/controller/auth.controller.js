@@ -2,7 +2,7 @@ const Auth = require('../model/auth.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config/config');
-const Vote  = require('./vote.controller');
+const Vote = require('./vote.controller');
 const Contest = require('./contest.controller');
 
 //encrypt password
@@ -56,7 +56,7 @@ exports.Signup = async (req, res, next) => {
     if (!Object.entries(user).length == 0) {
       return res.status(400).json({ error: 'User already Exist!' });
     } else {
-      await Auth.Insert("user", userObj, (err, output) => {
+      await Auth.Insert('user', userObj, (err, output) => {
         console.log(err);
         if (err)
           return res
@@ -68,58 +68,61 @@ exports.Signup = async (req, res, next) => {
   });
 };
 
-exports.Login = async (req, res) => {
+exports.Login = (req, res) => {
   const { email, password } = req.body;
-  await Auth.EmailValidate(email, (err, result) => {
+  console.log(req.body);
+  Auth.EmailValidate(email, (err, result) => {
     if (err)
       return res.status(400).json({ error: 'Server Error, Try again later' });
+
     if (result) {
-      validatePassword(password, result[0].password).then((isMatch) => {
-        if (isMatch) {
-          const payload = {
-            id: result[0].id,
-            uuid: result[0].uuid,
-            name: result[0].first_name + ' ' + result[0].last_name,
-          };
-          jwt.sign(
-            payload,
-            config.jwt_secret,
-            { expiresIn: '24h' },
-            (err, token) => {
-              res.json({
-                success: true,
-                token: 'Bearer ' + token,
-              });
-            }
-          );
-        } else {
-          return res
-            .status(400)
-            .json({ passwordincorrect: 'Password incorrect' });
-        }
-      });
+      if (result.length) {
+        validatePassword(password, result[0].password).then((isMatch) => {
+          if (isMatch) {
+            const payload = {
+              id: result[0].id,
+              uuid: result[0].uuid,
+              name: result[0].first_name + ' ' + result[0].last_name,
+            };
+            jwt.sign(
+              payload,
+              config.jwt_secret,
+              { expiresIn: '24h' },
+              (err, token) => {
+                res.json({
+                  success: true,
+                  token: 'Bearer ' + token,
+                });
+              }
+            );
+          } else{return res.status(400).json({error: 'Incorrect Password'})}
+        });
+      } else {
+        return res.status(400).json({ error: 'User does not exist' });
+      }
     }
   });
 };
 
-exports.Voter = async (req, res)=>{
-
+exports.Voter = async (req, res) => {
   var obj = req.body.response;
   var amount = parseInt(obj.amount);
   var transID = obj.transaction_id;
-  let contestantID = obj.meta.contestantID
+  let contestantID = obj.meta.contestantID;
   let numberOfVote = obj.meta.numberOfVote;
 
-  new Vote(res, contestantID, numberOfVote, amount, transID).ValidatePayment(req)
-  
-}
+  new Vote(res, contestantID, numberOfVote, amount, transID).ValidatePayment(
+    req
+  );
+};
 
-exports.AddContest = async(req, res) =>  new Contest(res).Create("contest", req.body);
+exports.AddContest = async (req, res) =>
+  new Contest(res).Create('contest', req.body);
 
-exports.AddContestant = async(req, res) => new Contest(res).Create("contestant_table", req.body);
+exports.AddContestant = async (req, res) =>
+  new Contest(res).Create('contestant_table', req.body);
 
-exports.GetContest = async(req, res) => new Contest(res).Select("contest");
+exports.GetContest = async (req, res) => new Contest(res).Select('contest');
 
-exports.GetContestant = async(req, res) => new Contest(res).Select("contestant_table");
-
-
+exports.GetContestant = async (req, res) =>
+  new Contest(res).Select('contestant_table');

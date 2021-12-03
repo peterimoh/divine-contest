@@ -1,13 +1,21 @@
 import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GiHamburgerMenu, GrClose, MdOutlineHowToVote } from 'react-icons/all';
 import Logo from '../../../images/logo.png';
 import { navLinks } from './data';
 import './sidebar.css';
+import { logoutUser } from '../../../store/action/auth.action';
 
 const StickyNav = ({ isLoggedIn }) => {
   const [sidebar, setSidebar] = React.useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
 
   const openSidebar = () => {
     setSidebar(true);
@@ -46,7 +54,9 @@ const StickyNav = ({ isLoggedIn }) => {
         />
         <br />{' '}
         <center>
-          <img src={Logo} alt='logo' />
+          <Link to='/'>
+            <img src={Logo} alt='logo' />
+          </Link>
         </center>
         <br />
         <ul className='navbar-nav m-auto'>
@@ -72,12 +82,16 @@ const StickyNav = ({ isLoggedIn }) => {
           {isLoggedIn ? (
             <>
               {' '}
-              <Link
-                to='/dashboard'
-                className='btn btn-grey btn-purple-modified'
-              >
+              <Link to='/dashboard' className='btn btn-grey btn-purple-modified'>
                 Dashboard
-              </Link>
+              </Link> <br/>
+              <a
+                // to='/dashboard'
+                className='btn btn-grey btn-purple-modified'
+                onClick={handleLogout}
+              >
+                Log out
+              </a>
             </>
           ) : (
             <>
@@ -86,10 +100,7 @@ const StickyNav = ({ isLoggedIn }) => {
                 Login
               </Link>
               <br />
-              <Link
-                to='register'
-                className='btn btn-purple btn-purple-modified'
-              >
+              <Link to='register' className='btn btn-purple btn-purple-modified'>
                 Create Account
               </Link>
             </>
@@ -150,6 +161,11 @@ const StickyNav = ({ isLoggedIn }) => {
                   <Link className='nav-link' to='/dashboard'>
                     Dashboard
                   </Link>
+                </li>
+                <li className='nav-item'>
+                  <a className='nav-link' onClick={handleLogout} style={{cursor: 'pointer'}}>
+                    Log Out
+                  </a>
                 </li>
               </ul>
             ) : (

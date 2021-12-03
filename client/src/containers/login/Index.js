@@ -7,21 +7,28 @@ import Navbar from '../../components/layout/nav/Navbar';
 import { loginUser } from '../../store/action/auth.action';
 import './login.css';
 
-export const Login = () => {
+export const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const login = useSelector(state => state.login)
-  const  dispatch = useDispatch()
+  const login = useSelector((state) => state.login);
+  const dispatch = useDispatch();
+
+  const { isAuthenticated, error } = login;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({email, password}))
-  }
+    dispatch(loginUser({ email, password }));
+  };
 
   const breadcrumbImg =
     'https://images.unsplash.com/photo-1638208561774-6e02a8e17cc1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      window.location.href = './dashboard';
+    }
+  }, []);
 
   return (
     <React.Fragment>
@@ -38,20 +45,23 @@ export const Login = () => {
                   <br />
                   {/* <hr className='line' /> */}
                   <div className='loginForm'>
-                    <form onSubmit={e=>handleSubmit(e)}>
+                    {error && (
+                      <small className='text-danger'>{error.error}</small>
+                    )}
+                    <form onSubmit={(e) => handleSubmit(e)}>
                       <div className='form-group'>
                         <input
                           type='text'
                           className='form-control'
                           placeholder='Enter e-mail'
-                          onChange={e => setEmail(e.target.value)}
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                         <br />
                         <input
                           type='text'
                           className='form-control'
                           placeholder='Enter password'
-                          onChange={e => setPassword(e.target.value)}
+                          onChange={(e) => setPassword(e.target.value)}
                         />
                         <br />
                         <button
