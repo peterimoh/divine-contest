@@ -26,27 +26,26 @@ const authRoute = require('./server/routes/auth-route');
 const app = express();
 
 //middlewares
+app.use(express.static(path.join(__dirname, './server/public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
-app.use(passport.initialize()); // Passport middleware
+
 app.use(flash()); // Flash messages
-app.use(passport.session()); // Persistent login sessions
-// require('./server/config/passport')(passport); // Passport config
+require('./server/config/passport')(passport); // Passport config
 app.use(
   session({
-    secret: 'keyboard cat',
+    secret: 'keyboardawfawefaefeaw',
     resave: false,
     saveUninitialized: false,
     store: sessionStore,
-})
+  })
 );
-app.use(express.static(path.join(__dirname, './server/public'))); 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize()); // Passport middleware
+app.use(passport.session()); // Persistent login sessions
 app.use(cors());
-
 app.set('views', path.join(__dirname, './server/views')); // set up ejs for templating
 app.set('view engine', 'ejs');
-
 
 //routing
 app.use('/api/auth', authRoute);

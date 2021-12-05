@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const {  adminMiddleWare } = require('../helper/isAdmin');
 const router = express.Router();
 
 const adminRoute = (db) => {
@@ -20,7 +21,7 @@ const adminRoute = (db) => {
     })
   );
 
-  router.get('/dashboard', db.dashboardScreen);
+  router.get('/dashboard', adminMiddleWare(), db.dashboardScreen);
 
   return router;
   

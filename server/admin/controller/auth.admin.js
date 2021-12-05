@@ -12,7 +12,6 @@ async function validatePassword(password, hashedPassword) {
   return await bcrypt.compare(password, hashedPassword);
 }
 
-
 //register
 exports.createScreen = (req, res) => {
   res.render('admin-create', {
@@ -64,17 +63,15 @@ exports.createAdmin = (req, res) => {
   });
 };
 
-
-
 // login admin
 exports.loginScreen = (req, res) => {
-  res.render('admin-login', {error: req.flash('error')})
-}
+   console.log(req.user);
+   console.log(req.isAuthenticated());
+  res.render('admin-login', { error: req.flash('error') });
+};
 
 //dashboard
 exports.dashboardScreen = (req, res) => {
-  console.log(req.user)
-  console.log(req.isAuthenticated())
   res.render('dashboard', {
     error: req.flash('error'),
     msg: req.flash('msg'),

@@ -1,6 +1,10 @@
-module.exports = (res, req, next) => {
-  if (req.user.role != 'admin') {
-    return res.status(403).send('Unauthorized Access');
-  }
-  next();
+exports.adminMiddleWare = () => {
+  return (req, res, next) => {
+    if (req.user.admin_id && req.isAuthenticated()) {
+      return next();
+    } else {
+      req.flash('error', 'UnAuthorized Access!');
+      res.redirect('/admin/login');
+    }
+  };
 };

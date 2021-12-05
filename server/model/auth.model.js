@@ -11,7 +11,7 @@ exports.EmailValidate = (email, result) => {
 };
 
 exports.SelectAdmin = (table, result) => {
-  sql.query(`SELECT * FROM ${table} WHERE role = 'admin'`, (err, output) => {
+  sql.query(`SELECT * FROM ${table} WHERE role = ?`, ['admin'], (err, output) => {
     if (err) return result(err, null);
     return result(null, output);
   });
