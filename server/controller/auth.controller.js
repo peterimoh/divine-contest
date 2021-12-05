@@ -70,7 +70,7 @@ exports.Signup = async (req, res, next) => {
 
 exports.Login = (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   Auth.EmailValidate(email, (err, result) => {
     if (err)
       return res.status(400).json({ error: 'Server Error, Try again later' });
@@ -84,6 +84,7 @@ exports.Login = (req, res) => {
               uuid: result[0].uuid,
               name: result[0].first_name + ' ' + result[0].last_name,
             };
+            // console.log(req.user);
             jwt.sign(
               payload,
               config.jwt_secret,
@@ -95,7 +96,9 @@ exports.Login = (req, res) => {
                 });
               }
             );
-          } else{return res.status(400).json({error: 'Incorrect Password'})}
+          } else {
+            return res.status(400).json({ error: 'Incorrect Password' });
+          }
         });
       } else {
         return res.status(400).json({ error: 'User does not exist' });

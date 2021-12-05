@@ -10,6 +10,13 @@ exports.EmailValidate = (email, result) => {
   );
 };
 
+exports.SelectAdmin = (table, result) => {
+  sql.query(`SELECT * FROM ${table} WHERE role = 'admin'`, (err, output) => {
+    if (err) return result(err, null);
+    return result(null, output);
+  });
+}
+
 exports.Insert = (table, userObj, result) => {
   sql.query(`INSERT INTO ${table} SET ?`, [userObj], (err, output) => {
     if (err) return result(err, null);
