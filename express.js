@@ -16,7 +16,8 @@ const sessionStore = new MYSQLSTORE(options);
 const cors = require('cors');
 const morgan = require('morgan');
 const adminRoute = require('./server/routes/admin.route');
-const Admin = require('./server/admin/controller/auth.admin');
+const Admin = require('./server/admin/controller/admin.controller');
+
 //db
 require('./server/db/db.config');
 
@@ -50,5 +51,6 @@ app.set('view engine', 'ejs');
 //routing
 app.use('/api/auth', authRoute);
 app.use('/admin', adminRoute(Admin));
+
 
 module.exports = app;

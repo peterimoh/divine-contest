@@ -65,15 +65,41 @@ exports.createAdmin = (req, res) => {
 
 // login admin
 exports.loginScreen = (req, res) => {
-   console.log(req.user);
-   console.log(req.isAuthenticated());
+  console.log(req.user);
+  console.log(req.isAuthenticated());
   res.render('admin-login', { error: req.flash('error') });
 };
 
 //dashboard
 exports.dashboardScreen = (req, res) => {
-  res.render('dashboard', {
-    error: req.flash('error'),
-    msg: req.flash('msg'),
+  Auth.SelectUsers('user', async (err, users) => {
+    if (err) {
+      console.log(err);
+      req.flash('error', 'Internal Server Error');
+      res.redirect('back');
+    }
+    if (users)
+      await Auth.Select('contestant_table', async (err, contestants) => {
+        if (err) {
+          console.log(err);
+          req.flash('error', 'Internal Server Error');
+          res.redirect('back');
+        }
+        if (contestants)
+          await Auth.Select('contest', async (err, contest) => {
+            if (err) {
+              console.log(err);
+              req.flash('error', 'Internal Server Error');
+              res.redirect('back');
+            }
+            if (contest) {
+              res.render('dashboard', {
+                userCount: users.length,
+                contestants,
+                contest,
+              });
+            }
+          });
+      });
   });
 };

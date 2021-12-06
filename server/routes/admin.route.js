@@ -13,7 +13,7 @@ const adminRoute = (db) => {
   router.post(
     '/login-admin',
     passport.authenticate('admin', {
-      successRedirect: '/admin/dashboard',
+      successRedirect: '/admin/dashboard',  
       failureRedirect: '/admin/login',
       failureFlash: true,
       successFlash: true,

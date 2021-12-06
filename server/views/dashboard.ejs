@@ -144,7 +144,12 @@
                             </div>
                             <div class="content">
                                 <h5 class="title-box">Total Users</h5>
-                                <p class="color-1 mb-0 pt-4">user count comes here</p>
+                                <!-- user count comes here -->
+                               <p class="color-1 mb-0 pt-4">  <% if(userCount) { %>
+                                  <%=userCount%></p>
+                                    
+                              <%  } %> 
+                               </p>
                             </div>
                         </div>
                         <div class="icon-box bg-color-2">
@@ -153,9 +158,12 @@
                             </div>
                             <div class="content click-c">
                                 <h5 class="title-box">Contestants</h5>
-                                <p class="color-2 mb-0 pt-4">no of contestants</p>
+                                <p class="color-3 mb-0 pt-4">  <% if(contestants) { %>
+                                  <%=contestants.length%>
+                                <%  } %>
+                                </p>
                             </div>
-                            <div class="notification-list card">
+                            <!-- <div class="notification-list card">
                                 <div class="top box-header">
                                     <h5>Notification</h5>
 
@@ -188,7 +196,7 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> -->
                         </div>
                         <div class="icon-box bg-color-3">
                             <a class="create d-flex" href="calendar.html">
@@ -196,8 +204,11 @@
                                     <i class="bx bx-calendar"></i>
                                 </div>
                                 <div class="content">
-                                    <h5 class="title-box">Calendar</h5>
-                                    <p class="color-3 mb-0 pt-4">5 Unread notification</p>
+                                    <h5 class="title-box">Contests</h5>
+                                      <p class="color-3 mb-0 pt-4">  <% if(contest) { %>
+                                  <%=contest.length%>
+                                <%  } %>
+                                </p>
                                 </div>
                             </a>
                         </div>
