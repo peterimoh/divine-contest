@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Protend - Project Management Admin Dashboard HTML Template
+       Admin | Teen Girls Up
     </title>
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/png">
     <!-- GOOGLE FONT -->
@@ -25,142 +25,7 @@
 
 <body class="sidebar-expand">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <div class="sidebar-logo">
-            <a href="index.html">
-                <img src="/images/logo.png" alt="Protend logo">
-            </a>
-            <div class="sidebar-close" id="sidebar-close">
-                <i class='bx bx-left-arrow-alt'></i>
-            </div>
-        </div>
-        <!-- SIDEBAR MENU -->
-        <div class="simlebar-sc" data-simplebar>
-            <ul class="sidebar-menu tf">
-                <li class="sidebar-submenu">
-                    <a href="index.html" class="sidebar-menu-dropdown">
-                        <i class='bx bxs-home'></i>
-                        <span>Dashboard</span>
-                        <div class="dropdown-icon">
-                            <i class='bx bx-chevron-down'></i>
-                        </div>
-                    </a>
-                    <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        <li>
-                            <a href="index.html">
-                                Dashboard
-                            </a>
-                        </li>
-                        <li>
-                            <a href="user-profile.html">
-                                User Profile
-                            </a>
-                        </li>
-<li>
-                            <a href="user-login.html">
-                                User Login
-                            </a>
-                        </li>
-                        <li>
-                            <a href="new-account.html">
-                               New Account
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-submenu">
-                    <a href="project.html" class="sidebar-menu-dropdown">
-                        <i class='bx bxs-bolt'></i>
-                        <span>Project</span>
-                        <div class="dropdown-icon"><i class='bx bx-chevron-down'></i></div>
-                    </a>
-                    <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        <li>
-                            <a href="project.html">
-                               Project
-                            </a>
-                        </li>
-                        <li>
-                            <a href="project-details.html">
-                                Project Details
-                            </a>
-                        </li>
-                        <li>
-                            <a href="new-project.html">
-                                New Project
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="sidebar-submenu">
-                    <a href="clients.html" class="sidebar-menu-dropdown">
-                        <i class='bx bxs-user'></i>
-                        <span>Client</span>
-                        <div class="dropdown-icon"><i class='bx bx-chevron-down'></i></div>
-                    </a>
-                    <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                                                <li>
-                            <a href="clients.html">
-                               Manager Client
-                            </a>
-                        </li>
-                        <li>
-                            <a href="client-details.html">
-                                Client Details
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="board.html">
-                        <i class='bx bxs-dashboard'></i>
-                        <span>Board</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="calendar.html">
-                        <i class='bx bx-calendar'></i>
-                        <span>Calendar</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="message.html">
-                        <i class='bx bxs-message-rounded-detail' ></i>
-                        <span>Message</span>
-                    </a>
-                </li>
-                <li class="sidebar-submenu">
-                    <a href="chart-apex.html" class="sidebar-menu-dropdown">
-                        <i class='bx bxs-component' ></i>
-                        <span>Components</span>
-                        <div class="dropdown-icon"><i class='bx bx-chevron-down'></i></div>
-                    </a>
-                    <ul class="sidebar-menu sidebar-menu-dropdown-content">
-                        <li>
-                            <a href="chart-apex.html">
-                                Apex Charts
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li>
-                    <a class="darkmode-toggle" id="darkmode-toggle" onclick="switchTheme()">
-                        <div>
-                            <i class='bx bx-cog mr-10'></i>
-                            <span>darkmode</span>
-                        </div>
-
-                        <span class="darkmode-switch"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- END SIDEBAR MENU -->
-    </div>
+   <%- include('partials/dashboardSidebar.ejs') %> 
     <!-- END SIDEBAR -->
     <!-- Main Header -->
     <div class="main-header">
@@ -169,19 +34,19 @@
                 <i class='bx bx-menu'></i>
             </div>
             <div class="main-title">
-                Board
+                Admin
             </div>
         </div>
 
         <div class="d-flex align-items-center">
 
             <!-- App Search-->
-            <form class="app-search d-none d-lg-block">
+            <!-- <form class="app-search d-none d-lg-block">
                 <div class="position-relative">
                     <input type="text" class="form-control" placeholder="Search">
                     <span class="bx bx-search-alt"></span>
                 </div>
-            </form>
+            </form> -->
             <div class="dropdown d-inline-block d-lg-none ms-2">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class='bx bx-search-alt' ></i>
@@ -202,37 +67,37 @@
             </div>
 
             <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="btn dropdown-toggle" id="header-lang-img">
                             EN 
                             <i class='bx bx-caret-down'></i>
                         </span>
-                    </button>
+                    </button> -->
                 <div class="dropdown-menu dropdown-menu-end">
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
+                    <!-- <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
                         <img src="/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
-                    </a>
+                    </a> -->
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
+                    <!-- <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
                         <img src="/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
-                    </a>
+                    </a> -->
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
+                    <!-- <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
                         <img src="/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
-                    </a>
+                    </a> -->
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
+                    <!-- <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
                         <img src="/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
-                    </a>
+                    </a> -->
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
+                    <!-- <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
                         <img src="/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <!-- <div class="dropdown d-none d-lg-inline-block ms-1">
@@ -246,8 +111,8 @@
                             alt="Header Avatar">
                         <span class="pulse-css"></span>
                         <span class="info d-xl-inline-block  color-span">
-                            <span class="d-block fs-20 font-w600">Randy Riley</span>
-                            <span class="d-block mt-7" >randy.riley@gmail.com</span>
+                            <span class="d-block fs-20 font-w600">Admin</span>
+                            <!-- <span class="d-block mt-7" >randy.riley@gmail.com</span> -->
                         </span>
                             
                         <i class='bx bx-chevron-down'></i>
@@ -275,11 +140,11 @@
                     <div class="box card-box">
                         <div class="icon-box bg-color-1">
                             <div class="icon bg-icon-1">
-                                <i class="bx bxs-bell bx-tada"></i>
+                                <i class="bx bxs-user bx-tada"></i>
                             </div>
                             <div class="content">
-                                <h5 class="title-box">Notification</h5>
-                                <p class="color-1 mb-0 pt-4">5 Unread notification</p>
+                                <h5 class="title-box">Total Users</h5>
+                                <p class="color-1 mb-0 pt-4">user count comes here</p>
                             </div>
                         </div>
                         <div class="icon-box bg-color-2">
@@ -287,8 +152,8 @@
                                 <i class='bx bxs-message-rounded'></i>
                             </div>
                             <div class="content click-c">
-                                <h5 class="title-box">Message</h5>
-                                <p class="color-2 mb-0 pt-4">5 Unread notification</p>
+                                <h5 class="title-box">Contestants</h5>
+                                <p class="color-2 mb-0 pt-4">no of contestants</p>
                             </div>
                             <div class="notification-list card">
                                 <div class="top box-header">
@@ -342,7 +207,7 @@
                                     <i class="bx bx-plus"></i>
                                 </div>
                                 <div class="content d-flex align-items-center">
-                                    <h5 class="color-white">Create New Project</h5>
+                                    <h5 class="color-white">Create a New Contest</h5>
                                 </div>
                             </a>
                         </div>

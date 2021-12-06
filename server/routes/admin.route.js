@@ -1,16 +1,15 @@
 const express = require('express');
 const passport = require('passport');
-const {  adminMiddleWare } = require('../helper/isAdmin');
+const { adminMiddleWare } = require('../helper/isAdmin');
 const router = express.Router();
 
 const adminRoute = (db) => {
   //create admin
-  router.get('/', db.createScreen);
-  router.post('/create-admin', db.createAdmin)
-    
+  router.get('/register', db.createScreen);
+  router.post('/create-admin', db.createAdmin);
 
   //admin login
-  router.get('/login', db.loginScreen)
+  router.get('/', db.loginScreen);
   router.post(
     '/login-admin',
     passport.authenticate('admin', {
@@ -24,7 +23,6 @@ const adminRoute = (db) => {
   router.get('/dashboard', adminMiddleWare(), db.dashboardScreen);
 
   return router;
-  
-}
+};
 
 module.exports = adminRoute;
