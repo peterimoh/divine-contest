@@ -1935,8 +1935,8 @@ button#page-header-user-dropdown {
     margin-top: 100px;
 }
 
-.box {
-    background-color: var(--box-bg);
+.box, .modal-content {
+    background-color: var(--box-bg) !important;
     padding: 25px;
     box-shadow: var(--shadow2);
     border-radius: var(--box-border-radius);
