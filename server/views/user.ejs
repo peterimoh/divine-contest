@@ -1,0 +1,119 @@
+<%- include('partials/dashboardHead') %> 
+<body class="sidebar-expand">
+
+   
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <a href="/admin/dashboard">
+                <img src="/images/logo.png" alt="Protend logo">
+            </a>
+            <div class="sidebar-close" id="sidebar-close">
+                <i class='bx bx-left-arrow-alt'></i>
+            </div>
+        </div>
+        <!-- SIDEBAR MENU -->
+        <div class="simlebar-sc" data-simplebar>
+            <ul class="sidebar-menu tf">
+               <li>
+                    <a href="/admin/dashboard">
+                        <i class='bx bxs-dashboard'></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/user"  class="active">
+                        <i class='bx bx-user'></i>
+                        <span>user</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/admin/contestant">
+                        <i class='bx bxs-trophy' ></i>
+                        <span>contestants</span>
+                    </a>
+                </li>
+                
+
+                <li>
+                    <a href="/admin/contest">
+                        <i class='bx bxs-message-rounded-detail' ></i>
+                        <span>contest</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="darkmode-toggle" id="darkmode-toggle" onclick="switchTheme()">
+                        <div>
+                            <i class='bx bx-cog mr-10'></i>
+                            <span>darkmode</span>
+                        </div>
+
+                        <span class="darkmode-switch"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- END SIDEBAR MENU -->
+    </div>
+   
+   <%- include('partials/dashboardMainHeader.ejs') %> 
+  
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+
+        <div class="main-content board">
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h4 class="box-title">All Signed Up Users</h4>
+                            <div class="box-right d-flex">
+                                <a class="btn">Action</a>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="box-body d-flex justify-content-between pb-0">
+                          <% if (locals.users) { %>
+                           <% locals.users.forEach(function(user) { %>
+                           
+                              
+                                <!-- <div class="user-card-body"> -->
+                                    <div class=" class="team-name"">
+                                        <p style="text-transform: capitalize;"><%= user.first_name %> <%= user.last_name %> </p>
+                                    </div>
+                                    <div  class="action">
+                                        <a href="javascript:void(0);"  class="add">View</a>
+                                        <a href="javascript:void(0);" class="edit">Delete</a>
+                                    </div>
+                                <!-- </div> -->
+                         
+                            <% }); %>
+
+                          <% } %>
+
+                        </div>
+                    </div>
+                </div>
+              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          
+
+            </div>
+        </div>
+    </div>
+    <!-- END MAIN CONTENT -->
+
+    <div class="overlay"></div>
+
+    <!-- SCRIPT -->
+    <!-- APEX CHART -->
+<%- include('partials/dashboardFooter') %> 

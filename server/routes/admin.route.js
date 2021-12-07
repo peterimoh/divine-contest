@@ -21,6 +21,7 @@ const adminRoute = (db) => {
   );
 
   router.get('/dashboard', adminMiddleWare(), db.dashboardScreen);
+  router.get('/user', adminMiddleWare(), db.ReadUsers);
 
   return router;
 };

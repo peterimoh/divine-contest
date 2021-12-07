@@ -103,3 +103,15 @@ exports.dashboardScreen = (req, res) => {
       });
   });
 };
+
+// list users
+exports.ReadUsers = async (req, res) => {
+  Auth.SelectUsers('user', (err, users) => {
+    if (err) {
+      console.log(err);
+      req.flash('error', 'Internal Server Error');
+      res.redirect('back');
+    }
+    if (users) res.render('user', { users, error: req.flash('error') });
+  });
+};
