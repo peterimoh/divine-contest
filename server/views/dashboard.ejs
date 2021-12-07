@@ -1,307 +1,323 @@
-<%- include('partials/dashboardHead') %> 
+<%- include('partials/dashboardHead') %>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <div class="sidebar-logo">
-            <a href="/admin/dashboard">
-                <img src="/images/logo.png" alt="Protend logo">
-            </a>
-            <div class="sidebar-close" id="sidebar-close">
-                <i class='bx bx-left-arrow-alt'></i>
-            </div>
-        </div>
-        <!-- SIDEBAR MENU -->
-        <div class="simlebar-sc" data-simplebar>
-            <ul class="sidebar-menu tf">
-               <li>
-                    <a href="/admin/dashboard" class="active">
-                        <i class='bx bxs-dashboard'></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/user">
-                        <i class='bx bx-user'></i>
-                        <span>user</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/admin/contestant">
-                        <i class='bx bxs-trophy' ></i>
-                        <span>contestants</span>
-                    </a>
-                </li>
-                
-
-                <li>
-                    <a href="/admin/contest">
-                        <i class='bx bxs-message-rounded-detail' ></i>
-                        <span>contest</span>
-                    </a>
-                </li>
-                
-                <li>
-                    <a class="darkmode-toggle" id="darkmode-toggle" onclick="switchTheme()">
-                        <div>
-                            <i class='bx bx-cog mr-10'></i>
-                            <span>darkmode</span>
-                        </div>
-
-                        <span class="darkmode-switch"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- END SIDEBAR MENU -->
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <a href="/admin/dashboard">
+      <img src="/images/logo.png" alt="Protend logo" />
+    </a>
+    <div class="sidebar-close" id="sidebar-close">
+      <i class="bx bx-left-arrow-alt"></i>
     </div>
-    <!-- END SIDEBAR -->
-    <!-- Main Header -->
-   <%- include('partials/dashboardMainHeader.ejs') %> 
-    <!-- End Main Header -->
-    <!-- MAIN CONTENT -->
-    <div class="main">
+  </div>
+  <!-- SIDEBAR MENU -->
+  <div class="simlebar-sc" data-simplebar>
+    <ul class="sidebar-menu tf">
+      <li>
+        <a href="/admin/dashboard" class="active">
+          <i class="bx bxs-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/user">
+          <i class="bx bx-user"></i>
+          <span>user</span>
+        </a>
+      </li>
 
+      <li>
+        <a href="/admin/contestant">
+          <i class="bx bxs-trophy"></i>
+          <span>contestants</span>
+        </a>
+      </li>
 
-        <div class="main-content board">
-            <div class="row">
-                <div class="col-12">
-                    <div class="box card-box">
-                        <div class="icon-box bg-color-1">
-                            <div class="icon bg-icon-1">
-                                <i class="bx bxs-user"></i>
-                            </div>
-                            <div class="content">
-                                <h5 class="title-box">Total Users</h5>
-                                <p class="color-1 mb-0 pt-4">  <% if(userCount) { %>
-                                  <%=userCount%></p>
-                                    
-                              <%  } %> 
-                               </p>
-                            </div>
-                        </div>
-                        <div class="icon-box bg-color-2">
-                            <div class="icon bg-icon-2">
-                                <i class='bx bxs-message-rounded'></i>
-                            </div>
-                            <div class="content click-c">
-                                <h5 class="title-box">Contestants</h5>
-                                  <p class="color-3 mb-0 pt-4">  <% if(contestants) { %>
-                                  <%=contestants.length%>
-                                <%  } %>
-                                </p>
-                            </div>
-                            
-                        </div>
-                        <div class="icon-box bg-color-3">
-                            <a class="create d-flex" href="calendar.html">
-                                <div class="icon bg-icon-3">
-                                    <i class="bx bx-calendar"></i>
-                                </div>
-                                <div class="content">
-                                       <h5 class="title-box">Contests</h5>
-                                   <p class="color-3 mb-0 pt-4">  <% if(contest) { %>
-                                  <%=contest.length%>
-                                <%  } %>
-                                </p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="icon-box bg-color-4">
-                            <a class="create d-flex" href="#" data-toggle="modal" data-target="#add_project">
-                                <div class="icon bg-white">
-                                    <i class="bx bx-plus"></i>
-                                </div>
-                                <div class="content d-flex align-items-center">
-                                    <h5 class="color-white">Create New Project</h5>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+      <li>
+        <a href="/admin/contest">
+          <i class="bx bxs-message-rounded-detail"></i>
+          <span>contest</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="darkmode-toggle" id="darkmode-toggle" onclick="switchTheme()">
+          <div>
+            <i class="bx bx-cog mr-10"></i>
+            <span>darkmode</span>
+          </div>
+
+          <span class="darkmode-switch"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- END SIDEBAR MENU -->
+</div>
+<!-- END SIDEBAR -->
+<!-- Main Header -->
+<%- include('partials/dashboardMainHeader.ejs') %>
+<!-- End Main Header -->
+<!-- MAIN CONTENT -->
+<div class="main">
+  <div class="main-content board">
+     <center><small class="text-success"><%if(error){%> <%=error%> <%}%>  </small></center>
+     <center><small class="text-success"><%if(msg){%> <%=msg%> <%}%>  </small></center>
+    <div class="row">
+      <div class="col-12">
+        <div class="box card-box">
+          <div class="icon-box bg-color-1">
+            <div class="icon bg-icon-1">
+              <i class="bx bxs-user"></i>
             </div>
-          
 
-            <div id="add_project" class="modal custom-modal fade" role="dialog">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Create Project</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Project Name</label>
-                                            <input class="form-control" value="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Client</label>
-                                            <select class="select">
-                                                <option>Client 1</option>
-                                                <option>Client 2</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Start Date</label>
-                                            <div class="cal-icon">
-                                                <input class="form-control " type="date">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>End Date</label>
-                                            <div class="cal-icon">
-                                                <input class="form-control " type="date">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>Rate</label>
-                                            <input placeholder="$50" class="form-control" value="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label>&nbsp;</label>
-                                            <select class="select">
-                                                <option>Hourly</option>
-                                                <option selected>Fixed</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Priority</label>
-                                            <select class="select">
-                                                <option selected>High</option>
-                                                <option>Medium</option>
-                                                <option>Low</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea rows="4" class="form-control" placeholder="Enter your message here"></textarea>
-                                </div>
-                                <div class="form-group">
+            <div class="content">
+              <h5 class="title-box">Total Users</h5>
+              <p class="color-3 mb-0 pt-4">
+                <% if(users) { %> <%=users.length%> <% } %>
+              </p>
+            </div>
+          </div>
+          <div class="icon-box bg-color-2">
+            <div class="icon bg-icon-2">
+              <i class="bx bxs-message-rounded"></i>
+            </div>
+            <div class="content click-c">
+              <h5 class="title-box">Contestants</h5>
+              <p class="color-3 mb-0 pt-4">
+                <% if(contestants) { %> <%=contestants.length%> <% } %>
+              </p>
+            </div>
+          </div>
+          <div class="icon-box bg-color-3">
+            <a class="create d-flex" href="calendar.html">
+              <div class="icon bg-icon-3">
+                <i class="bx bx-calendar"></i>
+              </div>
+              <div class="content">
+                <h5 class="title-box">Contests</h5>
+                <p class="color-3 mb-0 pt-4">
+                  <% if(contest) { %> <%=contest.length%> <% } %>
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="icon-box bg-color-4">
+            <a
+              class="create d-flex"
+              href="#"
+              data-toggle="modal"
+              data-target="#add_project"
+            >
+              <div class="icon bg-white">
+                <i class="bx bx-plus"></i>
+              </div>
+              <div class="content d-flex align-items-center">
+                <h5 class="color-white">Create New Contest</h5>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="add_project" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Create New Contest</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="/admin/create-contest">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Contest Name</label>
+                    <input
+                      class="form-control w-100"
+                      value=""
+                      type="text"
+                      name="contest_title"
+                      placeholder="Enter Contest Name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Prize</label>
+                    <input
+                      class="form-control w-100"
+                      value=""
+                      type="number"
+                      placeholder="Amount to be won"
+                      name="prize"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Start Date</label>
+                    <div class="cal-icon">
+                      <input
+                        class="form-control"
+                        type="date"
+                        name="start_time"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>End Date</label>
+                    <div class="cal-icon">
+                      <input class="form-control" type="date" name="end_time" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Description</label>
+                <textarea
+                  rows="4"
+                  class="form-control"
+                  placeholder="Enter Contest Description here"
+                  name="description"
+                ></textarea>
+              </div>
+              <!-- <div class="form-group">
                                     <label>Upload Files</label>
                                     <input class="form-control" type="file">
-                                </div>
-                                <div class="submit-section">
-                                    <button class="btn btn-primary submit-btn">Save</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal custom-modal fade" id="delete_project" role="dialog">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="form-header">
-                                <h3>Delete Card</h3>
-                                <p>Are you sure want to delete?</p>
-                            </div>
-                            <div class="modal-btn delete-action">
-                                <div class="row">
-                                    <div class="col-6 mb-0">
-                                        <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
-                                    </div>
-                                    <div class="col-6 mb-0">
-                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="edit_card_modal" class="modal custom-modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Edit Card</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label>Image Card</label>
-                                    <input class="form-control" type="file">
-                                </div>
-                                <div class="form-group">
-                                    <label>Card Name</label>
-                                    <input type="text" class="form-control" value="Food Website hero area">
-                                </div>
-                                <div class="form-group">
-                                    <label>Due Date</label>
-                                    <div class="cal-icon">
-                                        <input class="form-control " type="date" value="">
-                                    </div>
-                                </div>
-                                <div class="submit-section text-center">
-                                    <button class="btn btn-primary submit-btn">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="add_card_modal" class="modal custom-modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Add Card</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label>Image Card</label>
-                                    <input class="form-control" type="file">
-                                </div>
-                                <div class="form-group">
-                                    <label>Card Name</label>
-                                    <input type="text" class="form-control" value="">
-                                </div>
-                                <div class="form-group">
-                                    <label>Due Date</label>
-                                    <div class="cal-icon">
-                                        <input class="form-control " type="date" value="">
-                                    </div>
-                                </div>
-                                <div class="submit-section text-center">
-                                    <button class="btn btn-primary submit-btn">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                </div> -->
+              <div class="submit-section">
+                <button type="submit" class="btn btn-primary submit-btn">
+                  Create
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- END MAIN CONTENT -->
+    <div class="modal custom-modal fade" id="delete_project" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="form-header">
+              <h3>Delete Card</h3>
+              <p>Are you sure want to delete?</p>
+            </div>
+            <div class="modal-btn delete-action">
+              <div class="row">
+                <div class="col-6 mb-0">
+                  <a
+                    href="javascript:void(0);"
+                    class="btn btn-primary continue-btn"
+                    >Delete</a
+                  >
+                </div>
+                <div class="col-6 mb-0">
+                  <a
+                    href="javascript:void(0);"
+                    data-dismiss="modal"
+                    class="btn btn-primary cancel-btn"
+                    >Cancel</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="edit_card_modal" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Card</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label>Image Card</label>
+                <input class="form-control" type="file" />
+              </div>
+              <div class="form-group">
+                <label>Card Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  value="Food Website hero area"
+                />
+              </div>
+              <div class="form-group">
+                <label>Due Date</label>
+                <div class="cal-icon">
+                  <input class="form-control" type="date" value="" />
+                </div>
+              </div>
+              <div class="submit-section text-center">
+                <button class="btn btn-primary submit-btn">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <div class="overlay"></div>
+    <div id="add_card_modal" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Add Card</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label>Image Card</label>
+                <input class="form-control" type="file" />
+              </div>
+              <div class="form-group">
+                <label>Card Name</label>
+                <input type="text" class="form-control" value="" />
+              </div>
+              <div class="form-group">
+                <label>Due Date</label>
+                <div class="cal-icon">
+                  <input class="form-control" type="date" value="" />
+                </div>
+              </div>
+              <div class="submit-section text-center">
+                <button class="btn btn-primary submit-btn">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MAIN CONTENT -->
 
-    <!-- SCRIPT -->
-    <!-- APEX CHART -->
-<%- include('partials/dashboardFooter.ejs') %> 
+<div class="overlay"></div>
+
+<!-- SCRIPT -->
+<!-- APEX CHART -->
+<%- include('partials/dashboardFooter.ejs') %>

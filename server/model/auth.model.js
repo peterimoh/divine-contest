@@ -24,6 +24,13 @@ exports.SelectUsers = (table, result) => {
   });
 }
 
+exports.Delete = (table, id, result) => {
+  sql.query(`DELETE FROM ${table} WHERE id = ?`, [id], (err, output) => {
+    if (err) return result(err, null);
+    return result(null, output);
+  });
+}
+
 exports.Insert = (table, userObj, result) => {
   sql.query(`INSERT INTO ${table} SET ?`, [userObj], (err, output) => {
     if (err) return result(err, null);

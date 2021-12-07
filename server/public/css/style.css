@@ -1942,6 +1942,12 @@ button#page-header-user-dropdown {
     border-radius: var(--box-border-radius);
 }
 
+.table{
+     background-color: var(--box-bg) !important;
+     color:  var(--text-second-color)!important;
+
+}
+
 .counter-title {
     margin-bottom: 20px;
     text-transform: capitalize;

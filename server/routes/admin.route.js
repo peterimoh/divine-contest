@@ -20,8 +20,18 @@ const adminRoute = (db) => {
     })
   );
 
+  // user
   router.get('/dashboard', adminMiddleWare(), db.dashboardScreen);
   router.get('/user', adminMiddleWare(), db.ReadUsers);
+  router.get('/user/:id', adminMiddleWare(), db.DeleteUser);
+
+  //contestant
+  router.get('/contestant', adminMiddleWare(), db.ReadContestants);
+
+
+  //contest
+  router.get('/contest', adminMiddleWare(), db.ReadContest);
+  router.post('/create-contest', adminMiddleWare(), db.CreateContest);
 
   return router;
 };

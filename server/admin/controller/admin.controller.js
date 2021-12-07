@@ -65,8 +65,6 @@ exports.createAdmin = (req, res) => {
 
 // login admin
 exports.loginScreen = (req, res) => {
-  console.log(req.user);
-  console.log(req.isAuthenticated());
   res.render('admin-login', { error: req.flash('error') });
 };
 
@@ -94,9 +92,11 @@ exports.dashboardScreen = (req, res) => {
             }
             if (contest) {
               res.render('dashboard', {
-                userCount: users.length,
+                users,
                 contestants,
                 contest,
+                error: req.flash('error'),
+                msg: req.flash('msg'),
               });
             }
           });
@@ -104,7 +104,7 @@ exports.dashboardScreen = (req, res) => {
   });
 };
 
-// list users
+// ===============users  ===========================
 exports.ReadUsers = async (req, res) => {
   Auth.SelectUsers('user', (err, users) => {
     if (err) {
@@ -112,6 +112,70 @@ exports.ReadUsers = async (req, res) => {
       req.flash('error', 'Internal Server Error');
       res.redirect('back');
     }
-    if (users) res.render('user', { users, error: req.flash('error') });
+    if (users) res.render('user', { users, error: req.flash('error'), msg: req.flash('msg') });
   });
 };
+
+
+exports.DeleteUser = async (req, res) => {
+  const { id } = req.params;
+  Auth.Delete('user', id, (err, output) => {
+    if (err) {
+      console.log(err);
+      req.flash('error', 'Internal Server Error');
+      res.redirect('back');
+    } else {
+      req.flash('msg', 'User Deleted Successfully');
+      res.redirect('back');
+    }
+  });
+}
+
+
+// ===============contestants  ===========================
+exports.ReadContestants = async (req, res) => {
+  Auth.Select('contestant_table', (err, contestants) => {
+    if (err) {
+      console.log(err);
+      req.flash('error', 'Internal Server Error');
+      res.redirect('back');
+    }
+    if (contestants) res.render('contestant', { contestants, error: req.flash('error'), msg: req.flash('msg') });
+  });
+}
+
+
+//=========== contest ============================
+exports.ReadContest = async (req, res) => {
+  Auth.Select('contest', (err, contest) => {
+    if (err) {
+      console.log(err);
+      req.flash('error', 'Internal Server Error');
+      res.redirect('back');
+    }
+    if (contest) res.render('contest', { contest, error: req.flash('error'), msg: req.flash('msg') });
+  });
+}
+
+
+exports.CreateContest = async (req, res) => {
+  const { contest_title, description, start_time,  end_time, prize } = req.body;
+  const contestObj = {
+    title: contest_title,
+    description,
+    create_time: new Date(),
+    start_time,
+    end_time,
+    prize,
+  };
+  Auth.Insert('contest', contestObj, (err, output) => {
+    if (err) {
+      console.log(err);
+      req.flash('error', 'Internal Server Error');
+      res.redirect('back');
+    } else {
+      req.flash('msg', 'Contest Created Successfully');
+      res.redirect('back');
+    }
+  });
+}

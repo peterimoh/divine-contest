@@ -16,14 +16,14 @@ con.connect(function (err) {
 });
 
 con.query(
-  `CREATE TABLE IF NOT EXISTS user(id INT(11) NOT NULL AUTO_INCREMENT, first_name TEXT(1000) NOT NULL, last_name TEXT(1000) NOT NULL, email VARCHAR(255) NOT NULL, password TEXT(1000) NOT NULL, uuid INT(11) NOT NULL, date_of_birth TEXT(1000) NOT NULL, mobile VARCHAR(255) NOT NULL, street VARCHAR(255) NOT NULL, postal_code INT(11) NOT NULL, region TEXT(1000) NOT NULL, country TEXT(1000) NOT NULL,  profile_pic BLOB(1000) NULL, full_pic BLOB(1000) NULL, contest_pic BLOB(1000) NULL, role TEXT(1000) DEFAULT 'user' NOT NULL, PRIMARY KEY(id))`,
+  `CREATE TABLE IF NOT EXISTS user(id INT(11) NOT NULL AUTO_INCREMENT, first_name TEXT(1000) NOT NULL, last_name TEXT(1000) NOT NULL, email VARCHAR(255) NOT NULL, password TEXT(1000) NOT NULL, uuid INT(11) NOT NULL, date_of_birth TEXT(1000) NOT NULL, mobile VARCHAR(255) NOT NULL, street VARCHAR(255) NOT NULL, postal_code INT(11) NOT NULL, region TEXT(1000) NOT NULL, country TEXT(1000) NOT NULL, paypal VARCHAR(255) DEFAULT NULL,  profile_pic BLOB(1000) NULL, full_pic BLOB(1000) NULL, contest_pic BLOB(1000) NULL, role TEXT(1000) DEFAULT 'user' NOT NULL, PRIMARY KEY(id))`,
   (err, result) => {
     if (err) return console.log(err);
   }
 );
 
 con.query(
-  `CREATE TABLE IF NOT EXISTS contest(id INT(11) NOT NULL AUTO_INCREMENT, title TEXT(1000) NOT NULL, description TEXT(1000) NOT NULL, create_time date NOT NULL, others TEXT(1000)  NULL, PRIMARY KEY(id))`,
+  `CREATE TABLE IF NOT EXISTS contest(id INT(11) NOT NULL AUTO_INCREMENT, title TEXT(1000) NOT NULL, description TEXT(1000) NOT NULL, prize TEXT(1000) NOT NULL, create_time date NOT NULL, start_time date NOT NULL, end_time date NOT NULL, others TEXT(1000)  NULL, PRIMARY KEY(id))`,
   (err, result) => {
     if (err) return console.log(err);
   }

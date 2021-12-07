@@ -1,0 +1,145 @@
+<%- include('partials/dashboardHead') %>
+
+<body class="sidebar-expand">
+
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <a href="/admin/dashboard">
+                <img src="/images/logo.png" alt="Protend logo">
+            </a>
+            <div class="sidebar-close" id="sidebar-close">
+                <i class='bx bx-left-arrow-alt'></i>
+            </div>
+        </div>
+        <!-- SIDEBAR MENU -->
+        <div class="simlebar-sc" data-simplebar>
+            <ul class="sidebar-menu tf">
+                <li>
+                    <a href="/admin/dashboard">
+                        <i class='bx bxs-dashboard'></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/user">
+                        <i class='bx bx-user'></i>
+                        <span>user</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/admin/contestant">
+                        <i class='bx bxs-trophy'></i>
+                        <span>contestants</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="/admin/contest" class="active">
+                        <i class='bx bxs-message-rounded-detail'></i>
+                        <span>contest</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="darkmode-toggle" id="darkmode-toggle" onclick="switchTheme()">
+                        <div>
+                            <i class='bx bx-cog mr-10'></i>
+                            <span>darkmode</span>
+                        </div>
+
+                        <span class="darkmode-switch"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- END SIDEBAR MENU -->
+    </div>
+
+    <%- include('partials/dashboardMainHeader.ejs') %>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+
+        <div class="main-content board">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="box">
+                        <center><small class="text-success"><%if(msg){%> <%=msg%> <%}%>  </small></center>
+                        <center><small class="text-success"><%if(error){%> <%=error%> <%}%>  </small></center>
+                        <div class="box-header">
+                            <h4 class="box-title">Running Contest</h4>
+                           
+                        </div>
+                        <div class="divider"></div>
+                        <div class="box-body d-flex justify-content-between pb-0">
+
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Prize</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        
+                      
+                    
+
+                            <% if (locals.contest) { %>
+                                <% locals.contest.forEach(function(contests) { %>
+
+                                <th scope="row"><%= contests.id %></th>
+                                <td><%= contests.title %></td>
+                                <td><%= contests.prize %></td>
+                                <td><%=  new Date(contests.create_time ).getFullYear() + '-' + new Date(contests.create_time ).getDate() + '-' + new Date(contests.create_time ).getDay() %>
+                                </td>
+                                <td><%=  new Date(contests.start_time ).getFullYear() + '-' + new Date(contests.start_time).getDate() + '-' + new Date(contests.start_time).getDay() %>
+                                </td>
+                                <td><%=  new Date(contests.end_time ).getFullYear() + '-' + new Date(contests.end_time).getDate() + '-' + new Date(contests.end_time ).getDay() %>
+                                </td>
+
+                                </tr>
+                                </tbody>
+                                </table>
+                                <% }); %>
+
+                                <% } else {%>
+                                <center>
+                                    <p>No Contest found</p>
+                                </center>
+                                <% } %>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    </div>
+    </div>
+    </div>
+    <!-- END MAIN CONTENT -->
+
+    <div class="overlay"></div>
+
+    <!-- SCRIPT -->
+    <!-- APEX CHART -->
+    <%- include('partials/dashboardFooter') %>

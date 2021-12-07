@@ -1,0 +1,124 @@
+<%- include('partials/dashboardHead') %>
+
+<body class="sidebar-expand">
+
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <a href="/admin/dashboard">
+                <img src="/images/logo.png" alt="Protend logo">
+            </a>
+            <div class="sidebar-close" id="sidebar-close">
+                <i class='bx bx-left-arrow-alt'></i>
+            </div>
+        </div>
+        <!-- SIDEBAR MENU -->
+        <div class="simlebar-sc" data-simplebar>
+            <ul class="sidebar-menu tf">
+                <li>
+                    <a href="/admin/dashboard">
+                        <i class='bx bxs-dashboard'></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/user">
+                        <i class='bx bx-user'></i>
+                        <span>user</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/admin/contestant" class="active">
+                        <i class='bx bxs-trophy'></i>
+                        <span>contestants</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="/admin/contest">
+                        <i class='bx bxs-message-rounded-detail'></i>
+                        <span>contest</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="darkmode-toggle" id="darkmode-toggle" onclick="switchTheme()">
+                        <div>
+                            <i class='bx bx-cog mr-10'></i>
+                            <span>darkmode</span>
+                        </div>
+
+                        <span class="darkmode-switch"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- END SIDEBAR MENU -->
+    </div>
+
+    <%- include('partials/dashboardMainHeader.ejs') %>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+
+        <div class="main-content board">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="box">
+                        <center><small class="text-success"><%if(msg){%> <%=msg%> <%}%>  </small></center>
+                        <div class="box-header">
+                            <h4 class="box-title">Contestants</h4>
+                           
+                        </div>
+                        <div class="divider"></div>
+                        <div class="box-body d-flex justify-content-between pb-0">
+                            <% if (locals.contestants) { %>
+                            <% locals.contestants.forEach(function(contestant) { %>
+
+
+                            <!-- <div class="user-card-body"> -->
+                            <div class=" class=" team-name"">
+                                <p style="text-transform: capitalize;"><%= contestant.first_name %> <%= contestant.last_name %> </p>
+                            </div>
+                            <!-- <div class="action">
+                                <a type="button" class="add" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">View</a>
+                                <a href="/admin/user/<%= user.id %>" class="edit">Delete</a>
+                            </div> -->
+                            <!-- </div> -->
+
+                          
+                                <% }); %>
+
+                                <% } else {%>
+                                <center><p>No Contestant found</p></center>
+                                <% } %>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    </div>
+    </div>
+    </div>
+    <!-- END MAIN CONTENT -->
+
+    <div class="overlay"></div>
+
+    <!-- SCRIPT -->
+    <!-- APEX CHART -->
+    <%- include('partials/dashboardFooter') %>

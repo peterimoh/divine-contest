@@ -1,7 +1,8 @@
-<%- include('partials/dashboardHead') %> 
+<%- include('partials/dashboardHead') %>
+
 <body class="sidebar-expand">
 
-   
+
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="sidebar-logo">
@@ -15,14 +16,14 @@
         <!-- SIDEBAR MENU -->
         <div class="simlebar-sc" data-simplebar>
             <ul class="sidebar-menu tf">
-               <li>
+                <li>
                     <a href="/admin/dashboard">
                         <i class='bx bxs-dashboard'></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/user"  class="active">
+                    <a href="/admin/user" class="active">
                         <i class='bx bx-user'></i>
                         <span>user</span>
                     </a>
@@ -30,19 +31,19 @@
 
                 <li>
                     <a href="/admin/contestant">
-                        <i class='bx bxs-trophy' ></i>
+                        <i class='bx bxs-trophy'></i>
                         <span>contestants</span>
                     </a>
                 </li>
-                
+
 
                 <li>
                     <a href="/admin/contest">
-                        <i class='bx bxs-message-rounded-detail' ></i>
+                        <i class='bx bxs-message-rounded-detail'></i>
                         <span>contest</span>
                     </a>
                 </li>
-                
+
                 <li>
                     <a class="darkmode-toggle" id="darkmode-toggle" onclick="switchTheme()">
                         <div>
@@ -57,85 +58,97 @@
         </div>
         <!-- END SIDEBAR MENU -->
     </div>
-   
-   <%- include('partials/dashboardMainHeader.ejs') %> 
-  
+
+    <%- include('partials/dashboardMainHeader.ejs') %>
+
     <!-- MAIN CONTENT -->
     <div class="main">
 
 
         <div class="main-content board">
-            
+
             <div class="row">
                 <div class="col-12">
                     <div class="box">
+                        <center><small class="text-success"><%if(msg){%> <%=msg%> <%}%>  </small></center>
                         <div class="box-header">
-                            <h4 class="box-title">All Signed Up Users</h4>
+                            <h4 class="box-title">Signed Up Users</h4>
                             <div class="box-right d-flex">
                                 <a class="btn">Action</a>
                             </div>
                         </div>
                         <div class="divider"></div>
                         <div class="box-body d-flex justify-content-between pb-0">
-                          <% if (locals.users) { %>
-                           <% locals.users.forEach(function(user) { %>
-                           
-                             
-                                <!-- <div class="user-card-body"> -->
-                                    <div class=" class="team-name"">
-                                        <p style="text-transform: capitalize;"><%= user.first_name %> <%= user.last_name %> </p>
-                                    </div>
-                                    <div  class="action">
-                                        <a type="button" class="add"  data-bs-toggle="modal" data-bs-target="#exampleModal">View</a>
-                                        <a href="javascript:void(0);" class="edit">Delete</a>
-                                    </div>
-                                <!-- </div> -->
+                            <% if (locals.users) { %>
+                            <% locals.users.forEach(function(user) { %>
 
-                                         <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                            <!-- <div class="user-card-body"> -->
+                            <div class=" class=" team-name"">
+                                <p style="text-transform: capitalize;"><%= user.first_name %> <%= user.last_name %> </p>
+                            </div>
+                            <div class="action">
+                                <a type="button" class="add" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">View</a>
+                                <a href="/admin/user/<%= user.id %>" class="edit">Delete</a>
+                            </div>
+                            <!-- </div> -->
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">View User</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <img class="img-fluid" src=<%= user.profile_pics %>  alt="profile picture">
-                                        <p style="text-transform: capitalize;"><%= user.uuid %> - <%= user.region %> </p>
-                                        <p style="text-transform: capitalize;">First name: <%= user.first_name %></p>
-                                        <p style="text-transform: capitalize;">Last name: <%= user.last_name %></p>
-                                        <p style="text-transform: capitalize;">E-mail: <%= user.email %></p>
-                                        <p style="text-transform: capitalize;">Date of Birth: <%= user.date_of_birth %></p>
-                                        <p style="text-transform: capitalize;">Phone: <%= user.mobile %></p>
-                                        <p style="text-transform: capitalize;">Street: <%= user.street %></p>
-                                        <p style="text-transform: capitalize;">Postal Code: <%= user.postal_code %></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">View User</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img class="img-fluid" src=<%= user.profile_pics %> alt="profile picture">
+                                            <p style="text-transform: capitalize;"><%= user.uuid %> - <%= user.region %>
+                                            </p>
+                                            <p style="text-transform: capitalize;">First name: <%= user.first_name %>
+                                            </p>
+                                            <p style="text-transform: capitalize;">Last name: <%= user.last_name %></p>
+                                            <p style="text-transform: capitalize;">E-mail: <%= user.email %></p>
+                                            <p style="text-transform: capitalize;">Date of Birth:
+                                                <%= user.date_of_birth %></p>
+                                            <p style="text-transform: capitalize;">Phone: <%= user.mobile %></p>
+                                            <p style="text-transform: capitalize;">Street: <%= user.street %></p>
+                                            <p style="text-transform: capitalize;">Postal Code: <%= user.postal_code %>
+                                            </p>
+                                            <p style="text-transform: capitalize;">Country: <%= user.country %></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
-          
-                         
-                            <% }); %>
 
-                          <% } %>
 
-                        </div>
-                    </div>
-                </div>
-              
+                                <% }); %>
+
+                                <% } else { %>
+                                <center><p>No User found</p></center>
+                                <% } %>
+
+
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-
-   
-
-            </div>
         </div>
+    </div>
+    </div>
+
+
+
+    </div>
+    </div>
     </div>
     <!-- END MAIN CONTENT -->
 
@@ -143,4 +156,4 @@
 
     <!-- SCRIPT -->
     <!-- APEX CHART -->
-<%- include('partials/dashboardFooter') %> 
+    <%- include('partials/dashboardFooter') %>
