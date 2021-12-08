@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import {Navigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { useSelector, useDispatch } from 'react-redux';
 import Breadcumb from '../../components/layout/breadcrumb/Breadcumb';
@@ -25,8 +25,9 @@ export const Register = (props) => {
 
   const registerState = useSelector((state) => state.register);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const { loading, token, error } = registerState;
+  const { loading, data, error } = registerState;
 
   const selectCountry = (val) => {
     setCountry(val);
@@ -82,8 +83,8 @@ export const Register = (props) => {
     dispatch(registerUser(userObj));
   };
 
-  if (token && token.msg === 'OK') {
-   window.location.href = '/login';
+  if (data && data.msg === 'OK') {
+    navigate('/login');
   }
 console.log(props)
 

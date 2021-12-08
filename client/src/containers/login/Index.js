@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Breadcumb from '../../components/layout/breadcrumb/Breadcumb';
 import BeforeFooter from '../../components/layout/footer/BeforeFooter';
 import Footer from '../../components/layout/footer/Footer';
@@ -14,20 +14,24 @@ export const Login = (props) => {
 
   const login = useSelector((state) => state.login);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const { isAuthenticated, error } = login;
+  const { isAuthenticated, user, error } = login;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
   };
 
+  console.log(props.history);
+
   const breadcrumbImg =
     'https://images.unsplash.com/photo-1638208561774-6e02a8e17cc1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
 
   useEffect(() => {
     if (isAuthenticated) {
-      window.location.href = './dashboard';
+      // navigate('/dashboard');
+     window.location.href = '/dashboard';
     }
   }, []);
 
@@ -52,14 +56,14 @@ export const Login = (props) => {
                     <form onSubmit={(e) => handleSubmit(e)}>
                       <div className='form-group'>
                         <input
-                          type='text'
+                          type='email'
                           className='form-control'
                           placeholder='Enter e-mail'
                           onChange={(e) => setEmail(e.target.value)}
                         />
                         <br />
                         <input
-                          type='text'
+                          type='password'
                           className='form-control'
                           placeholder='Enter password'
                           onChange={(e) => setPassword(e.target.value)}

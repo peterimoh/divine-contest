@@ -25,19 +25,22 @@ const StickyNav = ({ isLoggedIn }) => {
     setSidebar(false);
   };
 
+  const classRef = React.useRef(null);
+  const navtopRef = React.useRef(null);
+
   function stick_nav() {
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 50) {
-        document.getElementById('navbar_top').classList.add('fixed-top');
-        // add padding top to show content behind navbar
-        var navbar_height = document.querySelector('.navbar').offsetHeight;
-        document.body.style.paddingTop = navbar_height + 'px';
-      } else {
-        document.getElementById('navbar_top').classList.remove('fixed-top');
-        // remove padding top from body
-        document.body.style.paddingTop = '0';
-      }
-    });
+    // window.addEventListener('scroll', function () {
+    //   if (window.scrollY > 50) {
+    //     navtopRef.current.classList.add('fixed-top');
+    //     // add padding top to show content behind navbar
+    //     var navbar_height = document.querySelector('.navbar').offsetHeight;
+    //     document.body.style.paddingTop = navbar_height + 'px';
+    //   } else {
+    //    navtopRef.current.classList.remove('fixed-top');
+    //     // remove padding top from body
+    //     document.body.style.paddingTop = '0';
+    //   }
+    // });
   }
 
   useEffect(() => {
@@ -111,6 +114,7 @@ const StickyNav = ({ isLoggedIn }) => {
       {/* sidebar is done here  */}
       <nav
         id='navbar_top'
+        ref={navtopRef}
         className='navbar navbar-expand-lg navbar-light bg-light fixed-top'
       >
         <div className='container'>
@@ -145,9 +149,9 @@ const StickyNav = ({ isLoggedIn }) => {
                 );
               })}
               <li className='nav-item'>
-                <Link className='nav-link' to='/login'>
+                <a className='nav-link'>
                   Vote
-                </Link>
+                </a>
               </li>
               <li className='nav-item'>
                 <Link className='nav-link' to='/contact'>
