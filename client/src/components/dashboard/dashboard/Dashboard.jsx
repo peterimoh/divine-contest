@@ -1,4 +1,5 @@
 import React from 'react';
+import About from './About';
 
 const DashboardComponent = () => {
   return (
@@ -6,9 +7,9 @@ const DashboardComponent = () => {
       <div className='container'>
         <div className='cover-card'>
           <div className='cover-card__header'>
-            <div className='cover-card__header__title'>
+            <div className='cover-card__header__title mb-4'>
               <h3>Dashboard</h3>
-              <div className='breadcrumb'>
+              {/* <div className='breadcrumb'>
                 <div className='breadcrumb__item'>
                   <a href='#'>Home</a>
                 </div>
@@ -18,10 +19,10 @@ const DashboardComponent = () => {
                     Dashboard
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
-          <div className='cover-card__body'>
+          <div className='cover-card__body m-0'>
             <div
               className='cover-picture'
               style={{
@@ -37,10 +38,11 @@ const DashboardComponent = () => {
                   'url(https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)',
               }}
             >
-              hello
+              
             </div>
           </div>
-        </div>
+              </div>
+              <About/>
       </div>
     </div>
   );

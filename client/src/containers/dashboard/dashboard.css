@@ -3,11 +3,12 @@
 
 #dashboard #dashboard__component .cover-card__body .cover-picture {
   height: 56vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-size: cover !important;
+  background-position: center   !important;
+  background-repeat: no-repeat !important;
   background-color: #f5f5f5;
   border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 #dashboard #dashboard__component .cover-card__body .profile_pics__item {
@@ -15,8 +16,8 @@
   align-items: center;
   justify-content: center;
   margin: auto;
-  height: 250px;
-  width: 250px;
+  height: 200px;
+  width: 200px;
   top: -120px;
   /* padding: 10px; */
   background-size: cover;
@@ -26,12 +27,20 @@
   border: 10px solid #ffffff;
   border-radius: 100%;
   position: relative;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#dashboard #dashboard__component .details {
+  padding: 25px 30px 25px 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 768px) {
   #dashboard #dashboard__component .cover-card__body .profile_pics__item {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     top: -100px;
   }
 
