@@ -124,6 +124,10 @@ exports.AddContest = async (req, res) =>
 exports.AddContestant = async (req, res) =>
   new Contest(res).Create('contestant_table', req.body);
 
+  exports.GetContestantById=(req, res)=>{
+
+  }
+
 exports.GetContest = async (req, res) => new Contest(res).Select('contest');
 
 exports.GetContestant = async (req, res) =>

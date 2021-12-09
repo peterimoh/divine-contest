@@ -41,6 +41,14 @@ class Contest extends Voter {
       else this.TransactionMessage(this.res, 200, result);
     });
   }
+  
+  SelectById(contest) {
+    Model.Select(contest, (err, result) => {
+      if (err)
+        this.TransactionMessage(this.res, 400, 'Error selecting contest table');
+      else this.TransactionMessage(this.res, 200, result);
+    });
+  }
 }
 
 module.exports = Contest;
