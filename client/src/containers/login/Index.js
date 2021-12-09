@@ -29,11 +29,11 @@ export const Login = (props) => {
     'https://images.unsplash.com/photo-1638208561774-6e02a8e17cc1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
 
   useEffect(() => {
-    if (isAuthenticated) {
-      // navigate('/dashboard');
-     window.location.href = '/dashboard';
+    if (isAuthenticated=== true) {
+      navigate('/dashboard');
+    //  window.location.href = '/dashboard';
     }
-  }, []);
+  }, [login]);
 
   return (
     <React.Fragment>

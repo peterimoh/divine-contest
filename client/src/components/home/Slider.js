@@ -18,7 +18,6 @@ const contentStyle = {
 
 export const Slider = () => {
   function onChange(a, b, c) {
-    console.log(a, b, c);
   }
   return (
     <div id='slider'>

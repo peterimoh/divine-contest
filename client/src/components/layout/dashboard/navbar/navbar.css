@@ -1,0 +1,24 @@
+
+  
+.navbar {
+  background-color: rgb(243, 243, 243);
+  padding-left: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  justify-content: normal !important;
+ box-shadow: -10px 5px 42px -20px rgba(0,0,0,0.71);
+-webkit-box-shadow: -10px 5px 42px -20px rgba(0,0,0,0.71);
+-moz-box-shadow: -10px 5px 42px -20px rgba(0,0,0,0.71);
+}
+
+@media (min-width: 992px) {
+  .menu{
+    display: none !important;
+  }
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  margin-left: 1rem;
+}
