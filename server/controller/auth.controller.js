@@ -70,15 +70,7 @@ exports.Signup = async (req, res, next) => {
 
 exports.Login = (req, res) => {
   const { email, password } = req.body;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  Auth.EmailValidate(email, (err, result) => {
-=======
   await Auth.SelectById("user", "email", email, (err, result) => {
->>>>>>> vote
-=======
-  await Auth.SelectById("user", "email", email, (err, result) => {
->>>>>>> refs/remotes/origin/main
     if (err)
       return res.status(400).json({ error: 'Server Error, Try again later' });
 

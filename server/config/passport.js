@@ -6,8 +6,7 @@ const bcrypt = require('bcryptjs');
 const Auth = require('../model/auth.model');
 const config = require('../config/config');
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 //compare encrpted password with password entered by user
 async function validatePassword(password, hashedPassword) {
   return await bcrypt.compare(password, hashedPassword);
@@ -107,3 +106,4 @@ passport.serializeUser(function (admin_id, done) {
 passport.deserializeUser(function (admin_id, done) {
   done(null, admin_id);
 });
+}
