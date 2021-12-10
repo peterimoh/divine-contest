@@ -1,7 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import About from './About';
 
 const DashboardComponent = () => {
+
+  const profile = useSelector(state => state.profile)
+    const {detail} = profile;
   return (
     <div id='dashboard__component' className='m-4'>
       <div className='container'>
@@ -26,23 +30,35 @@ const DashboardComponent = () => {
             <div
               className='cover-picture'
               style={{
-                background:
-                  'url(https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)',
+                background: `url(${
+                  detail.data &&
+                  detail.data.map((item) => {
+                    const { full_pic } = item;
+                    return full_pic && full_pic.length > 0
+                      ? 'data:image/*;base64,' + full_pic
+                      : 'https://via.placeholder.com/800';
+                  })
+                })`,
               }}
             ></div>
 
             <div
               className='profile_pics__item'
               style={{
-                background:
-                  'url(https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)',
+                background: `url(${
+                  detail.data &&
+                  detail.data.map((item) => {
+                    const { profile_pic } = item;
+                    return profile_pic && profile_pic.length > 0
+                      ? 'data:image/*;base64,' + profile_pic
+                      : 'https://via.placeholder.com/300';
+                  })
+                })`,
               }}
-            >
-              
-            </div>
+            ></div>
           </div>
-              </div>
-              <About/>
+        </div>
+        <About />
       </div>
     </div>
   );

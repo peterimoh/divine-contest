@@ -1,10 +1,13 @@
 const express = require('express');
+const multer  = require('multer');
 const Auth = require('../controller/auth.controller');
 const {
   UserSignupValidator,
   UserLoginValidator,
 } = require('../validator/auth.validator');
 const { runValidation } = require('../validator/run.validation');
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 const router = express.Router();
 
@@ -13,12 +16,19 @@ router.post('/login', UserLoginValidator, runValidation, Auth.Login);
 
 router.post('/vote', Auth.Voter);
 
+// user
+router.post('/user/:id', Auth.ReadUser);
+
 router.post('/addContest', Auth.AddContest);
 router.post('/addContestant', Auth.AddContestant);
 
-router.get('/getContest', Auth.GetContest);
+router.get('/getcontest', Auth.GetContest);
 router.get('/getContestant', Auth.GetContestant);
 router.post('/getContestantById', Auth.GetContestantById);
+
+// upload
+router.post('/upload/:id', upload.single('profile_pic'), Auth.uploadDpToDB);
+router.post('/upload-fullpics/:id', upload.single('full_pic'), Auth.uploadFullToDB);
 
 router.post('/deleteContestantById', Auth.deleteContestantById);
 router.post('/deleteUserById', Auth.deleteUserById);

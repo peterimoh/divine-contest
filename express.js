@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
+const multer = require('multer');
 const path = require('path');
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -26,7 +27,10 @@ const authRoute = require('./server/routes/auth-route');
 
 const app = express();
 
+const upload = multer({ storage: multer.memoryStorage() });
+
 //middlewares
+
 app.use(express.static(path.join(__dirname, './server/public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -51,6 +55,5 @@ app.set('view engine', 'ejs');
 //routing
 app.use('/api/auth', authRoute);
 app.use('/admin', adminRoute(Admin));
-
 
 module.exports = app;

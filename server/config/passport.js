@@ -6,7 +6,6 @@ const bcrypt = require('bcryptjs');
 const Auth = require('../model/auth.model');
 const config = require('../config/config');
 
-
 //compare encrpted password with password entered by user
 async function validatePassword(password, hashedPassword) {
   return await bcrypt.compare(password, hashedPassword);
@@ -51,7 +50,7 @@ module.exports = (passport) => {
     new LocalStrategy((username, password, done) => {
       let adminObj = { email: username, password: password };
 
-      Auth.SelectById('admin', "role", "admin", async (err, result) => {
+      Auth.SelectById('user', 'role', 'admin', async (err, result) => {
         if (err) {
           console.log(err);
           done(err);
@@ -79,25 +78,6 @@ module.exports = (passport) => {
       });
     })
   );
-  
-const opts = {};
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = config.jwt_secret;
-
-const passportAuth = ( ) => {
-passport.use(
-  new JwtStrategy(opts, (jwt_payload, cb) => {
-    Auth.SelectById("user", "email", jwt_payload.email, (err, result) => {
-      if (err) return console.log(err);
-      if (result) {
-        return cb(null, result);
-      } else {
-        return cb(null, false);
-      }
-    });
-  })
-);
-
 };
 
 passport.serializeUser(function (admin_id, done) {
@@ -106,4 +86,3 @@ passport.serializeUser(function (admin_id, done) {
 passport.deserializeUser(function (admin_id, done) {
   done(null, admin_id);
 });
-}

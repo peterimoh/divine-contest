@@ -14,6 +14,8 @@ exports.Select = (table, result) => {
   });
 }
 
+
+
 exports.SelectById = (tableName, column, data, result) => {
   return sql.query(
     `SELECT * FROM ${tableName} WHERE ${column} = ?`, [data],
@@ -23,6 +25,18 @@ exports.SelectById = (tableName, column, data, result) => {
     }
   );
 };
+
+
+exports.UpdateById = (tableName, column, id, data, idValue, result) => {
+  return sql.query(
+    `UPDATE ${tableName} SET ${column} = ? WHERE ${id} = ?`, [data, idValue],
+    (err, output) => {
+      if (err) return result(err, null);
+      return result(null, output);
+    }
+  );
+};
+
 
 exports.DeleteById = (tableName, column, data, result) => {
   return sql.query(

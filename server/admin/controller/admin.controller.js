@@ -23,7 +23,7 @@ exports.createScreen = (req, res) => {
 exports.createAdmin = (req, res) => {
   const { email, password } = req.body;
   console.log(req.body);
-  Auth.EmailValidate(email, (err, result) => {
+  Auth.SelectById('user', 'email', email, (err, result) => {
     if (err) {
       console.log(err);
       req.flash('error', 'Internal Server Error');
@@ -70,7 +70,7 @@ exports.loginScreen = (req, res) => {
 
 //dashboard
 exports.dashboardScreen = (req, res) => {
-  Auth.SelectUsers('user', async (err, users) => {
+  Auth.SelectById('user', 'role', 'user', async (err, users) => {
     if (err) {
       console.log(err);
       req.flash('error', 'Internal Server Error');
@@ -106,7 +106,7 @@ exports.dashboardScreen = (req, res) => {
 
 // ===============users  ===========================
 exports.ReadUsers = async (req, res) => {
-  Auth.SelectUsers('user', (err, users) => {
+  Auth.SelectById('user', 'role', 'user', (err, users) => {
     if (err) {
       console.log(err);
       req.flash('error', 'Internal Server Error');

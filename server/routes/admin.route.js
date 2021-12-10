@@ -14,7 +14,7 @@ const adminRoute = (db) => {
     '/login-admin',
     passport.authenticate('admin', {
       successRedirect: '/admin/dashboard',  
-      failureRedirect: '/admin/login',
+      failureRedirect: '/admin',
       failureFlash: true,
       successFlash: true,
     })

@@ -97,7 +97,7 @@ const UploadDP = () => {
             <InboxOutlined  className='text-secondary'/>
           </p>
           <p className='ant-upload-text text-secondary fs-6'>
-            Click or drag file to this area to upload Profile Picture
+            Click or drag file to this area to upload
           </p>
         </Dragger>
       </ImgCrop>
