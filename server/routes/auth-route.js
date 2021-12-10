@@ -16,7 +16,21 @@ router.post('/vote', Auth.Voter);
 router.post('/addContest', Auth.AddContest);
 router.post('/addContestant', Auth.AddContestant);
 
-router.post('/getContest', Auth.GetContest);
-router.post('/getContestant', Auth.GetContestant);
+router.get('/getContest', Auth.GetContest);
+router.get('/getContestant', Auth.GetContestant);
+router.post('/getContestantById', Auth.GetContestantById);
+
+router.post('/deleteContestantById', Auth.deleteContestantById);
+router.post('/deleteUserById', Auth.deleteUserById);
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

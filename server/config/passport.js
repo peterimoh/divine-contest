@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const Auth = require('../model/auth.model');
 const config = require('../config/config');
 
+<<<<<<< HEAD
 //compare encrpted password with password entered by user
 async function validatePassword(password, hashedPassword) {
   return await bcrypt.compare(password, hashedPassword);
@@ -78,6 +79,25 @@ module.exports = (passport) => {
       });
     })
   );
+=======
+const opts = {};
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+opts.secretOrKey = config.jwt_secret;
+
+const passportAuth = ( ) => {
+passport.use(
+  new JwtStrategy(opts, (jwt_payload, cb) => {
+    Auth.SelectById("user", "email", jwt_payload.email, (err, result) => {
+      if (err) return console.log(err);
+      if (result) {
+        return cb(null, result);
+      } else {
+        return cb(null, false);
+      }
+    });
+  })
+);
+>>>>>>> vote
 };
 
 passport.serializeUser(function (admin_id, done) {
