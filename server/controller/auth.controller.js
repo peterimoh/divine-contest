@@ -128,4 +128,4 @@ exports.deleteContestantById = async(req, res) => new Contest(res).DeleteById("c
 
 exports.deleteUserById = async(req, res) => new Contest(res).DeleteById("user", req.body.id);
 
-
+exports.deleteContestById = async(req, res) => new Contest(res).DeleteById("contest", req.body.id);
