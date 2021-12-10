@@ -11,7 +11,7 @@ opts.secretOrKey = config.jwt_secret;
 const passportAuth = ( ) => {
 passport.use(
   new JwtStrategy(opts, (jwt_payload, cb) => {
-    Auth.EmailValidate(jwt_payload.email, (err, result) => {
+    Auth.SelectById("user", "email", jwt_payload.email, (err, result) => {
       if (err) return console.log(err);
       if (result) {
         return cb(null, result);
