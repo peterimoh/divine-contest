@@ -4,9 +4,12 @@ import { AiFillCloseCircle, GiHamburgerMenu } from 'react-icons/all';
 import { privateRouteData } from '../../Route';
 import './sidebarnew.css';
 import logo from '../../images/logo.png';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../store/action/auth.action';
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(true);
+   const dispatch = useDispatch();
 
   const closeSidebar = () => {
     setSidebar(true);
@@ -22,15 +25,25 @@ const Sidebar = () => {
     //     document.body.style.backgroundColor = 'rgba(214, 214, 219, 0.836)';
     // }
 
+      const handleLogout = () => {
+        dispatch(logoutUser());
+      };
+
+  
   return (
     <>
       <div id='nav'>
         <div className='container'>
           <div className='d-flex justify-content-between'>
-            <GiHamburgerMenu className='align-self-center openBtn' onClick={openSidebar} />
-            <Link to='/dashboard'>
-              <img src={logo} alt='logo' className='logo' />
-            </Link>
+            <GiHamburgerMenu
+              className='align-self-center openBtn'
+              onClick={openSidebar}
+            />
+            <div className='control'>
+              <Link to='/dashboard'>
+                <img src={logo} alt='logo' className='logo' />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -50,6 +63,13 @@ const Sidebar = () => {
               </Link>
             );
           })}
+          <a
+            // to='/dashboard'
+            className=''
+            onClick={handleLogout}
+          >
+            Log out
+          </a>
         </div>
       </div>
     </>

@@ -68,7 +68,7 @@ exports.Signup = async (req, res, next) => {
   });
 };
 
-exports.Login = (req, res) => {
+exports.Login = async(req, res) => {
   const { email, password } = req.body;
   await Auth.SelectById("user", "email", email, (err, result) => {
     if (err)
@@ -105,6 +105,54 @@ exports.Login = (req, res) => {
     }
   });
 };
+
+
+exports.ReadUser = async (req, res) => {
+  const { id } = req.params;
+
+  await Auth.SelectById("user", "id", id, (err, result) => {
+    if (err)
+      return res.status(400).json({ error: 'Server Error, Try again later' });
+
+    if (result) {
+      if (result.length) {
+        return res.status(200).json({ msg: 'OK', data: result });
+      } else {
+        return res.status(400).json({ error: 'User does not exist' });
+      }
+    }
+  }
+  );
+
+}
+
+exports.uploadDpToDB = (req, res) => {
+  const { id } = req.params;
+  console.log("user id ", id)
+  const dp = req.file.buffer.toString('base64');
+   Auth.UpdateById('user', 'profile_pic', "id", dp, id, (err, output) => {
+    if (err)
+      return res.status(500).json({ error: 'Server Error, Try again Later!' });
+    return res.status(200).json({ msg: 'OK', data: output });
+  }
+  );
+
+}
+
+exports.uploadFullToDB =  (req, res) => {
+  const { id } = req.params;
+  const  full = req.file.buffer.toString('base64');
+
+ Auth.UpdateById('user', 'full_pic', 'id', full, id, (err, output) => {
+    console.log(err);
+    if (err)
+      return res.status(500).json({ error: 'Server Error, Try again Later!' });
+    return res.status(200).json({ msg: 'OK', data: output });
+  }
+  );
+
+}
+
 
 exports.Voter = async (req, res) => {
   var obj = req.body.response;

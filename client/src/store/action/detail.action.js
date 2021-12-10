@@ -4,7 +4,7 @@ import { GET_PROFILE, PROFILE, PROFILE_FAIL, UPLOAD_DP, UPLOAD_DP_FAIL, UPLOAD_D
 export const getUserDetail = (id) => (dispatch) => {
   dispatch({ type: GET_PROFILE });
   axios
-    .post(`/api/auth/detail`, {id: id})
+    .post(`/api/auth/user/${id}`)
     .then((res) => {
       dispatch({ type: PROFILE, payload: res.data }); //dispatching the action
     })

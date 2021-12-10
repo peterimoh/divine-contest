@@ -7,7 +7,7 @@ import DashboardComponent from '../../components/dashboard/dashboard/Dashboard';
 
 import './dashboard.css';
 import Contest from '../../components/dashboard/contest/Contest';
-import Profile from '../../components/dashboard/profile/Profile';
+
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -34,13 +34,13 @@ const Dashboard = () => {
 
   return (
     <div id='dashboard'>
-      <Navbar menu={Menu} />
+      {/* <Navbar menu={Menu} />
       <Layout>
         <SideBar menu={Menu} />
         <Layout.Content className='content'>
-          {contentIndex === 0 ? <DashboardComponent /> : contentIndex === 1 ?<Contest/> : <Profile/>}
+          {contentIndex === 0 ? <DashboardComponent /> : contentIndex === 1 ?<Contest/> }
         </Layout.Content>
-      </Layout>
+      </Layout> */}
     </div>
   );
 };

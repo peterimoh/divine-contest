@@ -3,12 +3,7 @@ const Voter = require('./vote.controller');
 const Model = require('../model/auth.model');
 
 class Contest extends Voter {
-  res;
-  constructor(res) {
-    super();
-    this.res = res;
-  }
-
+ 
     res;
     constructor(res){
         super();
