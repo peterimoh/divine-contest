@@ -7,6 +7,7 @@ const Auth = require('../model/auth.model');
 const config = require('../config/config');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 //compare encrpted password with password entered by user
 async function validatePassword(password, hashedPassword) {
   return await bcrypt.compare(password, hashedPassword);
@@ -51,7 +52,7 @@ module.exports = (passport) => {
     new LocalStrategy((username, password, done) => {
       let adminObj = { email: username, password: password };
 
-      Auth.SelectAdmin('user', async (err, result) => {
+      Auth.SelectById('admin', "role", async (err, result) => {
         if (err) {
           console.log(err);
           done(err);
@@ -79,7 +80,7 @@ module.exports = (passport) => {
       });
     })
   );
-=======
+  
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.jwt_secret;
@@ -97,7 +98,7 @@ passport.use(
     });
   })
 );
->>>>>>> vote
+
 };
 
 passport.serializeUser(function (admin_id, done) {
