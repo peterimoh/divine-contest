@@ -51,7 +51,7 @@ exports.Signup = async (req, res, next) => {
     role: req.body.role || 'user',
   };
 
-  await Auth.EmailValidate(email, async (err, user) => {
+  await Auth.SelectById("user", "email", email, async (err, user) => {
     if (err) return res.status(400).json({ error: 'Server Error!' });
     if (!Object.entries(user).length == 0) {
       return res.status(400).json({ error: 'User already Exist!' });
@@ -70,7 +70,7 @@ exports.Signup = async (req, res, next) => {
 
 exports.Login = (req, res) => {
   const { email, password } = req.body;
-  Auth.EmailValidate(email, (err, result) => {
+  await Auth.SelectById("user", "email", email, (err, result) => {
     if (err)
       return res.status(400).json({ error: 'Server Error, Try again later' });
 
@@ -125,6 +125,12 @@ exports.AddContestant = async (req, res) =>
   new Contest(res).Create('contestant_table', req.body);
 
 exports.GetContest = async (req, res) => new Contest(res).Select('contest');
+exports.GetContestantById = async(req, res) => new Contest(res).SelectById("contestant_table", req.body.id);
+
+exports.deleteContestantById = async(req, res) => new Contest(res).DeleteById("contestant_table", req.body.id);
+
+exports.deleteUserById = async(req, res) => new Contest(res).DeleteById("user", req.body.id);
+
 
 exports.GetContestant = async (req, res) =>
   new Contest(res).Select('contestant_table');
