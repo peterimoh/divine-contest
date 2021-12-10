@@ -51,7 +51,7 @@ module.exports = (passport) => {
     new LocalStrategy((username, password, done) => {
       let adminObj = { email: username, password: password };
 
-      Auth.SelectById('admin', "role", async (err, result) => {
+      Auth.SelectById('admin', "role", "admin", async (err, result) => {
         if (err) {
           console.log(err);
           done(err);
