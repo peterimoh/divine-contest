@@ -23,7 +23,9 @@ const DashboardComponent = () => {
                     Dashboard
                   </a>
                 </div>
-              </div> */}
+              </div>
+              */}
+
             </div>
           </div>
           <div className='cover-card__body m-0'>
@@ -46,8 +48,7 @@ const DashboardComponent = () => {
               className='profile_pics__item'
               style={{
                 background: `url(${
-                  detail.data &&
-                  detail.data.map((item) => {
+                  detail.data && detail.data.map((item) => {
                     const { profile_pic } = item;
                     return profile_pic && profile_pic.length > 0
                       ? 'data:image/*;base64,' + profile_pic

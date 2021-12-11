@@ -19,19 +19,21 @@ export const contestReducer = (state = initialState, action) => {
         contestListError: null,
         contestListSuccess: false,
       };
-    // case GET_CONTEST_SUCCESS:
-    //   return {
-    //     contestListLoading: false,
-    //     contestListError: null,
-    //     contestListSuccess: true,
-    //     contestList: action.payload,
-    //   };
-    // case GET_CONTEST_FAIL:
-    //   return {
-    //     contestListLoading: false,
-    //     contestListError: action.payload,
-    //     contestListSuccess: false,
-    //   };
+
+    case GET_CONTEST_SUCCESS:
+      return {
+        contestListLoading: false,
+        contestListError: null,
+        contestListSuccess: true,
+        contestList: action.payload,
+      };
+      
+    case GET_CONTEST_FAIL:
+      return {
+        contestListLoading: false,
+        contestListError: action.payload,
+        contestListSuccess: false,
+      };
 
     default:
       return state;
