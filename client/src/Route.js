@@ -4,6 +4,7 @@ import { Contact } from './containers/contact/Contact';
 import Contest from './containers/contest/Contest';
 import Contestant from './containers/contestant/Contestant';
 import DashboardNew from './containers/dashboard/DashboardNew';
+import Vote from './containers/vote/Vote';
 import WriteUser from './containers/Edit/WriteUser';
 import Index from './containers/gallerry/Index';
 import Home from './containers/Home/Index';
@@ -17,12 +18,8 @@ const routeData = [
   { id: 4, path: '/about', name: 'About', component: <About /> },
   { id: 5, path: '/gallery', name: 'Gallery', component: <Index /> },
   { id: 6, path: '/contact', name: 'Contact', component: <Contact /> },
-  {
-    id: 7,
-    path: '/contestants',
-    name: 'Contestants',
-    component: <Contestant />,
-  },
+  { id: 7, path: '/contestants', name: 'Contestants', component: <Contestant />},
+  { id: 7, path: '/vote/:id', name: 'Vote', component: <Vote />},
 ];
 
 const privateRouteData = [

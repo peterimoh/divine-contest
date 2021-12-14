@@ -11,7 +11,7 @@ const About = () => {
 
   const CopyLink=(el)=>{
     var copyText = document.createElement("input");
-      copyText.value = window.location.origin + "/vote" +  `/QbOsc${userID}vs`+ `DZP/${el.cid}`
+      copyText.value = window.location.origin + "/vote" +  `/id?${userID}pZPY$${el.cid}hDZP`
       console.log("Link to copy ", copyText.value);
       document.body.appendChild(copyText)
       copyText.select();
@@ -26,6 +26,7 @@ const About = () => {
       const { data } = await axios.post(`/api/auth/getContestantById/`, {user_id: userID});
       setContest(data.msg)
     } catch (err) {
+      
     }
   }, [])
     return (

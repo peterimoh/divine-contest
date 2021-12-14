@@ -80,20 +80,14 @@
                             <% if (locals.contestants) { %>
                             <% locals.contestants.forEach(function(contestant) { %>
 
-
-                            <!-- <div class="user-card-body"> -->
                             <div class=" class=" team-name"">
                                 <p style="text-transform: capitalize;"><%= contestant.first_name %> <%= contestant.last_name %> </p>
                             </div>
-                            <!-- <div class="action">
-                                <a type="button" class="add" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">View</a>
-                                <a href="/admin/user/<%= user.id %>" class="edit">Delete</a>
-                            </div> -->
-                            <!-- </div> -->
+                            
+                            
 
                           
-                                <% }); %>
+                                <% }) %>
 
                                 <% } else {%>
                                 <center><p>No Contestant found</p></center>
