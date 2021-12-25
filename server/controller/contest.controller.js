@@ -31,16 +31,19 @@ class Contest extends Voter {
 
   CreateValidData(contest, contestObject) {
     let body = {
-      user_id: contestObject.user_id,
-      contest_id: contestObject.contest_id,
+      user_id: contestObject.body.user_id,
+      contest_id: contestObject.body.contest_id,
       create_time: new Date(),
     };
+    console.log("OBJECT ", contestObject)
+    console.log("BODY ", body)
     Model.MultiplySelect(
       contest,
-      "user_id",
+      "user_id", 
       "contest_id",
-      ...body,
+      body,
       (err, resP) => {
+        console.log("Incoming contestand boyd ", body)
         if (err)
           this.TransactionMessage(
             this.res,

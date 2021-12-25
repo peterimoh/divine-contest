@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 const About = () => {
+  let voteLinkBaseURL = "http://localhost:8080/api/auth/vote"
   
   let userID =  useSelector((state) => state.login.user.id);
 
@@ -11,13 +12,13 @@ const About = () => {
 
   const CopyLink=(el)=>{
     var copyText = document.createElement("input");
-      copyText.value = window.location.origin + "/vote" +  `/id?${userID}pZPY$${el.cid}hDZP`
+      copyText.value = voteLinkBaseURL +  `/?${userID}pZPY$${el.cid}hDZP`
       console.log("Link to copy ", copyText.value);
       document.body.appendChild(copyText)
       copyText.select();
       copyText.setSelectionRange(0,9999);
       document.execCommand("copy")
-      alert(` ${copyText.value} \n Link copy to clipboard`)
+      alert(` ${copyText.value} \n Voting link copy to clipboard`)
       document.body.removeChild(copyText)
   }
 
@@ -70,4 +71,4 @@ const About = () => {
     );
 }
 
-export default About
+export default About;

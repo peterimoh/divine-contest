@@ -13,8 +13,10 @@ router.post('/create', UserSignupValidator, runValidation, Auth.Signup);
 router.post('/login', UserLoginValidator, runValidation, Auth.Login);
 
 router.post('/vote', Auth.Voter);
-
-router.get('/vote', Auth.Voter);
+router.get('/success', Auth.VoteSuccess);
+router.get('/cancel', (req, res)=>res.send("You cancelled the transaction"));
+ 
+router.get('/vote', Auth.GetVotersPage);
 
 // user
 router.post('/user/:id', Auth.ReadUser);
