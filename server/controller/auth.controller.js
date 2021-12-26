@@ -5,6 +5,8 @@ const config = require("../config/config");
 const Vote = require("./vote.controller");
 const Contest = require("./contest.controller");
 const paypal = require("paypal-rest-sdk");
+const sql = require('../db/db.config');
+
 
 //encrypt password
 async function hashPassword(password) {
@@ -182,7 +184,7 @@ exports.Voter = async (req, res) => {
           total: `${quantity}`,
           currency: "USD",
         },
-        description: `${userID}xxx Voters $ payment page xxx${cid}`,
+        description: `${userID}xxx Voters $ ${cid}payment page xxx`,
       },
 
     ],
@@ -207,10 +209,12 @@ exports.Voter = async (req, res) => {
 };
 
 let ans = {
+
   id: "PAYID-MHDTJJA5H571037UY7078323",
   intent: "sale",
   state: "approved",
   cart: "0FG68036VN442601F",
+
   payer: {
     payment_method: "paypal",
     status: "VERIFIED",
@@ -230,6 +234,7 @@ let ans = {
       country_code: "US",
     },
   },
+
   transactions: [
     {
       amount: {
@@ -248,7 +253,8 @@ let ans = {
         merchant_id: "7CGJMZP53H85S",
         email: "sb-ltnqn10531804@business.example.com",
       },
-      description: "1xxx Voters $ payment page xxx1",
+
+      description: "1xxx Voters $ 1payment page xxx",
       item_list: {
         shipping_address: {
           recipient_name: "John Doe",
@@ -259,6 +265,7 @@ let ans = {
           country_code: "US",
         },
       },
+
       related_resources: [
         {
           sale: {
@@ -320,9 +327,14 @@ let ans = {
 };
 
 exports.VoteSuccess = async (req, res) => {
-  console.log("ReTURE QUERY PARAMS ", req.query)
+  console.log("ReTURE QUERY PARAMS ", req.query);
+
+  let userID;
+  let cid;
+
   const payerId = req.query.PayerID;
   const paymentId = req.query.paymentId;
+
   const executePayment = {
     payer_id: payerId,
     transactions: [
@@ -334,6 +346,7 @@ exports.VoteSuccess = async (req, res) => {
       },
     ],
   };
+
   paypal.payment.execute(paymentId, executePayment, function (error, payment) {
     if (error) {
       console.log("Success error ", error);
@@ -343,8 +356,14 @@ exports.VoteSuccess = async (req, res) => {
     } else {
       console.log(JSON.stringify(payment));
       req.i18nKey = "transactionSuccess";
-      return res.send("SUUCESSFULL PAYMENT");
-      //  return res.json(respUtil.successResponse(req));
+      userID = parseInt(payment.transactions[0].description.split("$")[0])
+      cid =  parseInt(payment.transactions[0].description.split("$")[1])
+      sql.query("update contestant_table set vote_count = vote_count + 1 where user_id = ? and contest_id = ?", [userID, cid], (err, ponds)=>{
+        if(err) console.log(err), res.send("AN ERROR OCCURE")
+        else{
+          return res.send("SUUCESSFULL PAYMENT");
+        }
+      })
     }
   });
 };
@@ -424,4 +443,4 @@ exports.deleteContestById = async (req, res) =>
   new Contest(res).DeleteById("contest", req.body.id);
 
 exports.GetContestant = async (req, res) =>
-  Contest(res).Select("contestant_table");
+  new Contest(res).Select("contestant_table");
