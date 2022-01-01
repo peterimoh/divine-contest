@@ -64,17 +64,15 @@ exports.MultipleSelectInnerJoin = (
   );
 };
 
-
-// exports.SelectByUUID = (tableName, uuid, result) => {
-//   return sql.query(
-//     `SELECT * FROM user INNER JOIN ${tableName} ON(${tableName}.user_id = user.id WHERE user.uuid=?)`,
-//     [uuid],
-//     (err, output) => {
-//       if (err) return result(err, null);
-//       return result(null, output);
-//     }
-//   );
-// };
+exports.FetchAllDetails = (tableName, result) => {
+  return sql.query(
+    `SELECT * FROM ${tableName} INNER JOIN contest ON(${tableName}.contest_id = contest.id) INNER JOIN user ON(${tableName}.user_id = user.id)`,
+    (err, output) => {
+      if (err) return result(err, null);
+      return result(null, output);
+    }
+  );
+};
 
 exports.SelectByUUID = (tableName, column, data, result) => {
   return sql.query(
@@ -86,7 +84,6 @@ exports.SelectByUUID = (tableName, column, data, result) => {
     }
   );
 };
-
 
 exports.SingleInnerJoin = (tableName, result) => {
   return sql.query(
@@ -110,13 +107,14 @@ exports.UpdateById = async (tableName, column, id, data, idValue, result) => {
   );
 };
 
-exports.DeleteById = (tableName, column, data, result) => {
+exports.DeleteById = (tableName, column, id, result) => {
   return sql.query(
-    `SELECT * FROM ${tableName} WHERE ${column} = ?`,
-    [data],
+    `DELETE FROM ${tableName} WHERE ${column} = ?`,
+    [id],
     (err, output) => {
       if (err) return result(err, null);
       return result(null, output);
     }
   );
-};
+}
+

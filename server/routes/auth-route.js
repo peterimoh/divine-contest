@@ -54,7 +54,7 @@ router.post(
 // paypal email
 router.post('/paypal/:id', Auth.updatePaypalEmail);
 
-router.post('/deleteContestantById', Auth.deleteContestantById);
+router.post('/deleteContestantById/:userID', Auth.deleteContestantById);
 router.post('/deleteUserById', Auth.deleteUserById);
 
 module.exports = router;

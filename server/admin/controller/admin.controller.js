@@ -114,10 +114,14 @@ exports.ReadUsers = async (req, res) => {
       req.flash('error', 'Internal Server Error');
       res.redirect('back');
     }
-    if (users) res.render('user', { users, error: req.flash('error'), msg: req.flash('msg') });
+    if (users)
+      res.render('user', {
+        users,
+        error: req.flash('error'),
+        msg: req.flash('msg'),
+      });
   });
 };
-
 
 exports.DeleteUser = async (req, res) => {
   const { id } = req.params;
@@ -131,21 +135,24 @@ exports.DeleteUser = async (req, res) => {
       res.redirect('back');
     }
   });
-}
-
+};
 
 // ===============contestants  ===========================
 exports.ReadContestants = async (req, res) => {
-  Auth.Select('contestant_table', (err, contestants) => {
+  Auth.FetchAllDetails('contestant_table', (err, contestants) => {
     if (err) {
       console.log(err);
       req.flash('error', 'Internal Server Error');
       res.redirect('back');
     }
-    if (contestants) res.render('contestant', { contestants, error: req.flash('error'), msg: req.flash('msg') });
+    // console.log(contestants);
+    return res.render('contestant', {
+      contestants,
+      error: req.flash('error'),
+      msg: req.flash('msg'),
+    });
   });
-}
-
+};
 
 //=========== contest ============================
 exports.ReadContest = async (req, res) => {
@@ -155,13 +162,17 @@ exports.ReadContest = async (req, res) => {
       req.flash('error', 'Internal Server Error');
       res.redirect('back');
     }
-    if (contest) res.render('contest', { contest, error: req.flash('error'), msg: req.flash('msg') });
+    if (contest)
+      res.render('contest', {
+        contest,
+        error: req.flash('error'),
+        msg: req.flash('msg'),
+      });
   });
-}
-
+};
 
 exports.CreateContest = async (req, res) => {
-  const { contest_title, description, start_time,  end_time, prize } = req.body;
+  const { contest_title, description, start_time, end_time, prize } = req.body;
   const contestObj = {
     title: contest_title,
     description,
@@ -180,4 +191,4 @@ exports.CreateContest = async (req, res) => {
       res.redirect('back');
     }
   });
-}
+};

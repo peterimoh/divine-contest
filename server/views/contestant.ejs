@@ -77,18 +77,43 @@
                         </div>
                         <div class="divider"></div>
                         <div class="box-body d-flex justify-content-between pb-0">
-                            <!-- <p>hello</p> -->
-                           <% if (locals.contestants) { %>
-                                <% locals.contestants.forEach(function(contests) { %>
+                         
+                    <table class="table"  style="text-align: center;">
+                    <thead>
+                        <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">user ID</th>
+                        <th scope="col">Contest</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Prize</th>
+                        <th scope="col">Total Votes</th>
+                        <th scope="col">Actions</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        
+                      
+                    
 
-                                <th scope="row"><%= contests.id %></th>
-                                <td><%= contests.title %></td>
-                                <td><%= contests.prize %></td>
-                                <td><%=  new Date(contests.create_time ).getFullYear() + '-' + new Date(contests.create_time ).getDate() + '-' + new Date(contests.create_time ).getDay() %>
+                            <% if (locals.contestants) { %>
+                                <% locals.contestants.forEach(function(contestant) { %>
+
+                                <th scope="row"><%= contestant.id %></th>
+                                <td><%= contestant.user_id%></td>
+                                <td><%= contestant.title %></td>
+                                <td><%= contestant.first_name + ' ' + contestant.last_name %></td>
+                                <td><%=  '$' +' '+ contestant.prize %>
                                 </td>
-                                <td><%=  new Date(contests.start_time ).getFullYear() + '-' + new Date(contests.start_time).getDate() + '-' + new Date(contests.start_time).getDay() %>
+                                <td><%= contestant.vote_count %>
                                 </td>
-                                <td><%=  new Date(contests.end_time ).getFullYear() + '-' + new Date(contests.end_time).getDate() + '-' + new Date(contests.end_time ).getDay() %>
+                                <td> 
+                                    <form action=<%='/api/auth/deleteContestantById/'+ contestant.user_id %> method='POST'>
+
+                                        <button type="submit" class="btn btn-sm btn-danger"> Evict </button>
+                                    </form>
+                                   
                                 </td>
 
                                 </tr>
@@ -101,6 +126,8 @@
                                     <p>No Contest found</p>
                                 </center>
                                 <% } %>
+
+
 
                             </div>
                         </div>

@@ -454,16 +454,22 @@ exports.GetContestantById = async (req, res) =>
 exports.GetContestantByUUID = async (req, res) =>
   new Contest(res).SelectByUUID('contestant_table', req.body.uuid);
 
-exports.GetSingleContestantById = async (req, res) =>
+exports.GetSingleContestantById = async (req, res) => {
+  console.log(req.body)
+  console.log('params===', req.params)
   new Contest(res).MultipleSelectInnerJoin(
     'contestant_table',
     'user_id',
     'contest_id',
     req.body
   );
+}
 
 exports.deleteContestantById = async (req, res) =>
-  new Contest(res).DeleteById('contestant_table', req.body.id);
+  new Contest(res, req).DeleteContestentById(
+    'contestant_table',
+    req.params.userID
+  );
 
 exports.deleteUserById = async (req, res) =>
   new Contest(res).DeleteById('user', req.body.id);

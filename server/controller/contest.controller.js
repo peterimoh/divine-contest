@@ -4,9 +4,11 @@ const Model = require('../model/auth.model');
 
 class Contest extends Voter {
   res;
-  constructor(res) {
+  req;
+  constructor(res, req) {
     super();
     this.res = res;
+    this.req = req;
   }
 
   Create(contest, contestObject) {
@@ -177,10 +179,15 @@ class Contest extends Voter {
   }
 
   DeleteById(tableName, contestId) {
+    console.log(contestId)
+    console.log('table name===', tableName)
     Model.DeleteById(tableName, 'user_id', contestId, (err, result) => {
       if (err)
         this.TransactionMessage(this.res, 400, 'Error selecting contest table');
-      else this.TransactionMessage(this.res, 200, result);
+      else {
+        this.req.flash({  msg: 'You have successfully left the contest' });
+        this.res.redirect("back")
+      }
     });
   }
 }
