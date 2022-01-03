@@ -125,7 +125,7 @@ exports.ReadUsers = async (req, res) => {
 
 exports.DeleteUser = async (req, res) => {
   const { id } = req.params;
-  Auth.Delete('user', id, (err, output) => {
+  Auth.DeleteById('user', 'id', id, (err, output) => {
     if (err) {
       console.log(err);
       req.flash('error', 'Internal Server Error');
