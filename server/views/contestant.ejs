@@ -77,22 +77,30 @@
                         </div>
                         <div class="divider"></div>
                         <div class="box-body d-flex justify-content-between pb-0">
-                            <% if (locals.contestants) { %>
-                            <% locals.contestants.forEach(function(contestant) { %>
+                            <!-- <p>hello</p> -->
+                           <% if (locals.contestants) { %>
+                                <% locals.contestants.forEach(function(contests) { %>
 
-                            <div class=" class=" team-name"">
-                                <p style="text-transform: capitalize;"><%= contestant.first_name %> <%= contestant.last_name %> </p>
-                            </div>
-                            
-                            
+                                <th scope="row"><%= contests.id %></th>
+                                <td><%= contests.title %></td>
+                                <td><%= contests.prize %></td>
+                                <td><%=  new Date(contests.create_time ).getFullYear() + '-' + new Date(contests.create_time ).getDate() + '-' + new Date(contests.create_time ).getDay() %>
+                                </td>
+                                <td><%=  new Date(contests.start_time ).getFullYear() + '-' + new Date(contests.start_time).getDate() + '-' + new Date(contests.start_time).getDay() %>
+                                </td>
+                                <td><%=  new Date(contests.end_time ).getFullYear() + '-' + new Date(contests.end_time).getDate() + '-' + new Date(contests.end_time ).getDay() %>
+                                </td>
 
-                          
+                                </tr>
+                                </tbody>
+                                </table>
                                 <% }) %>
 
                                 <% } else {%>
-                                <center><p>No Contestant found</p></center>
+                                <center>
+                                    <p>No Contest found</p>
+                                </center>
                                 <% } %>
-
 
                             </div>
                         </div>

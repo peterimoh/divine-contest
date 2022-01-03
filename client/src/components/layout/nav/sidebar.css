@@ -10,7 +10,7 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   width: 0;
-  
+  margin-right: 0px !important;
   /* display: none; */
   transition: 0.7s all;
 }

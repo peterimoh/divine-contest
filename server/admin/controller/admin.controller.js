@@ -24,6 +24,8 @@ exports.createAdmin = (req, res) => {
   const { email, password } = req.body;
   console.log(req.body);
   Auth.SelectById('user', 'email', email, (err, result) => {
+    // console.log(err)
+    // console.log(result, 'result')
     if (err) {
       console.log(err);
       req.flash('error', 'Internal Server Error');

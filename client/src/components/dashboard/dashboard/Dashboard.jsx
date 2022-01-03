@@ -7,12 +7,14 @@ const DashboardComponent = () => {
   const profile = useSelector(state => state.profile)
     const {detail} = profile;
   return (
-    <div id='dashboard__component' className='m-4'>
+    <div id='dashboard__component' className='m-0'>
       <div className='container'>
         <div className='cover-card'>
           <div className='cover-card__header'>
             <div className='cover-card__header__title mb-4'>
-              <h3>Dashboard</h3>
+              <h3>
+                <b>Dashboard</b>
+              </h3>
               {/* <div className='breadcrumb'>
                 <div className='breadcrumb__item'>
                   <a href='#'>Home</a>
@@ -25,7 +27,6 @@ const DashboardComponent = () => {
                 </div>
               </div>
               */}
-
             </div>
           </div>
           <div className='cover-card__body m-0'>
@@ -48,7 +49,8 @@ const DashboardComponent = () => {
               className='profile_pics__item'
               style={{
                 background: `url(${
-                  detail.data && detail.data.map((item) => {
+                  detail.data &&
+                  detail.data.map((item) => {
                     const { profile_pic } = item;
                     return profile_pic && profile_pic.length > 0
                       ? 'data:image/*;base64,' + profile_pic

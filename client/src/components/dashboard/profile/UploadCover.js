@@ -45,7 +45,9 @@ const UploadCover = () => {
 
     return (
       <div className='upload_profile'>
-        <p>Upload Full Picture</p>
+        <p className='text-secondary'>
+          <b>Upload Cover Picture</b>
+        </p>
         <Dragger {...props}>
           <p className='ant-upload-drag-icon'>
             <UserOutlined className='text-secondary' />
@@ -54,7 +56,6 @@ const UploadCover = () => {
             Click or drag file to this area to upload
           </p>
         </Dragger>
-        
       </div>
     );
 }

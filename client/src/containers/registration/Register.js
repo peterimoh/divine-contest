@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { useSelector, useDispatch } from 'react-redux';
@@ -79,8 +80,20 @@ export const Register = (props) => {
   }, [dob]);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(registerUser(userObj));
+    if (document.getElementById('agree').checked) {
+       e.preventDefault();
+       dispatch(registerUser(userObj));
+      return true;
+    } else {
+      alert(
+        'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'
+      );
+       e.preventDefault();
+       dispatch(registerUser(userObj));
+      return false;
+    }
+    // e.preventDefault();
+    // dispatch(registerUser(userObj));
   };
 
   if (data && data.msg === 'OK') {
@@ -126,7 +139,6 @@ console.log(props)
                         name='last_name'
                         onChange={(e) => setLast_Name(e.target.value)}
                       />
-
                       <input
                         type='email'
                         className='form-control form-control-lg'
@@ -141,7 +153,6 @@ console.log(props)
                         name='password'
                         onChange={(e) => setPassword(e.target.value)}
                       />
-
                       <small>
                         <i className='text-warning'>
                           contest is only available for United States
@@ -165,7 +176,6 @@ console.log(props)
                         name='region'
                         onChange={(val) => selectRegion(val)}
                       />
-
                       <br />
                       <label className='form-check-label'>Date of Birth:</label>
                       <small className='text-danger'> {dob_err} </small>
@@ -185,7 +195,6 @@ console.log(props)
                         name='mobile'
                         onChange={(e) => setMobile(e.target.value)}
                       />
-
                       <input
                         type='text'
                         className='form-control form-control-lg'
@@ -194,7 +203,6 @@ console.log(props)
                         pattern='[0-9]*'
                         onChange={(e) => setPostal_Code(e.target.value)}
                       />
-
                       <input
                         type='text'
                         className='form-control form-control-lg'
@@ -202,6 +210,16 @@ console.log(props)
                         name='street'
                         onChange={(e) => setStreet(e.target.value)}
                       />
+                      <input
+                        type='checkbox'
+                        name='checkbox'
+                        value='check'
+                        id='agree'
+                      />{' '}
+                      I have read and agree to the{' '}
+                      <Link to='/terms_&_conditions'>
+                        Terms and Conditions and Privacy Policy
+                      </Link>
                       {dob_err !== '' ? (
                         <center className='mb-4'>
                           <button

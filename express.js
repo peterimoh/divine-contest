@@ -27,7 +27,7 @@ const authRoute = require('./server/routes/auth-route');
 
 const app = express();
 
-const upload = multer({ storage: multer.memoryStorage() });
+// const upload = multer({ storage: multer.memoryStorage() });
 
 //middlewares
 

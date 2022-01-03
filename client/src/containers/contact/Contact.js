@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components';
 import Breadcumb from '../../components/layout/breadcrumb/Breadcumb';
 import BeforeFooter from '../../components/layout/footer/BeforeFooter';
 import Navbar from '../../components/layout/nav/Navbar';
+import { ContactComponent } from '../../components/contact/Contact';
 import Footer from '../../components/layout/footer/Footer';
+
 
 export const Contact = () => {
 
@@ -12,18 +14,27 @@ const breadcrumbImg =
 
 
   return (
-    <Wrapper>
+    <Fragment>
       <Navbar />
+      {/* <br /> */}
+      {/* <br /> */}
+       {/* <br /> */}
       <Breadcumb
         image={breadcrumbImg}
         title='Contact Us'
         path='/'
         present='Contact'
-      />
-      <div id='gallery'>Gallery images comes here</div>
-      <BeforeFooter />
+      /> 
+      <Wrapper>
+        <div id='contact'>
+          <div className='mt-0 mb-0'>
+            <ContactComponent />
+          </div>
+        </div>
+      </Wrapper>
+      {/* <BeforeFooter /> */}
       <Footer />
-    </Wrapper>
+    </Fragment>
   );
 };
 

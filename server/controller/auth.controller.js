@@ -1,12 +1,11 @@
-const Auth = require("../model/auth.model");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const config = require("../config/config");
-const Vote = require("./vote.controller");
-const Contest = require("./contest.controller");
-const paypal = require("paypal-rest-sdk");
+const Auth = require('../model/auth.model');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const config = require('../config/config');
+const Vote = require('./vote.controller');
+const Contest = require('./contest.controller');
+const paypal = require('paypal-rest-sdk');
 const sql = require('../db/db.config');
-
 
 //encrypt password
 async function hashPassword(password) {
@@ -51,20 +50,20 @@ exports.Signup = async (req, res, next) => {
     postal_code,
     region,
     country,
-    role: req.body.role || "user",
+    role: req.body.role || 'user',
   };
 
-  await Auth.SelectById("user", "email", email, async (err, user) => {
-    if (err) return res.status(400).json({ error: "Server Error!" });
+  await Auth.SelectById('user', 'email', email, async (err, user) => {
+    if (err) return res.status(400).json({ error: 'Server Error!' });
     if (!Object.entries(user).length == 0) {
-      return res.status(400).json({ error: "User already Exist!" });
+      return res.status(400).json({ error: 'User already Exist!' });
     } else {
-      await Auth.Insert("user", userObj, (err, output) => {
+      await Auth.Insert('user', userObj, (err, output) => {
         console.log(err);
         if (err)
           return res
             .status(500)
-            .json({ error: "Server Error, Try again Later!" });
+            .json({ error: 'Server Error, Try again Later!' });
         return res.status(200).json({ msg: `OK`, data: output });
       });
     }
@@ -73,9 +72,9 @@ exports.Signup = async (req, res, next) => {
 
 exports.Login = async (req, res) => {
   const { email, password } = req.body;
-  await Auth.SelectById("user", "email", email, (err, result) => {
+  await Auth.SelectById('user', 'email', email, (err, result) => {
     if (err)
-      return res.status(400).json({ error: "Server Error, Try again later" });
+      return res.status(400).json({ error: 'Server Error, Try again later' });
 
     if (result) {
       if (result.length) {
@@ -84,26 +83,26 @@ exports.Login = async (req, res) => {
             const payload = {
               id: result[0].id,
               uuid: result[0].uuid,
-              name: result[0].first_name + " " + result[0].last_name,
+              name: result[0].first_name + ' ' + result[0].last_name,
             };
             // console.log(req.user);
             jwt.sign(
               payload,
               config.jwt_secret,
-              { expiresIn: "24h" },
+              { expiresIn: '24h' },
               (err, token) => {
                 res.json({
                   success: true,
-                  token: "Bearer " + token,
+                  token: 'Bearer ' + token,
                 });
               }
             );
           } else {
-            return res.status(400).json({ error: "Incorrect Password" });
+            return res.status(400).json({ error: 'Incorrect Password' });
           }
         });
       } else {
-        return res.status(400).json({ error: "User does not exist" });
+        return res.status(400).json({ error: 'User does not exist' });
       }
     }
   });
@@ -112,15 +111,17 @@ exports.Login = async (req, res) => {
 exports.ReadUser = async (req, res) => {
   const { id } = req.params;
 
-  await Auth.SelectById("user", "id", id, (err, result) => {
-    if (err)
-      return res.status(400).json({ error: "Server Error, Try again later" });
+  await Auth.SelectById('user', 'id', id, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'Server Error, Try again later' });
+    }
 
     if (result) {
       if (result.length) {
-        return res.status(200).json({ msg: "OK", data: result });
+        return res.status(200).json({ msg: 'OK', data: result });
       } else {
-        return res.status(400).json({ error: "User does not exist" });
+        return res.status(400).json({ error: 'User does not exist' });
       }
     }
   });
@@ -128,220 +129,237 @@ exports.ReadUser = async (req, res) => {
 
 exports.uploadDpToDB = (req, res) => {
   const { id } = req.params;
-  console.log("user id ", id);
-  const dp = req.file.buffer.toString("base64");
-  Auth.UpdateById("user", "profile_pic", "id", dp, id, (err, output) => {
-    if (err)
-      return res.status(500).json({ error: "Server Error, Try again Later!" });
-    return res.status(200).json({ msg: "OK", data: output });
+  console.log('user id ', id);
+  const dp = req.file.buffer.toString('base64');
+  Auth.UpdateById('user', 'profile_pic', 'id', dp, id, (err, output) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: 'Server Error, Try again Later!' });
+    }
+    return res.status(200).json({ msg: 'OK', data: output });
   });
 };
 
 exports.uploadFullToDB = (req, res) => {
   const { id } = req.params;
-  const full = req.file.buffer.toString("base64");
+  const full = req.file.buffer.toString('base64');
 
-  Auth.UpdateById("user", "full_pic", "id", full, id, (err, output) => {
+  Auth.UpdateById('user', 'full_pic', 'id', full, id, (err, output) => {
     console.log(err);
-    if (err)
-      return res.status(500).json({ error: "Server Error, Try again Later!" });
-    return res.status(200).json({ msg: "OK", data: output });
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: 'Server Error, Try again Later!' });
+    }
+    return res.status(200).json({ msg: 'OK', data: output });
   });
 };
 
-exports.GetVotersPage = async (req, res) => {
-  let userID = parseInt(req.url.slice(-12).split("$")[0].split("?")[1]);
-  let contestID = parseInt(req.url.slice(-12).split("$")[1]);
+exports.uploadContestImg = async (req, res) => {
+  const { id } = req.params;
+  const contest_img = req.file.buffer.toString('base64');
 
-  res.render("voterpage", { userID, contestID });
+  await Auth.UpdateById(
+    'user',
+    'contest_pic',
+    'id',
+    contest_img,
+    id,
+    (err, output) => {
+      console.log(err);
+      if (err) {
+        console.log(err);
+        return res
+          .status(500)
+          .json({ error: 'Server Error, Try again Later!' });
+      }
+      return res.status(200).json({ msg: 'OK', data: output });
+    }
+  );
 };
 
-exports.Voter = async (req, res) => {
-  let { userID, cid, quantity } = req.body;
+exports.updatePaypalEmail = async (req, res) => {
+  const { id } = req.params;
+  const { paypal_email } = req.body;
+  await Auth.UpdateById(
+    'user',
+    'paypal',
+    'id',
+    paypal_email,
+    id,
+    (err, output) => {
+      if (err) {
+        console.log(err);
+        return res
+          .status(500)
+          .json({ error: 'Server Error, Try again Later!' });
+      }
+      return res.status(200).json({ msg: 'Success! Updated Successfully' });
+    }
+  );
+};
 
-  paypal.configure({
-    mode: "sandbox", //sandbox or live
-    client_id:
-      "AQNl1G__spUXHpizpXGWpL-Wm2fjafZKPZ8IGXY9uRMkIOAQhJ_3FPozGEIpUK_C6Mon7ybXFKGCJ5mp",
-    client_secret:
-      "EHPkg7whJD9eLNQW_Pm4FdxO0SSKi1CHhv8d93_O0fvdBI8Gr6-Qv8mRnt7_TT6DS1upmFxeap90yi2L",
+exports.updateProfile = async (req, res) => {
+  const { id } = req.params;
+  const {
+    first_name,
+    last_name,
+    email,
+    dob,
+    mobile,
+    street,
+    postal_code,
+    region,
+    country,
+  } = req.body;
+  const userObj = {
+    first_name,
+    last_name,
+    email,
+    date_of_birth: dob,
+    mobile,
+    street,
+    postal_code,
+    region,
+    country,
+  };
+
+  await Auth.UpdateById('user', userObj, 'id', id, (err, output) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: 'Server Error, Try again Later!' });
+    }
+    return res.status(200).json({ msg: 'OK', data: output });
   });
+};
 
-  var create_payment_json = JSON.stringify({
-    intent: "sale",
-    redirect_urls: {
-      return_url: "http://localhost:8080/api/auth/success",
-      cancel_url: "http://localhost:8080/api/auth/cancel",
-    },
-    payer: {
-      payment_method: "paypal",
-    },
+exports.updatePassword = async (req, res) => {
+  const { id } = req.params;
+  const { password, newPassword, confirmPassword } = req.body;
 
-    transactions: [
-
-      {
-        amount: {
-          total: `${quantity}`,
-          currency: "USD",
-        },
-        description: `${userID}xxx Voters $ ${cid}payment page xxx`,
-      },
-
-    ],
-
-  });
-
-  paypal.payment.create(create_payment_json, function (error, payment) {
-    console.log("payment", payment);
-    if (error) {
-      req.err = error.response.message;
-      return res.json(respUtil.getErrorResponsepayPAl(req));
-    } else {
-      console.log(payment);
-
-      for (let i = 0; i < payment.links.length; i++) {
-        if (payment.links[i].rel === "approval_url") {
-          res.redirect(payment.links[i].href);
-        }
+  await Auth.SelectById('user', 'id', id, async (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: 'Server Error, Try again Later!' });
+    }
+    if (result) {
+      if (result.length) {
+        validatePassword(password, result[0].password).then(async (isMatch) => {
+          if (isMatch) {
+            if (newPassword === confirmPassword) {
+              const newPasswordHash = await hashPassword(newPassword);
+              Auth.UpdateById(
+                'user',
+                'password',
+                'id',
+                newPasswordHash,
+                id,
+                (err, output) => {
+                  if (err) {
+                    console.log(err);
+                    return res
+                      .status(500)
+                      .json({ error: 'Server Error, Try again Later!' });
+                  }
+                  return res.status(200).json({ msg: 'OK! Password Updated' });
+                }
+              );
+            } else {
+              return res.status(400).json({ error: 'Password does not match' });
+            }
+          } else {
+            return res.status(400).json({ error: 'Incorrect Password' });
+          }
+        });
+      } else {
+        return res.status(400).json({ error: 'User does not exist' });
       }
     }
   });
 };
 
-let ans = {
+exports.GetVotersPage = async (req, res) => {
+  let userID = parseInt(req.url.slice(-12).split('$')[0].split('?')[1]);
+  let contestID = parseInt(req.url.slice(-12).split('$')[1]);
 
-  id: "PAYID-MHDTJJA5H571037UY7078323",
-  intent: "sale",
-  state: "approved",
-  cart: "0FG68036VN442601F",
+  res.render('voterpage', { userID, contestID });
+};
 
-  payer: {
-    payment_method: "paypal",
-    status: "VERIFIED",
-    payer_info: {
-      email: "sb-iwpxs10689322@personal.example.com",
-      first_name: "John",
-      last_name: "Doe",
-      payer_id: "WK3HN3D4KZZMU",
-      shipping_address: {
-        recipient_name: "John Doe",
-        line1: "1 Main St",
-        city: "San Jose",
-        state: "CA",
-        postal_code: "95131",
-        country_code: "US",
-      },
-      country_code: "US",
-    },
-  },
+exports.Voter = async (req, res) => {
+  // console.log(req.body);
+  let { userID, cid, quantity } = req.body;
 
-  transactions: [
-    {
-      amount: {
-        total: "25.00",
-        currency: "USD",
-        details: {
-          subtotal: "25.00",
-          shipping: "0.00",
-          insurance: "0.00",
-          handling_fee: "0.00",
-          shipping_discount: "0.00",
-          discount: "0.00",
+  if (!req.body) return res.send({ msg: 'Invalid data' });
+  if (isNaN(parseInt(quantity)) == true)
+    return res.send({ msg: 'Amount should be between $1 to $5 ' });
+  sql.query(
+    'update contestant_table set vote_state = ? where user_id = ? and contest_id = ?',
+    [quantity, userID, cid],
+    async (errs, feedback) => {
+      if (errs) return res.send({ msg: 'Network Error, try again' });
+
+      paypal.configure({
+        mode: 'sandbox', //sandbox or live
+        client_id:
+          'AQNl1G__spUXHpizpXGWpL-Wm2fjafZKPZ8IGXY9uRMkIOAQhJ_3FPozGEIpUK_C6Mon7ybXFKGCJ5mp',
+        client_secret:
+          'EHPkg7whJD9eLNQW_Pm4FdxO0SSKi1CHhv8d93_O0fvdBI8Gr6-Qv8mRnt7_TT6DS1upmFxeap90yi2L',
+      });
+
+      var create_payment_json = JSON.stringify({
+        intent: 'sale',
+        redirect_urls: {
+          return_url: 'http://localhost:8080/api/auth/success',
+          cancel_url: 'http://localhost:8080/api/auth/cancel',
         },
-      },
-      payee: {
-        merchant_id: "7CGJMZP53H85S",
-        email: "sb-ltnqn10531804@business.example.com",
-      },
-
-      description: "1xxx Voters $ 1payment page xxx",
-      item_list: {
-        shipping_address: {
-          recipient_name: "John Doe",
-          line1: "1 Main St",
-          city: "San Jose",
-          state: "CA",
-          postal_code: "95131",
-          country_code: "US",
+        payer: {
+          payment_method: 'paypal',
         },
-      },
 
-      related_resources: [
-        {
-          sale: {
-            id: "71E80266AV919592U",
-            state: "completed",
+        transactions: [
+          {
             amount: {
-              total: "25.00",
-              currency: "USD",
-              details: {
-                subtotal: "25.00",
-                shipping: "0.00",
-                insurance: "0.00",
-                handling_fee: "0.00",
-                shipping_discount: "0.00",
-                discount: "0.00",
-              },
+              total: `${quantity}`,
+              currency: 'USD',
             },
-            payment_mode: "INSTANT_TRANSFER",
-            protection_eligibility: "ELIGIBLE",
-            protection_eligibility_type:
-              "ITEM_NOT_RECEIVED_ELIGIBLE,UNAUTHORIZED_PAYMENT_ELIGIBLE",
-            transaction_fee: { value: "1.36", currency: "USD" },
-            parent_payment: "PAYID-MHDTJJA5H571037UY7078323",
-            create_time: "2021-12-25T15:11:49Z",
-            update_time: "2021-12-25T15:11:49Z",
-            links: [
-              {
-                href: "https://api.sandbox.paypal.com/v1/payments/sale/71E80266AV919592U",
-                rel: "self",
-                method: "GET",
-              },
-              {
-                href: "https://api.sandbox.paypal.com/v1/payments/sale/71E80266AV919592U/refund",
-                rel: "refund",
-                method: "POST",
-              },
-              {
-                href: "https://api.sandbox.paypal.com/v1/payments/payment/PAYID-MHDTJJA5H571037UY7078323",
-                rel: "parent_payment",
-                method: "GET",
-              },
-            ],
+            description: `${userID}xxx Voters $ ${cid}payment page xxx`,
           },
-        },
-      ],
-    },
-  ],
-  failed_transactions: [],
-  create_time: "2021-12-25T15:11:31Z",
-  update_time: "2021-12-25T15:11:49Z",
-  links: [
-    {
-      href: "https://api.sandbox.paypal.com/v1/payments/payment/PAYID-MHDTJJA5H571037UY7078323",
-      rel: "self",
-      method: "GET",
-    },
-  ],
-  httpStatusCode: 200,
+        ],
+      });
+
+      paypal.payment.create(create_payment_json, function (error, payment) {
+        // console.log('payment', payment);
+        if (error) {
+          req.err = error.response.message;
+          return res.json(respUtil.getErrorResponsepayPAl(req));
+        } else {
+          // console.log(payment);
+
+          for (let i = 0; i < payment.links.length; i++) {
+            if (payment.links[i].rel === 'approval_url') {
+              res.redirect(payment.links[i].href);
+            }
+          }
+        }
+      });
+    }
+  );
 };
 
 exports.VoteSuccess = async (req, res) => {
-  console.log("ReTURE QUERY PARAMS ", req.query);
+  // console.log('ReTURE QUERY PARAMS ', req.query);
 
   let userID;
   let cid;
 
   const payerId = req.query.PayerID;
   const paymentId = req.query.paymentId;
-
   const executePayment = {
     payer_id: payerId,
     transactions: [
       {
         amount: {
-          total: "5",
-          currency: "USD",
+          total: '5',
+          currency: 'USD',
         },
       },
     ],
@@ -349,98 +367,106 @@ exports.VoteSuccess = async (req, res) => {
 
   paypal.payment.execute(paymentId, executePayment, function (error, payment) {
     if (error) {
-      console.log("Success error ", error);
+      console.log('Success error ', error);
       req.err = error.response.message;
       // return res.json(respUtil.getErrorResponsepayPAl(req));
-      return res.send("ERROR OCCURED TRY AGAIN");
+      return res.send('ERROR OCCURED TRY AGAIN');
     } else {
-      console.log(JSON.stringify(payment));
-      req.i18nKey = "transactionSuccess";
-      userID = parseInt(payment.transactions[0].description.split("$")[0])
-      cid =  parseInt(payment.transactions[0].description.split("$")[1])
-      sql.query("update contestant_table set vote_count = vote_count + 1 where user_id = ? and contest_id = ?", [userID, cid], (err, ponds)=>{
-        if(err) console.log(err), res.send("AN ERROR OCCURE")
-        else{
-          return res.send("SUUCESSFULL PAYMENT");
+      // console.log(JSON.stringify(payment));
+      req.i18nKey = 'transactionSuccess';
+      userID = parseInt(payment.transactions[0].description.split('$')[0]);
+      cid = parseInt(payment.transactions[0].description.split('$')[1]);
+
+      sql.query(
+        'select vote_state from contestant_table where user_id = ? and contest_id = ?',
+        [userID, cid],
+        (no, yes) => {
+          if (no)
+            return res.send('Network Error, but your payment was successful ');
+          else {
+            var vote_state = 0;
+            for (var obj of yes) {
+              vote_state = obj.vote_state;
+            }
+
+            sql.query(
+              `update contestant_table set vote_count = vote_count + ${vote_state} where user_id = ? and contest_id = ?`,
+              [userID, cid],
+              (err, ponds) => {
+                if (err) console.log(err), res.send('AN ERROR OCCURE');
+                else {
+                  return res.render('voteSuccess');
+                }
+              }
+            );
+          }
         }
-      })
+      );
     }
   });
 };
-// const create_payment_json = {
+exports.contactForm = async (req, res) => {
+  const { name, email, message } = req.body;
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: ' ',
+      pass: ' ',
+    },
+  });
 
-//   intent: "Test",
+  const mailOptions = {
+    from: ' ',
+    to: ' ',
+    subject: 'Contact Form',
+    html: `<h1>Contact Form</h1>
+    <p>Name: ${name}</p>
+    <p>Email: ${email}</p>
+    <p>Message: ${message}</p>`,
+  };
 
-//   payer: {
-//     payment_method: "paypal",
-//   },
-
-//   redirect_urls: {
-//     return_url: "http://localhost:8080/success",
-//     cancel_url: "http://localhost:8080/cancel",
-//   },
-//   transactions: [
-//     {
-//       item_list: {
-//         items: [
-//           {
-//             name: "Redhock Bar Soap",
-//             sku: "001",
-//             price: "25",
-//             currency: "USD",
-//             quantity: 1,
-//           },
-//         ],
-//       },
-//       amount: {
-//         currency: "USD",
-//         total: "25",
-//       },
-//       description: "Washing Bar soap",
-//     },
-//   ],
-// };
-
-// paypal.payment.create(create_payment_json, function (error, payment) {
-//   if (error) {
-//     console.log(error)
-//     res.redirect("back")
-//   } else {
-//     for (let i = 0; i < payment.links.length; i++) {
-//       if (payment.links[i].rel === "approval_url") {
-//         res.redirect(payment.links[i].href);
-//       }
-//     }
-//   }
-// })
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.send('Email sent: ' + info.response);
+    }
+  });
+};
 
 exports.AddContest = async (req, res) =>
-  new Contest(res).Create("contest", req.body);
+  new Contest(res).Create('contest', req.body);
 
 exports.AddContestant = async (req, res) =>
-  new Contest(res).CreateValidData("contestant_table", req.body);
+  new Contest(res).CreateValidData('contestant_table', req.body);
 
-exports.GetContest = async (req, res) => new Contest(res).Select("contest");
+exports.GetContest = async (req, res) => new Contest(res).Select('contest');
+exports.GetContestant = async (req, res) =>
+  new Contest(res).Select('contestant_table');
+
+exports.GetAllContestant = async (req, res) =>
+  new Contest(res).SelectSingleInnerJoin('contestant_table');
 
 exports.GetContestantById = async (req, res) =>
-  new Contest(res).SelectByInnerJoin("contestant_table", req.body.user_id);
+  new Contest(res).SelectByInnerJoin('contestant_table', req.body.user_id);
+
+exports.GetContestantByUUID = async (req, res) =>
+  new Contest(res).SelectByUUID('contestant_table', req.body.uuid);
 
 exports.GetSingleContestantById = async (req, res) =>
   new Contest(res).MultipleSelectInnerJoin(
-    "contestant_table",
-    "user_id",
-    "contest_id",
+    'contestant_table',
+    'user_id',
+    'contest_id',
     req.body
   );
 
 exports.deleteContestantById = async (req, res) =>
-  new Contest(res).DeleteById("contestant_table", req.body.id);
+  new Contest(res).DeleteById('contestant_table', req.body.id);
 
 exports.deleteUserById = async (req, res) =>
-  new Contest(res).DeleteById("user", req.body.id);
+  new Contest(res).DeleteById('user', req.body.id);
 
 exports.deleteContestById = async (req, res) =>
-  new Contest(res).DeleteById("contest", req.body.id);
-
-exports.GetContestant = async (req, res) =>
-  new Contest(res).Select("contestant_table");
+  new Contest(res).DeleteById('contest', req.body.id);

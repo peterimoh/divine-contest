@@ -10,7 +10,7 @@ import { socials } from './data';
 const TopNav = ({ isLoggedIn }) => {
   return (
     <TopNavWrapper>
-      <div className='header-top-area hidden-sm'>
+      <div className='header-top-area hidden-sm '>
         <div className='container'>
           <div className='row justify-content-between'>
             <div className='col-lg-6 col-md-6 col-sm-6'>

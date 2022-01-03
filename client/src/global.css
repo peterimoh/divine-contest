@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
 
 * {
   margin: 0;
@@ -9,7 +10,19 @@
 
 body {
   /* font-family: 'Mulish', sans-serif; */
-  font-family: 'Poppins', sans-serif;
-  background: rgba(214, 214, 219, 0.836);
-
+  font-family: 'Quicksand', sans-serif;
+  background: rgba(229, 229, 230, 0.836);
+  color: #3c3c3c;
+  font-size: 16px;
+  line-height: 1.75;
+  /* font-weight: 300; */
+  -webkit-font-smoothing: antialiased;
 }
+
+.modal-backdrop {
+   z-index: 0 !important;
+ }
+
+ .btn-override{
+   background-color: #8b3963 !important;
+ }

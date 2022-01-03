@@ -90,18 +90,19 @@ const UploadDP = () => {
         top: 100,
         duration: 2,
       })}
-      <p>Upload Profile (HeadShot) Picture</p>
+      <p className='text-secondary'>
+        <b>Upload Profile (HeadShot) Picture</b>
+      </p>
       <ImgCrop grid shape='round'>
         <Dragger {...props}>
           <p className='ant-upload-drag-icon'>
-            <InboxOutlined  className='text-secondary'/>
+            <InboxOutlined className='text-secondary' />
           </p>
           <p className='ant-upload-text text-secondary fs-6'>
             Click or drag file to this area to upload
           </p>
         </Dragger>
       </ImgCrop>
-      
     </div>
   );
 };

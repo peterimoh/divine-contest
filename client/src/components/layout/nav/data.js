@@ -29,15 +29,20 @@ const socials = [
 const navLinks = [
   {
     id: 1,
+    page: 'Home',
+    link: '/',
+  },
+  {
+    id: 2,
     page: 'About',
     link: '/about',
   },
   {
-    id: 2,
+    id: 3,
     page: `Contestants`,
     link: '/contestants',
   },
-  { id: 3, page: 'Gallery', link: '/gallery' },
+  // { id: 3, page: 'Gallery', link: '/gallery' },
 ];
 
 export { socials, navLinks };

@@ -12,6 +12,7 @@ const Index = () => {
     return (
       <Fragment>
         <Navbar />
+        <br />
         <Wrapper>
           <div id='home'>
             <Slider />
