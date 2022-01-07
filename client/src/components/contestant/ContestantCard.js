@@ -55,57 +55,59 @@ export const ContestantCard = () => {
     <Wrapper>
       <div className='container'>
         <div className='row'>
-          {contestantFilter && contestantFilter.length > 0 ? (
-            contestantFilter[page].map((x, index) => {
-              const {
-                region,
-                uuid,
-                profile_pic,
-                full_pic,
-                first_name,
-                last_name,
-              } = x;
+          {contestantFilter && contestantFilter.length > 0
+            ? contestantFilter[page].map((x, index) => {
+                const {
+                  region,
+                  uuid,
+                  profile_pic,
+                  full_pic,
+                  first_name,
+                  last_name,
+                } = x;
 
-              return (
-                <div class='col-lg-3 col-sm-6' key={index}>
-                  <div class='card hovercard'>
-                    <div
-                      class='cardheader'
-                      style={{
-                        background: `url(data:image/*;base64,${full_pic})`,
-                      }}
-                    ></div>
-                    <div class='avatar'>
-                      <img
-                        alt={`${first_name} ${last_name}'s overview`}
-                        src={`data:image/*;base64,${profile_pic}`}
-                      />
-                    </div>
-                    <div class='info'>
-                      <div class='title'>
-                        <p
-                          style={{
-                            textTransform: 'capitalize',
-                            fontWeight: '600',
-                          }}
-                        >{`${first_name} ${last_name}`}</p>
+                return (
+                  <div class='col-lg-3 col-sm-6' key={index}>
+                    <div class='card hovercard'>
+                      <div
+                        class='cardheader'
+                        style={{
+                          background: `url(${full_pic})`,
+                        }}
+                      ></div>
+                      <div class='avatar'>
+                        <img
+                          alt={`${first_name} ${last_name}'s overview`}
+                          src={profile_pic}
+                        />
                       </div>
-                      <div class='desc'>{uuid}</div>
-                      <div class='desc'>Region - {region}</div>
-                      <div class='desc'></div>
+                      <div class='info'>
+                        <div class='title'>
+                          <p
+                            style={{
+                              textTransform: 'capitalize',
+                              fontWeight: '600',
+                            }}
+                          >{`${first_name} ${last_name}`}</p>
+                        </div>
+                        <div class='desc'>{uuid}</div>
+                        <div class='desc'>Region - {region}</div>
+                        <div class='desc'></div>
+                      </div>
+                      <div class='bottom'></div>
                     </div>
-                    <div class='bottom'></div>
                   </div>
+                );
+              })
+            : !loading && (
+                <div>
+                  <center>
+                    <p>
+                      There are no contestants at the moment! Check Back soon
+                    </p>
+                  </center>
                 </div>
-              );
-            })
-          ) : (
-            <div>
-              <center>
-                <p>There are no contestants at the moment! Check Back soon</p>
-              </center>
-            </div>
-          )}
+              )}
           {loading && (
             <div className='container'>
               <div>
@@ -341,7 +343,7 @@ const Wrapper = styled.div`
   }
 
   .card.hovercard .cardheader {
-    background-size: cover;
+    background-size: cover !important;
     height: 230px;
   }
 

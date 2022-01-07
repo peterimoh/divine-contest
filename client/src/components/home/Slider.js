@@ -6,7 +6,7 @@ import './slider.css';
 import slideItems from './homeData';
 
 const contentStyle = {
-  height: '60vh',
+  height: '65vh',
   color: '#fff',
   //   lineHeight: '160px',
   textAlign: 'center',

@@ -2,8 +2,10 @@ import React from 'react';
 import { Upload, message } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
+import { apiUrl } from '../../../api';
 
 const { Dragger } = Upload;
+
 
 const UploadContestPhoto = () => {
   const login = useSelector((state) => state.login.user.id);
@@ -13,9 +15,9 @@ const UploadContestPhoto = () => {
     if (!isJpgOrPng) {
       message.error('You can only upload JPG/PNG file!');
     }
-    const isLt10M = file.size / 1024 / 1024 < 30;
+    const isLt10M = file.size / 1024 / 1024 < 8;
     if (!isLt10M) {
-      message.error('Image must smaller than 30MB!');
+      message.error('Image must smaller than 8MB!');
     }
     return isJpgOrPng && isLt10M;
   };
@@ -23,7 +25,7 @@ const UploadContestPhoto = () => {
   const props = {
     name: 'contest_pic',
     multiple: false,
-    action: `http://localhost:8080/api/auth/upload-contestpics/${login}`,
+    action: `${apiUrl}/api/auth/upload-contestpics/${login}`,
     onChange(info) {
       const { status } = info.file;
       if (status !== 'uploading') {

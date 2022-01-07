@@ -8,6 +8,7 @@ import { navLinks } from './data';
 import './sidebar.css';
 import { logoutUser } from '../../../store/action/auth.action';
 import { searchContestantAction } from '../../../store/action/contestant.action';
+import { apiUrl } from '../../../api';
 
 const StickyNav = ({ isLoggedIn }) => {
   const [sidebar, setSidebar] = React.useState(false);
@@ -15,7 +16,7 @@ const StickyNav = ({ isLoggedIn }) => {
   const [uuid, setUuid] = useState('');
   const [result, setResult] = useState([]);
 
-  let voteLinkBaseURL = 'http://localhost:8080/api/auth/vote';
+  let voteLinkBaseURL = `${apiUrl}/api/auth/vote`;
   const { searchLoading, searchResult, searchError } = useSelector(
     (state) => state.searchContestant
   );
@@ -36,30 +37,10 @@ const StickyNav = ({ isLoggedIn }) => {
     setSidebar(false);
   };
 
-  function stick_nav() {
-    // var sticky = ref.offsetTop;
-    // window.addEventListener('scroll', function () {
-    //   if (window.scrollY > 50) {
-    //     ref.current.classList.add('fixed-top');
-    //     // add padding top to show content behind navbar
-    //     var navbar_height = document.querySelector('.navbar').offsetHeight;
-    //     document.body.style.paddingTop = navbar_height + 'px';
-    //   } else {
-    //     ref.current.classList.remove('fixed-top');
-    //     // remove padding top from body
-    //     document.body.style.paddingTop = '0';
-    //   }
-    // });
-  }
-  useEffect(() => {
-    stick_nav();
-  }, []);
-
   useEffect(() => {
     if (searchResult.msg && searchResult.msg.length > 0) {
     }
   }, [searchResult]);
-
 
   //function that looks through array of objects and
 
@@ -117,7 +98,6 @@ const StickyNav = ({ isLoggedIn }) => {
                 // to='/dashboard'
                 className='btn btn-grey btn-purple-modified'
                 onClick={handleLogout}
-
               >
                 Log out
               </a>
@@ -145,7 +125,7 @@ const StickyNav = ({ isLoggedIn }) => {
       <nav
         id='navbar_top'
         ref={ref}
-        className='navbar navbar-expand-lg navbar-light bg-light fixed-top'
+        className='navbar navbar-expand-lg navbar-light bg-light fixed-top pt-1 pb-1'
       >
         <div className='container'>
           <Link className='navbar-brand' to='/'>
@@ -237,17 +217,21 @@ const StickyNav = ({ isLoggedIn }) => {
                                 user_id,
                                 contest_id,
                               } = x;
-                              {/* console.log(x); */}
+                              {
+                                /* console.log(x); */
+                              }
                               return (
                                 <div className='search_result' key={id}>
-                                  <img
-                                    src={`data:image/*;base64,${contest_pic}`}
-                                    className='img-fluid p-2'
-                                    height='100'
-                                    width='100'
-                                    alt='contestant'
-                                  />
-                                  <div className='detail_block-mobile' style={{lineHeight: 'initial'}}>
+                                  <a target='_blank' href={contest_pic}>
+                                    <img
+                                      className='img img-fluid'
+                                      src={contest_pic}
+                                    />
+                                  </a>
+                                  <div
+                                    className='detail_block-mobile'
+                                    style={{ lineHeight: 'initial' }}
+                                  >
                                     <summary
                                       style={{
                                         textTransform: 'capitalize',
@@ -256,10 +240,12 @@ const StickyNav = ({ isLoggedIn }) => {
                                         fontSize: '1.2rem',
                                       }}
                                     >
-                                      <small style={{lineHeight: '1'}}>{title}</small>
+                                      <small style={{ lineHeight: '1' }}>
+                                        {title}
+                                      </small>
                                     </summary>
                                     <p>
-                                      Contestant: {' '}
+                                      Contestant:{' '}
                                       <i>
                                         {first_name} {last_name}
                                       </i>
@@ -283,8 +269,6 @@ const StickyNav = ({ isLoggedIn }) => {
                       </div>
                     </div>
                   </div>
-
-                 
                 </div>
               </div>
             </div>
@@ -406,16 +390,21 @@ const StickyNav = ({ isLoggedIn }) => {
                                 user_id,
                                 contest_id,
                               } = x;
-                              {/* console.log(x); */}
+                              {
+                                /* console.log(x); */
+                              }
                               return (
                                 <div className='search_result' key={id}>
-                                  <img
-                                    src={`data:image/*;base64,${contest_pic}`}
+                                  {/* <img
+                                    src={`${contest_pic}`}
                                     className='img-fluid'
                                     height='100'
                                     width='100'
                                     alt='contestant'
-                                  />
+                                  /> */}
+                                  <a target='_blank' href={contest_pic}>
+                                    <img className='img img-fluid' src={contest_pic} />
+                                  </a>
                                   <div className='detail_block'>
                                     <summary
                                       style={{
@@ -449,8 +438,6 @@ const StickyNav = ({ isLoggedIn }) => {
                       </div>
                     </div>
                   </div>
-
-                 
                 </div>
               </div>
             </div>
@@ -493,15 +480,24 @@ const StickyNav = ({ isLoggedIn }) => {
 };
 
 const NavWrapper = styled.div`
+  .navbar {
+    ${'' /* position: relative; */}
+  }
+  ${
+    '' /* @media (max-width: 576px) {
+    .navbar {
+      height: auto;
+    }
+  } */
+  }
   .navbar-brand img {
-    height: 50px;
-    width: 100%;
+    height: 60px;
+    width: 60px;
   }
   .nav-item a {
     color: #000 !important;
     font-weight: 600;
   }
-
 
   .navbar-toggler {
     border: none;
@@ -518,22 +514,30 @@ const NavWrapper = styled.div`
     background: #f8f8f8;
     ${'' /* border: transparent !important; */}
   }
-  .search_result{
+  .search_result {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
 
-  .detail_block{
+  .detail_block {
     width: 60%;
     text-align: left;
   }
 
-  .detail_block p{
+  .detail_block p {
     line-height: 1.5;
   }
 
+  .img {
+    width: 100px;
+    border: 2px solid gray;
+    padding: 5px;
+  }
+  .img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export default StickyNav;

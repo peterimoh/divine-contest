@@ -27,7 +27,7 @@ const Contestant = () => {
   }, []);
   return (
     <Fragment>
-      <Navbar /><br className='m-1'/>
+      <Navbar />
       <Breadcumb
         image={breadCrumbImg}
         title='Contestants'

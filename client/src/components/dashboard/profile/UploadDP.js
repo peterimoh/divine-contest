@@ -5,6 +5,8 @@ import { InboxOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 // import { uploadDpAction } from '../../../store/action/detail.action';
+import { apiUrl } from '../../../api';
+
 
 const UploadDP = () => {
   const { Dragger } = Upload;
@@ -23,9 +25,9 @@ const UploadDP = () => {
     if (!isJpgOrPng) {
       message.error('You can only upload JPG/PNG file!');
     }
-    const isLt10M = file.size / 1024 / 1024 < 10;
+    const isLt10M = file.size / 1024 / 1024 < 8;
     if (!isLt10M) {
-      message.error('Image must smaller than 10MB!');
+      message.error('Image must smaller than 8MB!');
     }
     return isJpgOrPng && isLt10M;
   };
@@ -66,7 +68,7 @@ const UploadDP = () => {
     name: 'profile_pic',
     multiple: false,
     onPreview: onPreview,
-    action: `http://localhost:8080/api/auth/upload/${login}`,
+    action: `${apiUrl}/api/auth/upload/${login}`,
     onChange(info) {
       const { status } = info.file;
       if (status !== 'uploading') {

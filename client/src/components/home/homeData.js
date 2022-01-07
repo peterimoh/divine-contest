@@ -2,7 +2,7 @@ const slideItems = [
   {
     id: 1,
     imgUrl:
-      'https://res.cloudinary.com/imoh-peter/image/upload/v1638538681/autumn-goodman-vTL_qy03D1I-unsplash_1_djkvda.jpg',
+      'https://res.cloudinary.com/imoh-peter/image/upload/v1641260194/pexels-godisable-jacob-871495_1_golqqb.jpg',
     title: 'Creative Photography Agency',
     description:
       'lore ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quaerat.',
@@ -14,7 +14,7 @@ const slideItems = [
   {
     id: 2,
     imgUrl:
-      'https://res.cloudinary.com/imoh-peter/image/upload/v1638538684/audrey-fretz-KYUiTYOaE9M-unsplash_1_s76avs.jpg',
+      'https://res.cloudinary.com/imoh-peter/image/upload/v1641263380/pexels-ali-pazani-3061814_1_c8q6xk.jpg',
     title: 'Ultimate Photography Contest',
     description:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iure exercitationem. Aliquam ex numquam consectetur.',
@@ -26,7 +26,7 @@ const slideItems = [
   {
     id: 3,
     imgUrl:
-      'https://res.cloudinary.com/imoh-peter/image/upload/v1638538679/valerie-elash-fj9YD_KMYT8-unsplash_1_1_mpbtq5.jpg',
+      'https://res.cloudinary.com/imoh-peter/image/upload/v1641259802/pexels-moose-photos-1036623_1_zrwufj.jpg',
     title: 'Take Part in Our Photography Contest',
     description:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iure exercitationem. Aliquam ex numquam consectetur.',
@@ -38,7 +38,7 @@ const slideItems = [
   {
     id: 4,
     imgUrl:
-      'https://res.cloudinary.com/imoh-peter/image/upload/v1638538468/jessica-felicio-_cvwXhGqG-o-unsplash_2_v5ct1o.jpg',
+      'https://res.cloudinary.com/imoh-peter/image/upload/v1641259911/pexels-pixabay-247287_1_fbtxgm.jpg',
     title: 'One of the Best Photography Contest',
     description:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iure exercitationem. Aliquam ex numquam consectetur.',

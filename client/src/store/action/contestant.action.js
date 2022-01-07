@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { GET_ALL_CONTESTANTS_FAIL, GET_ALL_CONTESTANTS_REQUEST, GET_ALL_CONTESTANTS_SUCCESS, SEARCH_CONTESTANTS_FAIL, SEARCH_CONTESTANTS_REQUEST, SEARCH_CONTESTANTS_SUCCESS } from "./action.types";
+import { apiUrl } from '../../api';
+
 
 
 export const getContestantAction = () => dispatch => {
@@ -7,7 +9,7 @@ export const getContestantAction = () => dispatch => {
         type: GET_ALL_CONTESTANTS_REQUEST
     });
     axios
-      .get('/api/auth/getAllContestant')
+      .get(`${apiUrl}/api/auth/getAllContestant`)
       .then((res) => {
         dispatch({
           type: GET_ALL_CONTESTANTS_SUCCESS,
@@ -17,7 +19,7 @@ export const getContestantAction = () => dispatch => {
       .catch((err) => {
         dispatch({
           type: GET_ALL_CONTESTANTS_FAIL,
-          payload: err.response.data,
+          payload: err.response,
         });
       });
 }
@@ -28,7 +30,7 @@ export const searchContestantAction = (search) => dispatch => {
       type: SEARCH_CONTESTANTS_REQUEST,
     });
     axios
-      .post(`/api/auth/getContestantByuuid/`, {uuid: search})
+      .post(`${apiUrl}/api/auth/getContestantByuuid/`, { uuid: search })
       .then((res) => {
         dispatch({
           type: SEARCH_CONTESTANTS_SUCCESS,

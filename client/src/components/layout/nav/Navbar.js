@@ -13,7 +13,7 @@ const Navbar = () => {
     const {isAuthenticated} = loggedIn
   return (
     <Wrapper>
-      <TopNav isLoggedIn={isAuthenticated} sticky={isSticky} element={element} />
+      {/* <TopNav isLoggedIn={isAuthenticated} sticky={isSticky} element={element} /> */}
       <StickyNav isLoggedIn={isAuthenticated} />
     </Wrapper>
   );

@@ -7,11 +7,12 @@ import {
   GET_CONTEST_REQUEST,
   GET_CONTEST_SUCCESS,
 } from './action.types';
+import { apiUrl } from '../../api';
 
 export const contestAction = () => async (dispatch) => {
   dispatch({ type: GET_CONTEST_REQUEST });
   try {
-    const { data } = await axios.get(`/api/auth/getcontest/`);
+    const { data } = await axios.get(`${apiUrl}/api/auth/getcontest/`);
     dispatch({
       type: GET_CONTEST_SUCCESS,
       payload: data.msg,
@@ -26,7 +27,7 @@ export const addContestant = (contestObj) => async (dispatch) => {
   console.log(contestObj)
   dispatch({ type: ADD_CONTESTANT_REQUEST });
   axios
-    .post('/api/auth/addContestant/', contestObj)
+    .post(`${apiUrl}/api/auth/addContestant/`, contestObj)
     .then((res) => {
       dispatch({ type: ADD_CONTESTANT_SUCCESS, payload: res.data }); //dispatching the action
     })

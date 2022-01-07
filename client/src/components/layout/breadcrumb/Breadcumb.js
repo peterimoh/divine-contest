@@ -8,13 +8,13 @@ const Breadcumb = ({image, title, path, present}) => {
     <div
       id='breadcrumb'
       style={{
-        backgroundImage: `linear-gradient(60deg, #0000004f, #0000002e), url(${image})`,
+        backgroundImage: `linear-gradient(60deg,rgb(0 0 0 / 58%), rgb(0 0 0 / 26%)), url(${image})`,
       }}
     >
       <div className='container'>
         <div className='row'>
           <div className='col-md-6 title'>
-                      <h2>{ title}</h2>
+            <h2>{title}</h2>
           </div>
           <div className='col-md-6'>
             <ul className='crumb'>

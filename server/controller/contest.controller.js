@@ -179,14 +179,28 @@ class Contest extends Voter {
   }
 
   DeleteById(tableName, contestId) {
-    console.log(contestId)
-    console.log('table name===', tableName)
-    Model.DeleteById(tableName, 'user_id', contestId, (err, result) => {
-      if (err)
+    console.log(contestId);
+    console.log('table name===', tableName);
+    Model.DeleteById(tableName, 'id', contestId, (err, result) => {
+      if (err) {
         this.TransactionMessage(this.res, 400, 'Error selecting contest table');
-      else {
-        this.req.flash({  msg: 'You have successfully left the contest' });
-        this.res.redirect("back")
+      } else {
+        this.req.flash({ msg: 'You have successfully left the contest' });
+        this.res.redirect('back');
+      }
+    });
+  }
+
+  DeleteContestentById(tableName, contestId) {
+    console.log(contestId);
+    console.log('table name===', tableName);
+    Model.DeleteById(tableName, 'user_id', contestId, (err, result) => {
+      if (err) {
+        this.res.redirect('back');
+        // this.TransactionMessage(this.res, 400, 'Error selecting contest table');
+      } else {
+        this.req.flash({ msg: 'You have successfully left the contest' });
+        this.res.redirect('back');
       }
     });
   }

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Upload, message } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { apiUrl } from '../../../api';
 
 const { Dragger } = Upload;
 
@@ -15,9 +16,9 @@ const UploadCover = () => {
         if (!isJpgOrPng) {
           message.error('You can only upload JPG/PNG file!');
         }
-        const isLt10M = file.size / 1024 / 1024 < 10;
+        const isLt10M = file.size / 1024 / 1024 < 8;
         if (!isLt10M) {
-          message.error('Image must smaller than 10MB!');
+          message.error('Image must smaller than 8MB!');
         }
         return isJpgOrPng && isLt10M;
       };
@@ -25,7 +26,7 @@ const UploadCover = () => {
     const props = {
       name: 'full_pic',
       multiple: false,
-      action: `http://localhost:8080/api/auth/upload-fullpics/${login}`,
+      action: `${apiUrl}/api/auth/upload-fullpics/${login}`,
       onChange(info) {
         const { status } = info.file;
         if (status !== 'uploading') {

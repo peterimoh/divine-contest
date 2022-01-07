@@ -9,8 +9,10 @@ import {
   addContestant,
   contestAction,
 } from '../../store/action/contest.action';
+import { apiUrl } from '../../api';
 import 'react-toastify/dist/ReactToastify.css';
 import './contest.css';
+
 
 const Contest = () => {
   let dispatch = useDispatch();
@@ -45,7 +47,10 @@ const Contest = () => {
       };
 
       try {
-        const { data } = await axios.post(`/api/auth/addContestant/`, { body });
+        const { data } = await axios.post(
+          `${apiUrl}/api/auth/addContestant/`,
+          { body }
+        );
         // console.log('constenstate data ', data);
         setContestDetails(data && data.msg.msg);
 

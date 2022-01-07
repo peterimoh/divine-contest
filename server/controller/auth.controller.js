@@ -1,6 +1,7 @@
 const Auth = require('../model/auth.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const cloudinary = require('cloudinary').v2;
 const config = require('../config/config');
 const Vote = require('./vote.controller');
 const Contest = require('./contest.controller');
@@ -129,8 +130,7 @@ exports.ReadUser = async (req, res) => {
 
 exports.uploadDpToDB = (req, res) => {
   const { id } = req.params;
-  console.log('user id ', id);
-  const dp = req.file.buffer.toString('base64');
+  const dp = req.file.path;
   Auth.UpdateById('user', 'profile_pic', 'id', dp, id, (err, output) => {
     if (err) {
       console.log(err);
@@ -142,7 +142,7 @@ exports.uploadDpToDB = (req, res) => {
 
 exports.uploadFullToDB = (req, res) => {
   const { id } = req.params;
-  const full = req.file.buffer.toString('base64');
+  const full = req.file.path;
 
   Auth.UpdateById('user', 'full_pic', 'id', full, id, (err, output) => {
     console.log(err);
@@ -156,7 +156,7 @@ exports.uploadFullToDB = (req, res) => {
 
 exports.uploadContestImg = async (req, res) => {
   const { id } = req.params;
-  const contest_img = req.file.buffer.toString('base64');
+  const contest_img = req.file.path;
 
   await Auth.UpdateById(
     'user',

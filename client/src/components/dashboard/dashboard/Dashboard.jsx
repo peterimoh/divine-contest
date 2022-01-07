@@ -38,7 +38,7 @@ const DashboardComponent = () => {
                   detail.data.map((item) => {
                     const { full_pic } = item;
                     return full_pic && full_pic.length > 0
-                      ? 'data:image/*;base64,' + full_pic
+                      ? full_pic
                       : 'https://via.placeholder.com/800';
                   })
                 })`,
@@ -53,7 +53,7 @@ const DashboardComponent = () => {
                   detail.data.map((item) => {
                     const { profile_pic } = item;
                     return profile_pic && profile_pic.length > 0
-                      ? 'data:image/*;base64,' + profile_pic
+                      ? profile_pic
                       : 'https://via.placeholder.com/300';
                   })
                 })`,

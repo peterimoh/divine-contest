@@ -17,7 +17,7 @@ const DashboardNew = () => {
   return (
     <React.Fragment>
       <Sidebar />
-      <div id='main'>
+      <div id='main' className='mt-3 mb-5'>
         <DashboardComponent />
       </div>
     </React.Fragment>

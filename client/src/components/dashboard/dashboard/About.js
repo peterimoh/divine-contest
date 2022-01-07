@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Styled from 'styled-components';
+import {apiUrl} from '../../../api'
+
+
 
 const About = () => {
-  let voteLinkBaseURL = 'http://localhost:8080/api/auth/vote';
+  let voteLinkBaseURL = `${apiUrl}/api/auth/vote`;
 
   let userID = useSelector((state) => state.login.user.id);
   let { data } = useSelector((state) => state.profile.detail);
@@ -23,15 +26,23 @@ const About = () => {
     document.body.removeChild(copyText);
   };
 
-  useEffect(async () => {
+  const postData = async () => {
     try {
-      const { data } = await axios.post(`/api/auth/getContestantById/`, {
-        user_id: userID,
-      });
+      const { data } = await axios.post(
+        `${apiUrl}/api/auth/getContestantById/`,
+        {
+          user_id: userID,
+        }
+      );
       console.log('data', data);
       setContest(data.msg);
     } catch (err) {}
+  };
+
+  useEffect(() => {
+    postData();
   }, []);
+
   return (
     <AboutStyled>
       <div className='container'>
@@ -46,26 +57,28 @@ const About = () => {
                 return (
                   <React.Fragment key={index}>
                     <div style={{ marginBottom: '20px' }}>
-                      <p style={{ display: 'unset' }} className='align-item-center'>
+                      <p
+                        style={{ display: 'unset' }}
+                        className='align-item-center'
+                      >
                         {el.title} Contest
                       </p>
-                      <div className="d-fle">
-
-                      <button
-                        data-bs-toggle='modal'
-                        data-bs-target={'#ww' + el.cid}
-                        className='btn btn-md btn-primary m-2'
-                        style={{ display: 'inline', float: 'right' }}
-                      >
-                        view
-                      </button>
-                      <button
-                        onClick={() => CopyLink(el)}
-                        className='btn btn-md btn-success  m-2'
-                        style={{ display: 'inline', float: 'right' }}
-                      >
-                        Copy
-                      </button>
+                      <div className='d-fle'>
+                        <button
+                          data-bs-toggle='modal'
+                          data-bs-target={'#ww' + el.cid}
+                          className='btn btn-md btn-primary m-2'
+                          style={{ display: 'inline', float: 'right' }}
+                        >
+                          view
+                        </button>
+                        <button
+                          onClick={() => CopyLink(el)}
+                          className='btn btn-md btn-success  m-2'
+                          style={{ display: 'inline', float: 'right' }}
+                        >
+                          Copy
+                        </button>
                       </div>
                     </div>
 
@@ -100,7 +113,7 @@ const About = () => {
                             <div className='container'>
                               <img
                                 className='img-fluid'
-                                src={`data:image/*;base64,${el.contest_pic}`}
+                                src={el.contest_pic}
                                 alt='contest_image'
                               />
                               <p>
@@ -154,7 +167,7 @@ const About = () => {
             )}
           </div>
         </div>
-        <div className='col-md-12 col-sm-12 mt-3 mb-3'>
+        <div className='col-md-12 col-sm-12 mt-3 mb-0'>
           <div className='card details'>
             <h4>
               <b>Profile</b>
@@ -194,7 +207,7 @@ const About = () => {
               })}
           </div>
         </div>
-
+<br />
         {/* </div> */}
       </div>
     </AboutStyled>
